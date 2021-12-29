@@ -1,16 +1,19 @@
 {
-  "name": "masterlink-elementui",
+  "name": "sadfads",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lib": "vue-cli-service build --target lib --name wm --dest lib src/index.js"
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "element-ui": "^2.15.6",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^9.1.2"
