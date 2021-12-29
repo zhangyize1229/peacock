@@ -1,5 +1,5 @@
 import Upload from "../packages/upload/index";
-import locale from "element-ui/src/locale";
+import locale from "./locale";
 
 const components = [Upload];
 const install = function (Vue, opts = {}) {

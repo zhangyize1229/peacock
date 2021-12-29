@@ -46,7 +46,16 @@
             @click="downloadFile(item.download)"
             >{{ item.downLoad.msg }}</el-link
           >
-          <el-upload v-if="item.upload" v-bind="$props">
+          <el-upload
+            v-if="item.upload"
+            :action="action"
+            :limit="item.upload.limit"
+            :accept="accept"
+            :show-file-list="false"
+            :before-upload="beforeUpload"
+            :on-error="onError"
+            :on-success="onSuccess"
+          >
             <el-button type="primary" size="mini" :icon="item.upload.icon">{{
               item.upload.msg
             }}</el-button>
@@ -57,20 +66,45 @@
   </div>
 </template>
 <script>
-import { Upload } from "element-ui";
+import locale from "../../core/common/locale.js";
 import { downloadFile } from "./download";
 export default {
   name: "WmUpload",
+  mixins: [locale],
   props: {
-    uploadData: {
+    resource: {
       type: Array,
-      default: () => [
+      default: () => {
+        return [];
+      },
+    },
+    action: {
+      type: String,
+      default: "",
+    },
+    limit: {
+      type: Number,
+      default: 1,
+    },
+    maxSize: {
+      type: Number,
+      default: 1024 * 1024 * 5,
+    },
+    accept: {
+      type: String,
+      default: ".xls,.xlsx",
+    },
+  },
+  computed: {
+    uploadData() {
+      return [
         {
           header: { icon: "", msg: "准备需求" },
           downLoad: {
             icon: "el-icon-download",
-            msg: "下载模板",
+            msg: this.t("upload.download_template"),
             fileName: "模板",
+            link: "",
             blob: "",
           },
           content: {
@@ -85,12 +119,14 @@ export default {
         },
         {
           header: { icon: "", msg: "上传数据文件" },
-          upload: { icon: "el-icon-download", msg: "下载模板" },
+          upload: {
+            icon: "el-icon-upload",
+            msg: this.t("upload.upload_file"),
+          },
           content: { msg: "目前支持的文件类型为*.xls、*.xlsx;", children: [] },
         },
-      ],
+      ];
     },
-    ...Upload.props,
   },
   data() {
     return {
@@ -103,68 +139,27 @@ export default {
       if (data.blob) {
         downloadFile(data.fileName, data.blob);
       }
+      if (data.link) {
+        window.open(data.link, "_blank");
+      }
+    },
+    beforeUpload(file) {
+      console.log(file);
+      const { size } = file;
+      if (size > this.maxSize) {
+        this.$message.warning(
+          this.t("upload.file_size") + this.maxSize / 1024 / 1024 + "M"
+        );
+        return false;
+      }
+    },
+    onError(err) {
+      console.log(err);
+      // TODO: handle err -> download error excel
+    },
+    onSuccess() {
+      this.$message.warning(this.t("upload.common.ok"));
     },
   },
 };
 </script>
-<style>
-.upload {
-  width: 100%;
-  height: 100%;
-}
-.upload .item {
-  margin-top: 20px;
-}
-.upload .header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-.upload .header .icon.number {
-  width: 20px;
-  height: 20px;
-  font-size: 12px;
-  border-radius: 50px;
-  border: 1px solid #dddddd;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.upload .header .title {
-  margin-left: 10px;
-}
-.upload .content {
-  padding-left: 20px;
-}
-.upload .content .content-title {
-  display: flex;
-  font-size: 14px;
-}
-.upload .content .content-title .bold-msg {
-  margin: 0 8px;
-  font-weight: bold;
-}
-.upload .content .content-title .dropdown-msg {
-  color: #4a90e2;
-  cursor: pointer;
-}
-.upload .content .showMore {
-  font-size: 12px;
-  font-size: #999999;
-  padding-left: 20px;
-}
-.upload .content .matters {
-  margin-top: 8px;
-}
-.upload .btns {
-  margin-top: 10px;
-}
-.upload .caret {
-  color: #c0c4cc;
-  transition: transform 0.3s;
-  transform: rotateZ(-90deg);
-}
-.upload .is-reverse {
-  transform: rotateZ(0);
-}
-</style>

@@ -2,6 +2,7 @@
 
 ``` dependencies
 npm install element-ui -S
+```
 
 ```shell
 npm install xxxxx

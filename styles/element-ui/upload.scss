@@ -1,0 +1,59 @@
+.upload {
+  width: 100%;
+  height: 100%;
+  .item {
+    margin-top: 20px;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .header .icon.number {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    border-radius: 50px;
+    border: 1px solid #dddddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .header .title {
+    margin-left: 10px;
+  }
+  .content {
+    padding-left: 20px;
+  }
+  .content .content-title {
+    display: flex;
+    font-size: 14px;
+  }
+  .content .content-title .bold-msg {
+    margin: 0 8px;
+    font-weight: bold;
+  }
+  .content .content-title .dropdown-msg {
+    color: #4a90e2;
+    cursor: pointer;
+  }
+  .content .showMore {
+    font-size: 12px;
+    font-size: #999999;
+    padding-left: 20px;
+  }
+  .content .matters {
+    margin-top: 8px;
+  }
+  .btns {
+    margin-top: 10px;
+  }
+  .caret {
+    color: #c0c4cc;
+    transition: transform 0.3s;
+    transform: rotateZ(-90deg);
+  }
+  .is-reverse {
+    transform: rotateZ(0);
+  }
+}
