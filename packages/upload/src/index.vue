@@ -40,24 +40,24 @@
         <div class="content-title" v-else>{{ item.content.msg }}</div>
         <div class="btns">
           <el-link
-            v-if="item.downLoad"
+            v-if="item.btn"
             type="primary"
-            :icon="item.downLoad.icon"
-            @click="downloadFile(item.download)"
-            >{{ item.downLoad.msg }}</el-link
+            :icon="downloadObj.icon"
+            @click="downloadFile"
+            >{{ downloadObj.name }}</el-link
           >
           <el-upload
-            v-if="item.upload"
+            v-if="!item.btn"
             :action="action"
-            :limit="item.upload.limit"
+            :limit="limit"
             :accept="accept"
             :show-file-list="false"
             :before-upload="beforeUpload"
             :on-error="onError"
             :on-success="onSuccess"
           >
-            <el-button type="primary" size="mini" :icon="item.upload.icon">{{
-              item.upload.msg
+            <el-button type="primary" size="mini" :icon="uploadObj.icon">{{
+              uploadObj.name
             }}</el-button>
           </el-upload>
         </div>
@@ -78,13 +78,30 @@ export default {
         return [];
       },
     },
+    ruleData: {
+      type: Array,
+      default: () => {
+        return [];
+      },
+    },
     action: {
       type: String,
       default: "",
+      required: true,
     },
     limit: {
       type: Number,
       default: 1,
+    },
+    headers: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
+    number: {
+      type: Number,
+      default: 200,
     },
     maxSize: {
       type: Number,
@@ -94,38 +111,64 @@ export default {
       type: String,
       default: ".xls,.xlsx",
     },
+    upload: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
+    download: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
+    link: {
+      type: String,
+      default: "",
+    },
+    blob: {
+      type: String,
+      default: "",
+    },
   },
   computed: {
     uploadData() {
-      return [
+      let arr = [
         {
-          header: { icon: "", msg: "准备需求" },
-          downLoad: {
-            icon: "el-icon-download",
-            msg: this.t("upload.download_template"),
-            fileName: "模板",
-            link: "",
-            blob: "",
-          },
+          header: { icon: "", msg: this.t("upload.prepare") },
+          btn: true,
           content: {
-            msg: "导入的数据个数需小于200，所有允许导入的字段请参考模板;",
-            boldMsg: "字段不符合规则，整条数据不予以导入",
-            dropDownMsg: "更多字段导入规则",
-            children: [
-              "设备编号：必填；支持大小写字母、数字组合；如”MKd004938“",
-              "设备名称：必填；支持大小写字母、汉字、数字组合；如”加工机床001“",
-            ],
+            msg: `${this.t("upload.data_less")}${this.number},${this.t(
+              "upload.refer_template"
+            )}`,
+            boldMsg: this.t("upload.not_meet_rules_not_import"),
+            dropDownMsg: this.t("upload.more_import"),
+            children: this.ruleData,
           },
         },
         {
-          header: { icon: "", msg: "上传数据文件" },
-          upload: {
-            icon: "el-icon-upload",
-            msg: this.t("upload.upload_file"),
-          },
-          content: { msg: "目前支持的文件类型为*.xls、*.xlsx;", children: [] },
+          header: { icon: "", msg: this.t("upload.upload_data_file") },
+          btn: false,
+          content: { msg: this.t("upload.accept") + this.accept, children: [] },
         },
       ];
+      if (this.resource.length) {
+        arr = this.resource;
+      }
+      return arr;
+    },
+    downloadObj() {
+      return Object.assign(
+        { name: this.t("upload.download_template"), icon: "el-icon-download" },
+        this.download
+      );
+    },
+    uploadObj() {
+      return Object.assign(
+        { name: this.t("upload.upload_file"), icon: "el-icon-upload" },
+        this.upload
+      );
     },
   },
   data() {
@@ -135,12 +178,12 @@ export default {
     };
   },
   methods: {
-    downloadFile(data) {
-      if (data.blob) {
-        downloadFile(data.fileName, data.blob);
+    downloadFile() {
+      if (this.blob) {
+        downloadFile(this.download.name, this.blob);
       }
-      if (data.link) {
-        window.open(data.link, "_blank");
+      if (this.link) {
+        window.open(this.link, "_blank");
       }
     },
     beforeUpload(file) {
@@ -157,7 +200,8 @@ export default {
       console.log(err);
       // TODO: handle err -> download error excel
     },
-    onSuccess() {
+    onSuccess(res) {
+      console.log(res);
       this.$message.warning(this.t("upload.common.ok"));
     },
   },

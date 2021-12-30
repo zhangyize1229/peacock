@@ -1,8 +1,9 @@
 {
-  "name": "sadfads",
-  "version": "0.1.0",
+  "name": "chenggeweiwu",
+  "version": "0.1.2",
   "private": false,
   "license": "MIT",
+  "main": "lib/wm.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
