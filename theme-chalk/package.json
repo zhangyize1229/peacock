@@ -1,0 +1,21 @@
+{
+  "name": "element-wm-chalk",
+  "version": "0.1.0",
+  "main": "lib/index.css",
+  "style": "lib/index.css",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "build": "gulp build"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-dart-sass": "^1.0.2",
+    "gulp-autoprefixer": "^8.0.0"
+  },
+  "dependencies": {}
+}

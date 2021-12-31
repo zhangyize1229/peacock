@@ -1,5 +1,5 @@
 <template>
-  <div class="upload">
+  <div class="wm-upload">
     <div class="item" v-for="(item, index) in uploadData" :key="index">
       <div class="header">
         <i v-if="item.header.icon" :class="[item.header.icon, 'icon']"></i>
@@ -49,6 +49,7 @@
           <el-upload
             v-if="!item.btn"
             :action="action"
+            :headers="headers"
             :limit="limit"
             :accept="accept"
             :show-file-list="false"
@@ -95,6 +96,7 @@ export default {
     },
     headers: {
       type: Object,
+      required: true,
       default: () => {
         return {};
       },
@@ -180,14 +182,13 @@ export default {
   methods: {
     downloadFile() {
       if (this.blob) {
-        downloadFile(this.download.name, this.blob);
+        downloadFile(this.blob, "file");
       }
       if (this.link) {
         window.open(this.link, "_blank");
       }
     },
     beforeUpload(file) {
-      console.log(file);
       const { size } = file;
       if (size > this.maxSize) {
         this.$message.warning(

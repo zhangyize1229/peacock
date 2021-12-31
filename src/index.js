@@ -3,6 +3,7 @@ import locale from "./locale";
 
 const components = [Upload];
 const install = function (Vue, opts = {}) {
+  console.log(opts);
   locale.use(opts.locale);
   locale.i18n(opts.i18n);
   components.forEach((component) => {
