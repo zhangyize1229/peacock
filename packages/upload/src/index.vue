@@ -95,8 +95,8 @@ export default {
       default: 1,
     },
     headers: {
-      type: Object,
       required: true,
+      type: Object,
       default: () => {
         return {};
       },
@@ -138,21 +138,24 @@ export default {
     uploadData() {
       let arr = [
         {
-          header: { icon: "", msg: this.t("upload.prepare") },
+          header: { icon: "", msg: this.t("wm.upload.prepare") },
           btn: true,
           content: {
-            msg: `${this.t("upload.data_less")}${this.number},${this.t(
-              "upload.refer_template"
+            msg: `${this.t("wm.upload.data_less")}${this.number},${this.t(
+              "wm.upload.refer_template"
             )}`,
-            boldMsg: this.t("upload.not_meet_rules_not_import"),
-            dropDownMsg: this.t("upload.more_import"),
+            boldMsg: this.t("wm.upload.not_meet_rules_not_import"),
+            dropDownMsg: this.t("wm.upload.more_import"),
             children: this.ruleData,
           },
         },
         {
-          header: { icon: "", msg: this.t("upload.upload_data_file") },
+          header: { icon: "", msg: this.t("wm.upload.upload_data_file") },
           btn: false,
-          content: { msg: this.t("upload.accept") + this.accept, children: [] },
+          content: {
+            msg: this.t("wm.upload.accept") + this.accept,
+            children: [],
+          },
         },
       ];
       if (this.resource.length) {
@@ -162,13 +165,16 @@ export default {
     },
     downloadObj() {
       return Object.assign(
-        { name: this.t("upload.download_template"), icon: "el-icon-download" },
+        {
+          name: this.t("wm.upload.download_template"),
+          icon: "el-icon-download",
+        },
         this.download
       );
     },
     uploadObj() {
       return Object.assign(
-        { name: this.t("upload.upload_file"), icon: "el-icon-upload" },
+        { name: this.t("wm.upload.upload_file"), icon: "el-icon-upload" },
         this.upload
       );
     },
@@ -192,7 +198,7 @@ export default {
       const { size } = file;
       if (size > this.maxSize) {
         this.$message.warning(
-          this.t("upload.file_size") + this.maxSize / 1024 / 1024 + "M"
+          this.t("wm.upload.file_size") + this.maxSize / 1024 / 1024 + "M"
         );
         return false;
       }
@@ -203,7 +209,7 @@ export default {
     },
     onSuccess(res) {
       console.log(res);
-      this.$message.warning(this.t("upload.common.ok"));
+      this.$message.warning(this.t("wm.common.ok"));
     },
   },
 };
