@@ -1,5 +1,4 @@
 function createObject(data, fileName) {
-  console.log(data);
   const url = window.URL.createObjectURL(data);
   const a = document.createElement("a");
   a.style.display = "none";
@@ -27,11 +26,6 @@ export const downloadFile = (content, fileName, type = "blob") => {
       }
     };
   } else {
-    createObject(
-      new Blob([content], {
-        type: "application/vnd.ms-excel;charset=UTF-8",
-      }),
-      fileName
-    );
+    createObject(content, fileName);
   }
 };

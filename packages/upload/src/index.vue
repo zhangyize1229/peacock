@@ -57,13 +57,11 @@
           </div>
           <div class="btns">
             <el-upload
-              :action="action"
-              :headers="headers"
+              action=""
               accept=".xls,.xlsx"
               :show-file-list="false"
               :before-upload="beforeUpload"
-              :on-error="onError"
-              :on-success="onSuccess"
+              :http-request="handleRequest"
             >
               <el-button type="primary" size="mini" :icon="uploadObj.icon">{{
                 uploadObj.name
@@ -78,25 +76,10 @@
 <script>
 import locale from "../../core/common/locale.js";
 import { downloadFile } from "./download";
-import { includes } from "../../../src/utils/utils";
 export default {
   name: "WmUpload",
   mixins: [locale],
   props: {
-    action: {
-      type: String,
-      default: "",
-      required: true,
-    },
-    headers: {
-      required: true,
-      type: Object,
-      validator: function (obj) {
-        const keys = Object.keys(obj);
-        const arr = ["Authorization", "Blade-Auth"];
-        return includes(keys, arr);
-      },
-    },
     number: {
       type: Number,
       default: 200,
@@ -118,6 +101,10 @@ export default {
       },
     },
     download: {
+      required: true,
+      type: Function,
+    },
+    httpRequest: {
       required: true,
       type: Function,
     },
@@ -165,15 +152,17 @@ export default {
         return false;
       }
     },
-    onError(err) {
-      console.log(err);
-    },
-    onSuccess(res) {
-      if (res) {
+    async handleRequest({ file }) {
+      const data = await this.httpRequest(file);
+      if (!data) {
+        console.log("Missing return value");
+        return false;
+      }
+      if (data instanceof Blob) {
         this.$message.error(this.t("wm.upload.export_err"));
-        downloadFile(res, this.t("wm.upload.export_data") + ".xls", "blob");
+        downloadFile(data, this.t("wm.upload.export_data") + ".xls", "blob");
       } else {
-        this.$message.warning(this.t("wm.common.ok"));
+        this.$message.success(this.t("wm.common.ok"));
       }
     },
   },
