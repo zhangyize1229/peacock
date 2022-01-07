@@ -158,9 +158,9 @@ export default {
         console.log("Missing return value");
         return false;
       }
-      if (data instanceof Blob) {
+      if (data.link) {
         this.$message.error(this.t("wm.upload.export_err"));
-        downloadFile(data, this.t("wm.upload.export_data") + ".xls", "blob");
+        downloadFile(data.link, data.originalName, "link");
       } else {
         this.$message.success(this.t("wm.common.ok"));
       }

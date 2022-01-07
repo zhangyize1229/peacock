@@ -15,4 +15,17 @@ module.exports = {
       .use("babel")
       .loader("babel-loader");
   },
+  devServer: {
+    port: 8080,
+    proxy: {
+      "/api": {
+        //本地服务接口地址
+        target: "http://192.168.3.181",
+        ws: true,
+        pathRewrite: {
+          "^/api": "/",
+        },
+      },
+    },
+  },
 };
