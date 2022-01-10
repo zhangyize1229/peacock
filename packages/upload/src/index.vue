@@ -11,6 +11,7 @@
             {{
               this.t("wm.upload.data_less") +
               number +
+              "," +
               this.t("wm.upload.refer_template")
             }}
           </div>
