@@ -75,11 +75,11 @@
   </div>
 </template>
 <script>
-import locale from "../../core/common/locale.js";
+import Locale from "peacock9/src/mixins/locale";
 import { downloadFile } from "./download";
 export default {
   name: "WmUpload",
-  mixins: [locale],
+  mixins: [Locale],
   props: {
     number: {
       type: Number,
