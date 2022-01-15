@@ -39,7 +39,7 @@ fileList
             "global.",
             "global.PEACOCK9.lang = global.PEACOCK9.lang || {}; \n    global.PEACOCK9.lang."
           );
-        save(resolve(__dirname, "../../lib/umd/locale", file)).write(code);
+        save(resolve(__dirname, "../../lib/locale", file)).write(code);
 
         console.log(file);
       }

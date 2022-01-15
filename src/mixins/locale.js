@@ -1,4 +1,4 @@
-import { t } from "peacock9/src/locale";
+import { t } from "../locale";
 
 export default {
   methods: {

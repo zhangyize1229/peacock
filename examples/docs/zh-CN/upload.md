@@ -1,8 +1,9 @@
-## Upload 上传下载
+# 导入导出
 
 业务组件
 
 :::demo
+
 ```html
 <wm-upload :number="50" :download="download" :httpRequest="upload" >
   <div>...content</div>
@@ -25,9 +26,10 @@
   }
 </script>
 ```
+
 :::
 
-### Attributes
+## Attributes
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值
 |---------|--------|-------| --------|--------

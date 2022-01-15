@@ -12,7 +12,8 @@
               this.t("wm.upload.data_less") +
               number +
               "," +
-              this.t("wm.upload.refer_template")
+              this.t("wm.upload.refer_template") +
+              ";"
             }}
           </div>
           <div class="bold-msg">
@@ -75,7 +76,7 @@
   </div>
 </template>
 <script>
-import Locale from "peacock9/src/mixins/locale";
+import Locale from "../../../src/mixins/locale";
 import { downloadFile } from "./download";
 export default {
   name: "WmUpload",

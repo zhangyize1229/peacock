@@ -5,8 +5,8 @@ import eleEn from "element-ui/lib/locale/lang/en";
 import eleZh from "element-ui/lib/locale/lang/zh-CN";
 
 import pLocale from "../src/locale";
-import pEn from "../lib/locale/lang/en";
-import pZh from "../lib/locale/lang/zh";
+import pEn from "../lib/locale/en";
+import pZh from "../lib/locale/zh";
 
 Vue.use(VueI18n);
 
@@ -24,6 +24,6 @@ const messages = {
 EleLocale.i18n((key, value) => i18n.t(key, value));
 pLocale.i18n((key, value) => i18n.t(key, value));
 export const i18n = new VueI18n({
-  locale: localStorage.getItem("language") || "en",
+  locale: localStorage.getItem("language") || "zh",
   messages,
 });

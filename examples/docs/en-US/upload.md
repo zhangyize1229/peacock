@@ -1,6 +1,7 @@
-## Upload 上传下载
+# Import and Export
 
 :::demo
+
 ```html
 <wm-upload :number="50" :download="download" :httpRequest="upload" >
   <div>...content</div>
@@ -23,15 +24,16 @@
   }
 </script>
 ```
+
 :::
 
 #### Attributes
 
-| 参数 | 说明 | 类型 | 可选值 | 默认值
+| Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------
-| number | 数据量 | number | -- | 200
-| maxSize | 上传文件的最大值 | number | -- | 5M
-| uploadMsg |上传按钮的文字和图标 | object | --| {icon:el-icon-upload,name:上传文件}
-| downloadMsg | 下载按钮的文字和图标 | object | -- | {icon:el-icon-download,name:下载模板}
-| download | 下载模板的钩子，函数要有返回值{link:'',....} | function | -- | --
-| httpRequest | 自定义上传的钩子，函数要有返回值 类型为Blob则下载 | function(file) | -- | --
+| number | The amount of data | number | -- | 200
+| maxSize | Maximum upload file size | number | -- | 5M
+| uploadMsg | Upload button text and icon | object | --| {icon:el-icon-upload,name:upload file}
+| downloadMsg | Download button text and icon | object | -- | {icon:el-icon-download,name:download template}
+| download | Hook to download template, function must return value{link:'',....} | function | -- | --
+| httpRequest | Customize the upload hook, the function must have a return value and the type is Blob to download | function(file) | -- | --
