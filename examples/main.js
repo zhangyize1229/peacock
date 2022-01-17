@@ -12,8 +12,8 @@ import eleEn from "element-ui/lib/locale/lang/en";
 import eleZh from "element-ui/lib/locale/lang/zh-CN";
 
 import locale2 from "../src/locale";
-import en1 from "../lib/locale/lang/en";
-import zh1 from "../lib/locale/lang/zh";
+import en1 from "../src/locale/lang/en";
+import zh1 from "../src/locale/lang/zh";
 import App from "./App.vue";
 const messages = {
   en: {

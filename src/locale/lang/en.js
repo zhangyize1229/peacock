@@ -19,5 +19,17 @@ export default {
       export_err: "Import failed, please check the error details",
       export_data: "Import failed error report",
     },
+    fileUpload: {
+      click_upload: "Click upload",
+      uploading: "Uploading...",
+      uploadFinish: "Upload complete",
+      name: "Name",
+      size: "Size",
+      status: "Status",
+      action: "Action",
+      preview: "Preview",
+      download: "Download",
+      delete: "Delete",
+    }
   },
 };
