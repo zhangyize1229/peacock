@@ -1,6 +1,6 @@
 {
   "name": "peacock9",
-  "version": "0.1.25",
+  "version": "0.1.26",
   "private": false,
   "license": "MIT",
   "main": "lib/wm.umd.min.js",
@@ -10,7 +10,8 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib --name wm --dest lib src/index.js"
+    "lib": "vue-cli-service build --target lib --name wm --dest lib src/index.js",
+    "build:theme": "gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk"
   },
   "dependencies": {
     "axios": "^0.24.0",
@@ -43,6 +44,11 @@
     "sass": "~1.32.13",
     "sass-loader": "^7.0.1",
     "typescript": "~4.1.5",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "gulp": "^4.0.2",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-dart-sass": "^1.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "cp-cli": "^1.0.2"
   }
 }
