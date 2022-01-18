@@ -9,7 +9,7 @@
       :before-upload="beforeUpload"
       :on-success="handleSuccess"
     >
-      <el-button size="small" type="primary">{{t('wm.fileUpload.click_upload')}}</el-button>
+      <el-button type="primary">{{t('wm.fileUpload.click_upload')}}</el-button>
       <div slot="tip" class="el-upload__tip"></div>
     </el-upload>
     <div class="fileUpload-Box" style="display: block;overflow-y:auto;overflow-x:hidden " v-if="showBox" :style="{'height': arrowUp? '300px': '60px'}">
@@ -188,8 +188,6 @@ export default {
 };
 </script>
 <style scoped>
-.button-wapper {
-}
 .fileUpload-Box {
   position: fixed;
   right: 5px;

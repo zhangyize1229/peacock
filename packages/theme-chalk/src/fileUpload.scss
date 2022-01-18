@@ -1,0 +1,41 @@
+
+@import "mixins/mixins";
+
+@include b(fileUpload) 
+{
+    .fileUpload-Box {
+        position: fixed;
+        right: 5px;
+        bottom: 5px;
+        width: 600px;
+        height: 300px;
+        border-radius: 3px;
+        box-shadow: 0 1px 6px rgb(0 0 0 / 30%);
+        background-color: #fff;
+        overflow: hidden;
+        display: none;
+        z-index: 100;
+    }
+    .fileUpload-contain .main-title {
+        line-height: 30px;
+        border-bottom: 1px solid #ddd;
+        overflow: hidden;
+        color: #666;
+    }
+    .icon {
+        font-size: 20px;
+    }
+    .success {
+        color: rgb(97, 200, 37);
+    }
+    .faild {
+        color: rgb(251, 73, 73);
+    }
+    .box-title{
+        background: #ddd;
+        display: flex;
+        justify-content:space-between;
+        font-size: 18px;
+        padding: 10px;
+    }
+}
