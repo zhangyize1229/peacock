@@ -17,7 +17,7 @@ import './demo-styles/index.scss';
 import './assets/styles/common.css';
 
 Vue.use(peacock9);
-Vue.use(ElementUI);
+Vue.use(ElementUI,{size: 'mini'});
 Vue.use(VueRouter);
 Vue.component('demo-block', demoBlock);
 Vue.component("side-nav", SideNav);

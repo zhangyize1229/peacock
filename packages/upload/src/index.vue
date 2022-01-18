@@ -65,7 +65,7 @@
               :before-upload="beforeUpload"
               :http-request="handleRequest"
             >
-              <el-button type="primary" size="mini" :icon="uploadObj.icon">{{
+              <el-button type="primary" :icon="uploadObj.icon">{{
                 uploadObj.name
               }}</el-button>
             </el-upload>

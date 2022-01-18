@@ -98,13 +98,13 @@
   </div>
 </template>
 <script>
-import locale from "../../core/common/locale.js";
+import Locale from "../../../src/mixins/locale";
 import filePreview from "./filePreview.vue";
 import { canPreviewList, previewMode } from "./utils";
 export default {
   components: { filePreview },
   name: "WmFileUpload",
-  mixins: [locale],
+  mixins: [Locale],
   props: {
     handleRequest: {
       type: Function,
