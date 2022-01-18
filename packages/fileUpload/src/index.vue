@@ -9,30 +9,53 @@
       :before-upload="beforeUpload"
       :on-success="handleSuccess"
     >
-      <el-button type="primary">{{t('wm.fileUpload.click_upload')}}</el-button>
-      <div slot="tip" class="el-upload__tip"></div>
+      <el-button type="primary">{{
+        t("wm.fileUpload.click_upload")
+      }}</el-button>
+      <div slot="tip"></div>
     </el-upload>
-    <div class="fileUpload-Box" style="display: block;overflow-y:auto;overflow-x:hidden " v-if="showBox" :style="{'height': arrowUp? '300px': '60px'}">
+    <div
+      class="fileUpload-Box"
+      style="display: block; overflow-y: auto; overflow-x: hidden"
+      v-if="showBox"
+      :style="{ height: arrowUp ? '300px' : '60px' }"
+    >
       <div class="box-title">
-         <div>
-          {{showUploadLoading ? t('wm.fileUpload.uploading'): t('wm.fileUpload.uploadFinish')}}
-         </div>
+        <div>
+          {{
+            showUploadLoading
+              ? t("wm.fileUpload.uploading")
+              : t("wm.fileUpload.uploadFinish")
+          }}
+        </div>
         <div>
           <i v-if="arrowUp" class="el-icon-arrow-down" @click="toggle"></i>
           <i v-else class="el-icon-arrow-up" @click="toggle"></i>
-          <i class="el-icon-close" style="margin-left:10px;" @click="showBox=false"></i>
+          <i
+            class="el-icon-close"
+            style="margin-left: 10px"
+            @click="showBox = false"
+          ></i>
         </div>
       </div>
       <div class="fileUpload-contain" v-if="arrowUp">
         <el-table :data="fileList" style="width: 100%">
-          <el-table-column prop="originalName" :label="t('wm.fileUpload.name')" width="250">
+          <el-table-column
+            prop="originalName"
+            :label="t('wm.fileUpload.name')"
+            width="250"
+          >
             <template slot-scope="scope">
               <el-link @click="downloadFile(scope.row)">{{
                 scope.row.originalName
               }}</el-link>
             </template>
           </el-table-column>
-          <el-table-column prop="size" :label="t('wm.fileUpload.size')" width="180">
+          <el-table-column
+            prop="size"
+            :label="t('wm.fileUpload.size')"
+            width="180"
+          >
           </el-table-column>
           <el-table-column prop="status" :label="t('wm.fileUpload.status')">
             <template slot-scope="scope">
@@ -43,20 +66,29 @@
               <i v-else class="el-icon-warning icon faild"></i>
             </template>
           </el-table-column>
-          <el-table-column prop="action" :label="t('wm.fileUpload.action')" width="180">
+          <el-table-column
+            prop="action"
+            :label="t('wm.fileUpload.action')"
+            width="180"
+          >
             <template slot-scope="scope">
-              <el-button @click="preview(scope.row)" type="text" size="small"
-                >{{scope.row.canPreview ? t('wm.fileUpload.preview'): t('wm.fileUpload.download')}}</el-button
-              >
-              <el-button @click="del(scope.row)" type="text" size="small"
-                >{{t('wm.fileUpload.delete')}}</el-button
-              >
+              <el-button @click="preview(scope.row)" type="text" size="small">{{
+                scope.row.canPreview
+                  ? t("wm.fileUpload.preview")
+                  : t("wm.fileUpload.download")
+              }}</el-button>
+              <el-button @click="del(scope.row)" type="text" size="small">{{
+                t("wm.fileUpload.delete")
+              }}</el-button>
             </template>
           </el-table-column>
         </el-table>
       </div>
     </div>
-    <el-dialog :title="t('wm.fileUpload.preview')" :visible.sync="dialogVisible">
+    <el-dialog
+      :title="t('wm.fileUpload.preview')"
+      :visible.sync="dialogVisible"
+    >
       <file-preview
         :content="content"
         :info="fileInfo"
@@ -91,14 +123,14 @@ export default {
       arrowUp: false,
       showUploadLoading: false,
       showBox: false,
-      canPreviewList
+      canPreviewList,
     };
   },
   methods: {
     beforeUpload(file) {
-      this.showUploadLoading = true
-      this.showBox = true
-      this.arrowUp = false
+      this.showUploadLoading = true;
+      this.showBox = true;
+      this.arrowUp = false;
       this.beforeUploadFileList.push({
         name: file.name,
         size: Math.round(file.size / 1024),
@@ -118,18 +150,18 @@ export default {
             suffix = "nc";
           }
           if (this.canPreviewList.indexOf(suffix) > -1) {
-            file.canPreview = true
-            file.suffix = suffix
+            file.canPreview = true;
+            file.suffix = suffix;
           }
         }
       });
       this.fileList.push(file);
-      this.showUploadLoading = false
-      this.arrowUp = true
+      this.showUploadLoading = false;
+      this.arrowUp = true;
       this.$emit("getFileList", this.fileList);
     },
     toggle() {
-      this.arrowUp = !this.arrowUp
+      this.arrowUp = !this.arrowUp;
     },
     del(file) {
       this.fileList = this.fileList.filter(
@@ -216,12 +248,11 @@ export default {
 .faild {
   color: rgb(251, 73, 73);
 }
-.box-title{
+.box-title {
   background: #ddd;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   font-size: 18px;
   padding: 10px;
 }
-
 </style>
