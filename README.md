@@ -21,6 +21,22 @@
 | download | 下载模板的钩子，函数要有返回值{link:'',....} | function | -- | --
 | httpRequest | 自定义上传的钩子，函数要有返回值 类型为Blob则下载 | function(file) | -- | --
 
+### 2. 上传组件
+
+```use
+  <WmFileUpload :handleRequest="" @getFileList="" >
+  </WmFileUpload>
+```
+
+#### Attributes
+
+| 参数 | 说明 | 类型 | 可选值 | 默认值
+|---------|--------|-------| --------|--------
+| handleRequest | 自定义上传的钩子，函数要有返回值  | function(file) | -- | --
+#### Methods
+| 方法名 | 说明 |参数
+|---------|--------|-------| --------|--------
+| getFileList | 上传后的文件列表  | function(fileList) | -- | --
 ## Quick Start
 
 ``` dependencies

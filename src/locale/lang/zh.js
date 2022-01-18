@@ -17,5 +17,17 @@ export default {
       export_err: "导入失败，请查看错误详情",
       export_data: "导入失败错误报告",
     },
+    fileUpload: {
+      click_upload: "点击上传",
+      uploading: "上传中。。。",
+      uploadFinish: "上传完毕",
+      name: "名称",
+      size: "大小",
+      status: "状态",
+      action: "操作",
+      preview: "预览",
+      download: "下载",
+      delete: "删除",
+    }
   },
 };

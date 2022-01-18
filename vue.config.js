@@ -20,7 +20,8 @@ module.exports = {
     proxy: {
       "/api": {
         //本地服务接口地址
-        target: "http://192.168.3.181",
+        target: "http://192.168.1.40:32002",
+        // target: "http://192.168.3.117",
         ws: true,
         pathRewrite: {
           "^/api": "/",
