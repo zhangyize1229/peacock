@@ -1,7 +1,7 @@
 <template>
-  <div class="wm-upload">
+  <div class="wm-fileUpload">
     <el-upload
-      class="upload-demo"
+      class="fileUpload-demo"
       action=""
       :show-file-list="false"
       :http-request="handleRequest"
