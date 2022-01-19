@@ -46,15 +46,17 @@
             width="250"
           >
             <template slot-scope="scope">
-              <el-link @click="downloadFile(scope.row)">{{
-                scope.row.originalName
-              }}</el-link>
+              <el-link @click="downloadFile(scope.row)" >
+                <span  class="table-name">
+                 {{scope.row.originalName}}
+                </span>
+              </el-link>
             </template>
           </el-table-column>
           <el-table-column
             prop="size"
             :label="t('wm.fileUpload.size')"
-            width="180"
+            width="80"
           >
           </el-table-column>
           <el-table-column prop="status" :label="t('wm.fileUpload.status')">
@@ -69,7 +71,7 @@
           <el-table-column
             prop="action"
             :label="t('wm.fileUpload.action')"
-            width="180"
+            width="100"
           >
             <template slot-scope="scope">
               <el-button @click="preview(scope.row)" type="text" size="small">{{
@@ -254,5 +256,12 @@ export default {
   justify-content: space-between;
   font-size: 18px;
   padding: 10px;
+}
+.table-name{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 200px;
+  display: block;
 }
 </style>
