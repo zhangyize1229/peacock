@@ -1,8 +1,9 @@
 import Upload from "../packages/upload/index";
 import fileUpload from "../packages/fileUpload/index";
+import wmSelectTable from "../packages/selectTable/index";
 import locale from "./locale";
 
-const components = [Upload, fileUpload];
+const components = [Upload, fileUpload, wmSelectTable];
 const install = function (Vue, opts = {}) {
   locale.use(opts.locale);
   locale.i18n(opts.i18n);
@@ -25,4 +26,5 @@ export default {
   install,
   Upload,
   fileUpload,
+  wmSelectTable,
 };

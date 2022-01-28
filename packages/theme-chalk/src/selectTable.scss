@@ -1,0 +1,13 @@
+@import "mixins/mixins";
+@include b(selectTable) {
+  .wm-selectTable {
+    display: relative;
+  }
+  .table-wapper {
+    border: 1px solid #ccc;
+  }
+  .table-ab{
+    position: absolute;
+    z-index: 9999;
+  }
+}
