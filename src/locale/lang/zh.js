@@ -18,8 +18,8 @@ export default {
       export_data: "导入失败错误报告",
     },
     fileUpload: {
-      click_upload: "点击上传",
-      uploading: "上传中。。。",
+      click_upload: "上传文件",
+      uploading: "上传中",
       uploadFinish: "上传完毕",
       name: "名称",
       size: "大小",
@@ -28,6 +28,7 @@ export default {
       preview: "预览",
       download: "下载",
       delete: "删除",
+      max_file_size: "上传文件大小不能超过"
     }
   },
 };

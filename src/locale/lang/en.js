@@ -20,8 +20,8 @@ export default {
       export_data: "Import failed error report",
     },
     fileUpload: {
-      click_upload: "Click upload",
-      uploading: "Uploading...",
+      click_upload: "Upload File",
+      uploading: "Uploading",
       uploadFinish: "Upload complete",
       name: "Name",
       size: "Size",
@@ -30,6 +30,7 @@ export default {
       preview: "Preview",
       download: "Download",
       delete: "Delete",
+      max_file_size: "Upload file size cannot exceed"
     }
   },
 };
