@@ -9,9 +9,7 @@
       :before-upload="beforeUpload"
       :on-success="handleSuccess"
     >
-      <el-button type="primary">{{
-        t("wm.fileUpload.click_upload")
-      }}</el-button>
+      <el-button type="primary">{{ fileUplodBtn }}</el-button>
       <div slot="tip"></div>
     </el-upload>
     <div
@@ -39,25 +37,34 @@
         </div>
       </div>
       <div class="fileUpload-contain" v-if="arrowUp">
-        <el-table :data="fileList" style="width: 100%">
+        <el-table :data="fileList" style="width: 100%" height="250">
+          >
           <el-table-column
             prop="originalName"
             :label="t('wm.fileUpload.name')"
             width="250"
+            align="left"
           >
             <template slot-scope="scope">
-              <el-link @click="downloadFile(scope.row)">{{
-                scope.row.originalName
-              }}</el-link>
+              <el-link @click="downloadFile(scope.row)">
+                <span class="table-name">
+                  {{ scope.row.originalName }}
+                </span>
+              </el-link>
             </template>
           </el-table-column>
           <el-table-column
+            align="left"
             prop="size"
             :label="t('wm.fileUpload.size')"
-            width="180"
+            width="80"
           >
           </el-table-column>
-          <el-table-column prop="status" :label="t('wm.fileUpload.status')">
+          <el-table-column
+            prop="status"
+            :label="t('wm.fileUpload.status')"
+            align="left"
+          >
             <template slot-scope="scope">
               <i
                 v-if="scope.row.status === 1"
@@ -68,8 +75,9 @@
           </el-table-column>
           <el-table-column
             prop="action"
+            align="left"
             :label="t('wm.fileUpload.action')"
-            width="180"
+            width="100"
           >
             <template slot-scope="scope">
               <el-button @click="preview(scope.row)" type="text" size="small">{{
@@ -110,6 +118,14 @@ export default {
       type: Function,
       required: true,
     },
+    maxFileSize: {
+      type: Number,
+      default: 20,
+    },
+    fileUplodBtnText: {
+      type: String,
+      default: "",
+    },
   },
   data() {
     return {
@@ -124,10 +140,23 @@ export default {
       showUploadLoading: false,
       showBox: false,
       canPreviewList,
+      fileUplodBtn: this.t("wm.fileUpload.click_upload"),
     };
   },
   methods: {
+    created() {
+      if (this.fileUplodBtnText) {
+        this.fileUplodBtn = this.fileUplodBtnText;
+      }
+    },
     beforeUpload(file) {
+      console.log(111, file);
+      if (file.size > 1024 * 1024 * this.maxFileSize) {
+        this.$message.warning(
+          this.t("wm.fileUpload.max_file_size") + this.maxFileSize + "M"
+        );
+        return false;
+      }
       this.showUploadLoading = true;
       this.showBox = true;
       this.arrowUp = false;
@@ -254,5 +283,12 @@ export default {
   justify-content: space-between;
   font-size: 18px;
   padding: 10px;
+}
+.table-name{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 200px;
+  display: block;
 }
 </style>
