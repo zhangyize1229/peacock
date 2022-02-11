@@ -12,18 +12,18 @@
         list: [
           {
             fileName: '图片图片图片图片图片图片图片图片图片图片图片',
-            link: '',
+            link: 'https://img0.baidu.com/it/u=1721391133,702358773&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=625',
             size: '19k',
             time: '2020',
           },
           {
             fileName: 'img1',
-            link: '',
+            link: 'https://img0.baidu.com/it/u=1721391133,702358773&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=625',
             size: '19k',
             time: '2020',
           },{
             fileName: 'img1',
-            link: '',
+            link: 'https://img0.baidu.com/it/u=1721391133,702358773&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=625',
             size: '19k',
             time: '2020',
           }
@@ -54,6 +54,6 @@
 |---------|--------|-------| --------|--------
 | mode | 模式 | string | horizontal / vertical | vertical
 | accept | 接受上传的文件类型 | string |-- | --
-| fileList | 上传的文件列表, 例如: [{name: 'food.jpg', url: 'https://xxx.cdn.com/xxx.jpg'}] | array | -- | []
+| fileList | 上传的文件列表, 例如: [{fileName: 'food.jpg', link: 'https://xxx.cdn.com/xxx.jpg', size: '', time: ''}] | array | -- | []
 | maxSize | 上传文件的最大值 | number | -- | 5M
 | httpRequest | 自定义上传的钩子，函数要有返回值 类型为Blob则下载 | function(file) | -- | --

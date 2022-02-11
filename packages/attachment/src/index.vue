@@ -31,7 +31,7 @@
             <div>{{ i[props.time] }}</div>
           </div>
           <div class="icon" v-show="hover==true">
-            <i class="peacock9 icon-download margin-right"></i>
+            <i class="peacock9 icon-download margin-right" @click="download(i)"></i>
             <i class="peacock9 icon-delete"></i>
           </div>
         </div>
@@ -42,7 +42,7 @@
 
 <script>
 import Locale from "../../../src/mixins/locale";
-// import { downloadFile } from "./download";
+import { downloadFile } from "./download";
 export default {
   name: "WmAttachment",
   mixins: [Locale],
@@ -65,7 +65,7 @@ export default {
     },
     mode: {
       type: String,
-      default: 'horizontal',
+      default: 'vertical',
     },
     accept: {
       type: String,
@@ -99,6 +99,12 @@ export default {
         return false;
       }
     },
+    download(data){
+      const {link, fileName} = data;
+      if(link.length>0){
+        downloadFile(link, fileName, 'link');
+      }
+    }
   }
 };
 </script>
