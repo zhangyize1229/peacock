@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 "use strict";
 
 const { series, src, dest } = require("gulp");
@@ -17,5 +18,9 @@ function compile() {
     .pipe(cssmin())
     .pipe(dest("./lib"));
 }
-
-exports.build = series(compile);
+function copyfont() {
+  return src('./src/fonts/**')
+    .pipe(cssmin())
+    .pipe(dest('./lib/fonts'));
+}
+exports.build = series(compile, copyfont);

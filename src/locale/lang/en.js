@@ -31,6 +31,10 @@ export default {
       download: "Download",
       delete: "Delete",
       max_file_size: "Upload file size cannot exceed"
+    },
+    attachment: {
+      file_size: "The file size is",
+      add: 'Add',
     }
   },
 };

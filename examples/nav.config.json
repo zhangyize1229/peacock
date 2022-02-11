@@ -26,6 +26,14 @@
             {
               "path": "/fileUpload",
               "title": "文件上传"
+            },
+            {
+              "path": "/selectTable",
+              "title": "选择表"
+            },
+            {
+              "path": "/attachment",
+              "title": "附件列表"
             }
           ]
         }
@@ -59,6 +67,14 @@
             {
               "path": "/fileUpload",
               "title": "fileUpload"
+            },
+            {
+              "path": "/selectTable",
+              "title": "selectTable"
+            },
+            {
+              "path": "/attachment",
+              "title": "attachment"
             }
           ]
         }

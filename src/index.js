@@ -2,11 +2,15 @@
 
 import Upload from '../packages/upload/index.js';
 import FileUpload from '../packages/fileUpload/index.js';
+import SelectTable from '../packages/selectTable/index.js';
+import Attachment from '../packages/attachment/index.js';
 import locale from './locale';
 
 const components = [
   Upload,
   FileUpload,
+  SelectTable,
+  Attachment,
 ];
 
 const install = function(Vue, opts = {}) {
@@ -30,10 +34,12 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '0.1.32',
+  version: '0.1.42',
   locale: locale.use,
   i18n: locale.i18n,
   install,
   Upload,
-  FileUpload
+  FileUpload,
+  SelectTable,
+  Attachment
 };

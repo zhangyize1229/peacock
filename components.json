@@ -1,4 +1,6 @@
 {
   "upload": "./packages/upload/index.js",
-  "fileUpload": "./packages/fileUpload/index.js"
+  "fileUpload": "./packages/fileUpload/index.js",
+  "selectTable": "./packages/selectTable/index.js",
+  "attachment": "./packages/attachment/index.js"
 }

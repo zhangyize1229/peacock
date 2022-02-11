@@ -29,6 +29,10 @@ export default {
       download: "下载",
       delete: "删除",
       max_file_size: "上传文件大小不能超过"
+    },
+    attachment: {
+      file_size: "文件大小为",
+      add: '添加',
     }
   },
 };
