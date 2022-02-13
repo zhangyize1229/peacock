@@ -1,4 +1,4 @@
-# upload file
+## upload file
 
 :::demo
 
@@ -26,13 +26,13 @@
 
 :::
 
-## Attributes
+### Attributes
 
 | Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------
 | handleRequest | Hook to download template, function must return value  | function(file) | -- | --
 
-## Methods
+### Methods
 
 | Method | Description |Parameters
 |---------|--------|-------| --------|--------
