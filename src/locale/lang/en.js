@@ -2,6 +2,9 @@ export default {
   wm: {
     common: {
       ok: "success",
+      yes: 'Yes',
+      no: 'No',
+      waring: 'Warning',
     },
     upload: {
       download_template: "Download template",
@@ -35,6 +38,7 @@ export default {
     attachment: {
       file_size: "The file size is",
       add: 'Add',
+      is_delete: "Whether to delete the file",
     }
   },
 };

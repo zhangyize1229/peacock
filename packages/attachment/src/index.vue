@@ -1,38 +1,42 @@
 <template>
   <div class="wm-attachment">
-      <el-upload
+    <el-upload
       action=""
       :accept="accept"
       :show-file-list="false"
       :before-upload="beforeUpload"
       :http-request="httpRequest"
-      >
+    >
       <div class="upload-btn">
         <i class="peacock9 icon-plus-square"></i>
-        <div class="icon-name">{{this.t('wm.attachment.add')}}</div>
+        <div class="icon-name">{{ this.t("wm.attachment.add") }}</div>
       </div>
     </el-upload>
 
     <div :class="['main', mode]">
       <div
         class="item"
-        v-for="(i,index) in fileList"
+        v-for="(i, index) in fileList"
         :key="index"
-        @mouseover="hover = true"
-        @mouseleave="hover = false"
+        @mouseover="hover = index"
+        @mouseleave="hover = -1"
       >
         <div class="image">
-          <i class="peacock9 icon-file-image" style="color: #4a90e2"></i>
+          <i v-if="iconMap[i.type]" :class="[ 'peacock9', iconMap[i.type].icon ]" :style="{'color': iconMap[i.type].color}"></i>
+          <i v-else class="peacock9 icon-file" style=" color: #7B7B7B;"></i>
         </div>
         <div class="text">
           <div class="file-name">{{ i[props.fileName] }}</div>
-          <div class="attr" v-show="hover==false">
+          <div class="attr" v-show="hover !== index">
             <div class="margin-right">{{ i[props.size] }}</div>
             <div>{{ i[props.time] }}</div>
           </div>
-          <div class="icon" v-show="hover==true">
-            <i class="peacock9 icon-download margin-right" @click="download(i)"></i>
-            <i class="peacock9 icon-delete"></i>
+          <div class="icon" v-show="hover == index">
+            <i
+              class="peacock9 icon-download margin-right"
+              @click="download(i)"
+            ></i>
+            <i class="peacock9 icon-delete" @click="handleRemove(i)"></i>
           </div>
         </div>
       </div>
@@ -65,11 +69,11 @@ export default {
     },
     mode: {
       type: String,
-      default: 'vertical',
+      default: "vertical",
     },
     accept: {
       type: String,
-      default: '',
+      default: "",
     },
     maxSize: {
       type: Number,
@@ -83,11 +87,17 @@ export default {
       type: Function,
     },
   },
-  data(){
-    return{
-      hover: false,
-      iconMap: {}
-    }
+  data() {
+    return {
+      hover: -1,
+      iconMap: {
+        "image/jpeg": {icon: "icon-file-image", color: '#4a90e2'},
+        "image/png": {icon: "icon-file-image", color: '#4a90e2'},
+        "application/pdf": {icon: "icon-file-pdf", color: '#c33232'},
+        "application/zip": {icon: "icon-file-zip", color: '#ffc352'},
+        "application/x-rar": {icon: "icon-file-zip", color: '#ffc352'},
+      },
+    };
   },
   methods: {
     beforeUpload(file) {
@@ -99,12 +109,27 @@ export default {
         return false;
       }
     },
-    download(data){
-      const {link, fileName} = data;
-      if(link.length>0){
-        downloadFile(link, fileName, 'link');
+    download(data) {
+      const { link, fileName } = data;
+      if (link.length > 0) {
+        downloadFile(link, fileName, "link");
       }
-    }
-  }
+    },
+    handleRemove(file) {
+      this.$confirm(
+        this.t("wm.attachment.is_delete"),
+        this.t("wm.common.warning"),
+        {
+          confirmButtonText: this.t("wm.common.yes"),
+          cancelButtonText: this.t("wm.common.no"),
+          type: "warning",
+        }
+      ).then(() => {
+        let fileList = this.fileList;
+        fileList.splice(fileList.indexOf(file), 1);
+        this.onRemove(file, fileList);
+      });
+    },
+  },
 };
 </script>
