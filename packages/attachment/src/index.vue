@@ -22,7 +22,7 @@
         @mouseleave="hover = -1"
       >
         <div class="image">
-          <i v-if="iconMap[i.type]" :class="[ 'peacock9', iconMap[i.type].icon ]" :style="{'color': iconMap[i.type].color}"></i>
+          <i v-if="iconMap[i[props.type]]" :class="[ 'peacock9', iconMap[i[props.type]].icon ]" :style="{'color': iconMap[i[props.type]].color}"></i>
           <i v-else class="peacock9 icon-file" style=" color: #7B7B7B;"></i>
         </div>
         <div class="text">
@@ -63,6 +63,7 @@ export default {
           fileName: "fileName",
           link: "link",
           size: "size",
+          type: 'type',
           time: "time",
         };
       },
