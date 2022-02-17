@@ -1,5 +1,5 @@
 <template>
-  <div class="we-table-page">
+  <div class="wm-table">
     <!--工具栏-->
     <slot name="toolbar" v-bind:selItems="selItems"></slot>
     <el-form

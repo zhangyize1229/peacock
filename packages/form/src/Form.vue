@@ -1,5 +1,5 @@
 <template>
-  <div class="we-form-page" v-if="visible">
+  <div class="wm-form" v-if="visible">
     <div class="bread">
       <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item style="cursor: pointer" @click.native="onBack">{{
