@@ -3,7 +3,7 @@
 :::demo
 
 ```html
-<wm-attachment :fileList="list" :httpRequest="upload" :onRemove ="getList">
+<wm-attachment :fileList="list" :show-add="true" :httpRequest="upload" :onRemove ="getList">
 </wm-attachment>
 <script>
   export default {
@@ -79,10 +79,11 @@
 |---------|--------|-------| --------|--------
 | mode | 模式 | string | horizontal / vertical | vertical
 | accept | 接受上传的文件类型 | string |-- | --
+| show-add | 是否显示新增按钮 | boolean |-- | true
 | fileList | 上传的文件列表, 例如: [{fileName: 'food.jpg', link: 'https://xxx.cdn.com/xxx.jpg', size: '', type: '', time: ''}] | array | -- | []
 | props | 配置选项，具体见下表 | Object |-- | --
 | maxSize | 上传文件的最大值 | number | -- | 5M
-| httpRequest | 自定义上传的钩子，函数要有返回值 类型为Blob则下载 | function(file) | -- | --
+| httpRequest | 自定义上传的钩子 | function(file) | -- | --
 | onRemove | 文件列表移除文件时的钩子 | function(file, fileList) | -- | --
 
 ### Props

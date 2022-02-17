@@ -3,7 +3,7 @@
 :::demo
 
 ```html
-<wm-attachment :fileList="list" :httpRequest="upload" :onRemove ="getList">
+<wm-attachment :fileList="list" :show-add="true" :httpRequest="upload" :onRemove ="getList">
 </wm-attachment>
 <script>
   export default {
@@ -79,6 +79,7 @@
 |---------|--------|-------| --------|--------
 | mode | mode | string | horizontal / vertical | vertical
 | accept | accepted file types | string |-- | --
+| show-add | whether to show a add button | boolean |-- | true
 | fileList | default uploaded files, e.g. : [{fileName: 'food.jpg', link: 'https://xxx.cdn.com/xxx.jpg', size: '', time: ''}] | array | -- | []
 | maxSize | Maximum upload file size | number | -- | 5M
 | httpRequest | Customize the upload hook | function(file) | -- | --

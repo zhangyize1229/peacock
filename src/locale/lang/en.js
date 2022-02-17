@@ -4,7 +4,7 @@ export default {
       ok: "success",
       yes: 'Yes',
       no: 'No',
-      waring: 'Warning',
+      warning: 'Warning',
     },
     upload: {
       download_template: "Download template",

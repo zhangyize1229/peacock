@@ -1,6 +1,7 @@
 <template>
   <div class="wm-attachment">
     <el-upload
+      v-if="showAdd"
       action=""
       :accept="accept"
       :show-file-list="false"
@@ -67,6 +68,10 @@ export default {
           time: "time",
         };
       },
+    },
+    showAdd: {
+      type: Boolean,
+      default: true,
     },
     mode: {
       type: String,
