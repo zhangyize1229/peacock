@@ -15,6 +15,9 @@ import locale2 from "../src/locale";
 import en1 from "../src/locale/lang/en";
 import zh1 from "../src/locale/lang/zh";
 import App from "./App.vue";
+
+import wm from '../src/index'
+Vue.use(wm)
 const messages = {
   en: {
     ...en1,

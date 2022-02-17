@@ -31,6 +31,12 @@ export default {
       download: "Download",
       delete: "Delete",
       max_file_size: "Upload file size cannot exceed"
+    },
+    form: {
+      add: "Add",
+      edit: "Edit",
+      saveBtn: "Save",
+      cancelBtn: "Cancel"
     }
   },
 };

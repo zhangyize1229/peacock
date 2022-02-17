@@ -1,0 +1,39 @@
+
+@import "mixins/mixins";
+
+@include b(form) 
+{
+  .we-form-page{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    border: 1px solid #d8d8d8;
+    .bread{
+        padding: 10px;
+        background-color: #ffffff;
+        border-bottom: 1px solid #d8d8d8;
+        .disabled .el-breadcrumb__inner {
+            color: #c0c4cc;
+        }
+    }   
+    .we-form{
+        padding: 20px;
+        flex: 1;
+    }
+    .dialog-footer{
+        border-top: 1px solid #d8d8d8;
+        height: 50px; 
+        line-height: 50px;
+        .button{
+        width: 115px;
+        height: 30px;
+        }
+    }
+  }
+}

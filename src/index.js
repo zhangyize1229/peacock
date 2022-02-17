@@ -1,10 +1,14 @@
 import Upload from "../packages/upload/index";
 import fileUpload from "../packages/fileUpload/index";
 import wmSelectTable from "../packages/selectTable/index";
+import wmTable from "../packages/table/index";
+import wmForm from "../packages/form/index";
+
 import locale from "./locale";
 
-const components = [Upload, fileUpload, wmSelectTable];
+const components = [Upload, fileUpload, wmSelectTable, wmTable, wmForm];
 const install = function (Vue, opts = {}) {
+  Vue.prototype.$OPTS = opts;
   locale.use(opts.locale);
   locale.i18n(opts.i18n);
   components.forEach((component) => {

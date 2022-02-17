@@ -29,6 +29,12 @@ export default {
       download: "下载",
       delete: "删除",
       max_file_size: "上传文件大小不能超过"
+    },
+    form: {
+      add: "新增",
+      edit: "编辑",
+      saveBtn: "保存",
+      cancelBtn: "取消"
     }
   },
 };

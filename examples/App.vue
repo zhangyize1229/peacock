@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <el-button @click="setLang">lang</el-button>
-    <WmUpload
+    <!-- <WmUpload
       :ruleData="ruleData"
       :number="100"
       :download="handleDownload"
@@ -13,17 +13,24 @@
       :handleRequest="handleFileUpload"
       @getFileList="getFileList"
     ></WmFileUpload>
-    <wmSelectTable :columns="columns" :tableData="tableData" :showField="'name'" :choosenData="choosenData" @selectVal="selectVal"></wmSelectTable>
+    <wmSelectTable
+      :columns="columns"
+      :tableData="tableData"
+      :showField="'name'"
+      :choosenData="choosenData"
+      @selectVal="selectVal"
+    ></wmSelectTable> -->
+    <WmTable></WmTable>
+    <Form></Form>
   </div>
 </template>
 
 <script>
-import WmUpload from "../packages/upload";
-import WmFileUpload from "../packages/fileUpload";
-import wmSelectTable from "../packages/selectTable";
+import WmTable from "./Table";
+import Form from './Form'
 import axios from "axios";
 export default {
-  components: { WmFileUpload, WmUpload, wmSelectTable },
+  components: {  WmTable,Form },
   data() {
     return {
       ruleData: ["sdfsdfdas", "asdfasdfadsfadsfdas"],
@@ -59,7 +66,7 @@ export default {
           name: "张三",
           address: "宋庄鲁",
         },
-          {
+        {
           id: "4",
           name: "账单",
           address: "上塘路",
@@ -74,7 +81,7 @@ export default {
           name: "张三",
           address: "宋庄鲁",
         },
-          {
+        {
           id: "7",
           name: "账单",
           address: "上塘路",
@@ -89,7 +96,7 @@ export default {
           name: "张三",
           address: "宋庄鲁",
         },
-          {
+        {
           id: "10",
           name: "账单",
           address: "上塘路",
@@ -104,7 +111,7 @@ export default {
           name: "张三",
           address: "宋庄鲁",
         },
-          {
+        {
           id: "13",
           name: "账单",
           address: "上塘路",
@@ -119,7 +126,7 @@ export default {
           name: "张三",
           address: "宋庄鲁",
         },
-          {
+        {
           id: "16",
           name: "账单",
           address: "上塘路",
@@ -134,7 +141,7 @@ export default {
           name: "张三",
           address: "宋庄鲁",
         },
-          {
+        {
           id: "19",
           name: "账单",
           address: "上塘路",
@@ -149,7 +156,7 @@ export default {
           name: "张三",
           address: "宋庄鲁",
         },
-          {
+        {
           id: "22",
           name: "账单",
           address: "上塘路",
@@ -164,7 +171,7 @@ export default {
           name: "张三",
           address: "宋庄鲁",
         },
-          {
+        {
           id: "25",
           name: "账单",
           address: "上塘路",
@@ -179,7 +186,7 @@ export default {
           name: "张三",
           address: "宋庄鲁",
         },
-          {
+        {
           id: "28",
           name: "账单",
           address: "上塘路",
@@ -210,11 +217,13 @@ export default {
           address: "宋庄鲁",
         },
       ],
-      choosenData: [{
+      choosenData: [
+        {
           id: "2",
           name: "张三",
           address: "宋庄鲁",
-        },]
+        },
+      ],
     };
   },
   methods: {
@@ -234,7 +243,7 @@ export default {
       // return { link: "" };
     },
     selectVal(val) {
-      console.log(222, val)
+      console.log(222, val);
     },
     async handleUpload(file) {
       const formData = new FormData();
