@@ -18,7 +18,7 @@
           :data="showTableData"
           @selection-change="handleSelectionChange"
           style="border: 1px solid #ccc"
-          :border='true'
+          :border="true"
         >
           <el-table-column
             type="selection"
@@ -221,6 +221,12 @@ export default {
           });
         }
       });
+      if (this.selectData.indexOf("，") + 1 === this.selectData.length) {
+        this.selectData = this.selectData.substring(
+          0,
+          this.selectData.length - 1
+        );
+      }
     },
     handleSelectionChange(val) {
       this.handleSelectData(val);
