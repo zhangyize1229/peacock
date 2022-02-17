@@ -1,34 +1,41 @@
 
 @import "mixins/mixins";
 
-@include b(table) 
-{
-	.kvm_icon{
-		position: absolute; 
-		right: 11px; 
-		top: 0px; 
-		color: #FFFFFF; 
-		cursor: pointer; 
-		z-index: 9999; 
-		background-color: #55aaff; 
-		width: 40px; 
-		height: 40px;
-		line-height: 40px;
-		text-align: center;
-		border-radius: 50%;
-   }
-   .pagination-container {
-        background: #fff;
-        border-top: 1px solid #d8d8d8;
-        text-align: right;
-        padding: 4px 0px;
+@include b(table) {
+  height: 100%; 
+  display: flex; 
+  flex-direction: column;
+  .we-table-form{
+      flex: 1; background: white;
+      .we-table{
+          width: 100%;
+      }
+  }
+  .kvm_icon{
+    position: absolute; 
+    right: 11px; 
+    top: 0px; 
+    color: #FFFFFF; 
+    cursor: pointer; 
+    z-index: 9999; 
+    background-color: #55aaff; 
+    width: 40px; 
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
     }
+  .pagination-container {
+      background: #fff;
+      border-top: 1px solid #d8d8d8;
+      text-align: right;
+      padding: 4px 0px;
+  }
   .pagination-container.hidden {
     display: none;
   }
   .filter-container {
     padding-bottom: 10px;
-  
     .filter-item {
       display: inline-block;
       vertical-align: middle;
@@ -37,24 +44,12 @@
   }
   .table-toolbar{
     padding: 6px 0px;
-   }
+    }
   .text-lines-1 td div {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-   }
-   .wm-table{
-        height: 100%; 
-        display: flex; 
-        flex-direction: column;
-        .we-table-form{
-            flex: 1; background: white;
-            .we-table{
-                width: 100%;
-
-            }
-        }	
-    }
-}
+    }	
+  }

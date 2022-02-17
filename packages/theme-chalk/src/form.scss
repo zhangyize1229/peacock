@@ -3,7 +3,6 @@
 
 @include b(form) 
 {
-  .wm-form{
     position: absolute;
     top: 0px;
     bottom: 0px;
@@ -35,5 +34,4 @@
         height: 30px;
         }
     }
-  }
 }
