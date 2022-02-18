@@ -57,10 +57,10 @@
   </div>
 </template>
 <script>
-import locale from "../../core/common/locale.js";
+import Locale from "../../../src/mixins/locale";
 export default {
   name: "wmSelectTable",
-  mixins: [locale],
+  mixins: [Locale],
   props: {
     // 表格表头
     columns: {

@@ -2,6 +2,9 @@ export default {
   wm: {
     common: {
       ok: "操作成功",
+      yes: '是',
+      no: '否',
+      warning: '提示',
     },
     upload: {
       download_template: "下载模板",
@@ -29,6 +32,11 @@ export default {
       download: "下载",
       delete: "删除",
       max_file_size: "上传文件大小不能超过"
+    },
+    attachment: {
+      file_size: "文件大小为",
+      add: '添加',
+      is_delete: "是否删除该文件",
     },
     form: {
       add: "新增",

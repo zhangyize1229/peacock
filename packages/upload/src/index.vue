@@ -12,7 +12,8 @@
               this.t("wm.upload.data_less") +
               number +
               "," +
-              this.t("wm.upload.refer_template")
+              this.t("wm.upload.refer_template") +
+              ";"
             }}
           </div>
           <div class="bold-msg">
@@ -64,7 +65,7 @@
               :before-upload="beforeUpload"
               :http-request="handleRequest"
             >
-              <el-button type="primary" size="mini" :icon="uploadObj.icon">{{
+              <el-button type="primary" :icon="uploadObj.icon">{{
                 uploadObj.name
               }}</el-button>
             </el-upload>
@@ -75,11 +76,11 @@
   </div>
 </template>
 <script>
-import locale from "../../core/common/locale.js";
+import Locale from "../../../src/mixins/locale";
 import { downloadFile } from "./download";
 export default {
   name: "WmUpload",
-  mixins: [locale],
+  mixins: [Locale],
   props: {
     number: {
       type: Number,

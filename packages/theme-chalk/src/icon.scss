@@ -1,0 +1,44 @@
+@import "common/var";
+
+@font-face {
+  font-family: "peacock9"; /* Project id 3178644 */
+  src: url('#{$--font-path}/iconfont.woff') format('woff'), /* chrome, firefox */
+       url('#{$--font-path}/iconfont.ttf') format('truetype'); /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+}
+
+.peacock9 {
+  font-family: "peacock9" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-file-pdf:before {
+  content: "\e7b8";
+}
+
+.icon-file-image:before {
+  content: "\e7b7";
+}
+
+.icon-file:before {
+  content: "\e7bb";
+}
+
+.icon-file-zip:before {
+  content: "\e7bc";
+}
+
+.icon-plus-square:before {
+  content: "\e797";
+}
+
+.icon-delete:before {
+  content: "\e7c3";
+}
+
+.icon-download:before {
+  content: "\e7ef";
+}
+

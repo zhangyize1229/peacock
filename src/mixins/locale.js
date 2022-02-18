@@ -1,4 +1,4 @@
-import { t } from "../../../src/locale/index";
+import { t } from "../locale";
 
 export default {
   methods: {
