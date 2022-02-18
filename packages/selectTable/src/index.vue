@@ -254,7 +254,7 @@ export default {
       this.currentPage = 1;
       this.copyTableData = this.tableData.filter((res) => {
         for (const key in res) {
-          if (res[key] && res[key].includes(this.filter)) {
+          if (typeof res[key] === 'string' && res[key] && res[key].includes(this.filter)) {
             return true;
           }
         }
