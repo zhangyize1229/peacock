@@ -4,6 +4,8 @@ import Upload from '../packages/upload/index.js';
 import FileUpload from '../packages/fileUpload/index.js';
 import SelectTable from '../packages/selectTable/index.js';
 import Attachment from '../packages/attachment/index.js';
+import Table from '../packages/table/index.js';
+import Form from '../packages/form/index.js';
 import locale from './locale';
 
 const components = [
@@ -11,6 +13,8 @@ const components = [
   FileUpload,
   SelectTable,
   Attachment,
+  Table,
+  Form,
 ];
 
 const install = function(Vue, opts = {}) {
@@ -34,12 +38,14 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '0.1.43',
+  version: '0.1.50',
   locale: locale.use,
   i18n: locale.i18n,
   install,
   Upload,
   FileUpload,
   SelectTable,
-  Attachment
+  Attachment,
+  Table,
+  Form
 };

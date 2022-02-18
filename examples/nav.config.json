@@ -34,6 +34,14 @@
             {
               "path": "/attachment",
               "title": "附件列表"
+            },
+            {
+              "path": "/table",
+              "title": "table表格"
+            },
+            {
+              "path": "/form",
+              "title": "form表单"
             }
           ]
         }
@@ -75,6 +83,14 @@
             {
               "path": "/attachment",
               "title": "attachment"
+            },
+            {
+              "path": "/table",
+              "title": "table"
+            },
+            {
+              "path": "/form",
+              "title": "form"
             }
           ]
         }

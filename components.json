@@ -2,5 +2,7 @@
   "upload": "./packages/upload/index.js",
   "fileUpload": "./packages/fileUpload/index.js",
   "selectTable": "./packages/selectTable/index.js",
-  "attachment": "./packages/attachment/index.js"
+  "attachment": "./packages/attachment/index.js",
+  "table": "./packages/table/index.js",
+  "form": "./packages/form/index.js"
 }

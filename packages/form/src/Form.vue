@@ -46,10 +46,10 @@
   </div>
 </template>
 <script>
-import locale from "../../core/common/locale.js";
+import Locale from "../../../src/mixins/locale";
 export default {
   name: "wmForm",
-  mixins: [locale],
+  mixins: [Locale],
   props: {
     dataRule: Object, //表单规则校验
     size: {
