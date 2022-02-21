@@ -37,7 +37,7 @@
               class="peacock9 icon-download margin-right"
               @click="download(i)"
             ></i>
-            <i class="peacock9 icon-delete" @click="handleRemove(i)"></i>
+            <i class="peacock9 icon-delete" v-if="showAdd" @click="handleRemove(i)"></i>
           </div>
         </div>
       </div>
