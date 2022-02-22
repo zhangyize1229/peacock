@@ -1,8 +1,6 @@
 <template>
   <el-table-column
     :key="column.prop"
-    header-align="left"
-    align="left"
     :show-overflow-tooltip="
       column.overflow == undefined ? true : column.overflow
     "
