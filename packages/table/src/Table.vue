@@ -274,7 +274,7 @@ export default {
       this.allContent = data;
       this.data = data;
     },
-    getTabelForm() {
+    getTableForm() {
       return this.$refs.tableForm;
     },
     urlRequest(params) {
