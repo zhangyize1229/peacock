@@ -18,6 +18,7 @@ const components = [
 ];
 
 const install = function(Vue, opts = {}) {
+  Vue.prototype.$OPTS = opts;
   locale.use(opts.locale);
   locale.i18n(opts.i18n);
 
@@ -38,7 +39,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '0.1.51',
+  version: '0.1.54',
   locale: locale.use,
   i18n: locale.i18n,
   install,
