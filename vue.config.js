@@ -8,12 +8,12 @@ module.exports = {
     },
   },
   chainWebpack: (config) => {
-    config.module
-      .rule("js")
-      .include.add("/packages")
-      .end()
-      .use("babel")
-      .loader("babel-loader");
+    // config.module
+    //   .rule("js")
+    //   .include.add("/packages")
+    //   .end()
+    //   .use("babel")
+    //   .loader("babel-loader");
   },
   devServer: {
     port: 8080,
