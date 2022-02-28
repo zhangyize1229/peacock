@@ -11,7 +11,8 @@
     "build:locale": "node build/bin/build-locale.js",
     "build:theme": "gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk",
     "dev": "npm run bootstrap && npm run build:file && npm run build:theme && npm run build:locale && cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.js & node build/bin/template.js",
-    "lib": "vue-cli-service build --target lib --name wm --dest lib src/index.js && npm run build:theme && npm run build:locale"
+    "lib": "vue-cli-service build --target lib --name wm --dest lib src/index.js && npm run build:theme && npm run build:locale",
+    "deploy:build": "npm run build:file && cross-env NODE_ENV=production webpack --config build/webpack.demo.js && echo element.eleme.io>>examples/peacock9/CNAME"
   },
   "dependencies": {
     "axios": "^0.24.0",

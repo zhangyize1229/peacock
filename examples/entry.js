@@ -26,7 +26,7 @@ Vue.component('main-header', MainHeader);
 
 
 Vue.config.productionTip = false;
-console.log(routes);
+
 
 const router = new VueRouter({
   mode: 'hash',
