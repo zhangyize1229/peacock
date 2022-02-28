@@ -6,6 +6,7 @@ import SelectTable from '../packages/selectTable/index.js';
 import Attachment from '../packages/attachment/index.js';
 import Table from '../packages/table/index.js';
 import Form from '../packages/form/index.js';
+import Preview from '../packages/preview/index.js';
 import locale from './locale';
 
 const components = [
@@ -15,6 +16,7 @@ const components = [
   Attachment,
   Table,
   Form,
+  Preview,
 ];
 
 const install = function(Vue, opts = {}) {
@@ -39,7 +41,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '0.1.54',
+  version: '0.1.55',
   locale: locale.use,
   i18n: locale.i18n,
   install,
@@ -48,5 +50,6 @@ export default {
   SelectTable,
   Attachment,
   Table,
-  Form
+  Form,
+  Preview
 };

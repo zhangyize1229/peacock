@@ -4,5 +4,6 @@
   "selectTable": "./packages/selectTable/index.js",
   "attachment": "./packages/attachment/index.js",
   "table": "./packages/table/index.js",
-  "form": "./packages/form/index.js"
+  "form": "./packages/form/index.js",
+  "preview": "/packages/preview/index.js"
 }
