@@ -12,15 +12,14 @@
         v-bind="props"
         v-if="table.$scopedSlots[column.prop]"
       ></slot>
-      <span v-else v-text="handleDetail(props, column)"></span>
+      <template v-else>
+        <jsx :value="handleDetail(props, column)"></jsx>
+      </template>
+      
     </template>
 
     <template slot="header" slot-scope="scope">
-      <span
-        v-text="
-          (column.labelFormat && column.labelFormat(scope)) || column.label
-        "
-      ></span>
+      <jsx :value="(column.labelFormat &&  column.labelFormat(scope)) || column.label"></jsx>
     </template>
   </el-table-column>
 </template>
@@ -30,9 +29,17 @@ export default {
     column: Object,
   },
   inject: ["table"],
+  components: {
+      jsx: {
+        props: ['value'],
+        render(h){
+          return <span>{this.value}</span>
+        }
+      }
+  },
   methods: {
     handleDetail(props, column) {
-      if (column.formatter) {
+      if (column.formatter && typeof column.formatter === 'function') {
         return column.formatter(props.row, props.column);
       } else {
         return props.row[column.prop];

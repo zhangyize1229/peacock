@@ -81,7 +81,7 @@
                     {prop: 'header',label: '操作'},
                     {prop: 'id',label: '商品ID', sortable: true},
                     {prop: 'name',label: '商品名称', sortable: true},
-                    {prop: 'desc',label: '描述', sortable: true},
+                    {prop: 'desc',label: '描述', sortable: true, formatter:row=> <el-tag>{row.desc}</el-tag>},
                 ],
                 data: []
             }
