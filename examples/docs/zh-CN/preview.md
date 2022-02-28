@@ -60,10 +60,10 @@ export default {
   methods: {
       closePreview() {
           alert('关闭预览')
-      }
+      },
        compare() {
           alert('版本对比')
-      }
+      },
       chooseFileIndex(index) {
           alert('当前选择文件的下标为' + index)
       }
