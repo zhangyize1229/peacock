@@ -141,6 +141,7 @@ export default {
       xhr.open("get", content.link);
       xhr.responseType = "blob";
       xhr.send();
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
       let that = this;
       xhr.onload = function () {
         if (this.status === 200 || this.status === 304) {
