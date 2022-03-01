@@ -46,6 +46,21 @@ export default {
       edit: "Edit",
       saveBtn: "Save",
       cancelBtn: "Cancel"
+    },
+    preview: {
+      preview: "File Preview",
+      compare: "Version comparison",
+      current: "Current version",
+      update_date: "Update Date:",
+      file_info: "File information",
+      name: "File name:",
+      size: "File size:",
+      code: "Document code:",
+      last_update_person: "Last updated by:",
+      last_update_date:"Last updated:",
+      create_person: "Created by:",
+      create_time: "Created on:",
+      download: "Download File"
     }
   },
 };

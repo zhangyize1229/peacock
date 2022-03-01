@@ -44,6 +44,21 @@ export default {
       edit: "编辑",
       saveBtn: "保存",
       cancelBtn: "取消"
+    },
+    preview: {
+      preview: "文件预览",
+      compare: "版本对比",
+      current: "当前版本",
+      update_date: "更新日期：",
+      file_info: "文件信息",
+      name: "文件名称：",
+      size: "文件大小：",
+      code: "文件编码：",
+      last_update_person: "最近更新人：",
+      last_update_date:"最近更新时间：",
+      create_person: "创建人：",
+      create_time: "创建时间：",
+      download: "下载文件"
     }
   },
 };

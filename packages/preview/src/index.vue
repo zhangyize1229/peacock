@@ -1,22 +1,22 @@
 <template>
   <div class="wm-preview">
       <div class="title">
-        <div>文件预览</div>
+        <div>{{t("wm.preview.preview")}}</div>
         <i @click="close" class="el-icon-close title-icon"></i>
       </div>
       <div class="wapper">
         <div class="list">
-          <div class="icon-title" @click="compare">
+          <div class="icon-title" @click="compare" v-if="fileList.length > 1">
             <i class="el-icon-document-add icon"></i>
-            版本对比
+            {{t("wm.preview.compare")}}
           </div>
           <div class="list-wapper" v-for="(fileInfo, index) in fileList" :key="index">
             <div class="version" @click="choose(index)" :style="{'background': index===current ? '#D0EDFF': '#fff'}">
               <div class="version-wapper">
                 <div class="number">{{fileInfo.version}}</div>
-                <div class="current" v-if="fileInfo.isCurrent">当前版本</div>
+                <div class="current" v-if="fileInfo.isCurrent"> {{t("wm.preview.current")}}</div>
               </div> 
-              <div class="date">更新日期：{{fileInfo.updateDate}}</div>
+              <div class="date">{{t("wm.preview.update_date")}}{{fileInfo.updateDate}}</div>
             </div>
           </div>
         </div>
@@ -33,11 +33,11 @@
         </div>
        
         <div class="info">
-          <div class="info-title">文件信息</div>
+          <div class="info-title">{{t("wm.preview.file_info")}}</div>
           <div>
-            <div class="label-wapper"><span class="label">文件名称：</span> {{currentFile && currentFile.filename}}</div>
-            <div class="label-wapper"><span class="label">文件大小：</span> {{currentFile && currentFile.contentLength}}</div>
-            <div class="label-wapper" v-if="!currentFile.suffix || previewMode.text.includes(currentFile.suffix.toLowerCase())"><span class="label">文件编码：</span> 
+            <div class="label-wapper"><span class="label">{{t("wm.preview.name")}}</span> <span class="info-value"> {{currentFile && currentFile.filename}}</span></div>
+            <div class="label-wapper"><span class="label">{{t("wm.preview.size")}}</span> {{fileSize}}</div>
+            <div class="label-wapper" v-if="!currentFile.suffix || previewMode.text.includes(currentFile.suffix.toLowerCase())"><span class="label">{{t("wm.preview.code")}}</span> 
               <el-select v-model="previewEncode">
                 <el-option
                   v-for="item in encodingTypes"
@@ -47,11 +47,11 @@
                 </el-option>
               </el-select>
             </div>
-            <div class="label-wapper"><span class="label">最近更新人：</span> {{currentFile && currentFile.updateUser}}</div>
-            <div class="label-wapper"><span class="label">最近更新时间：</span> {{currentFile && currentFile.updateTime}}</div>
-            <div class="label-wapper"><span class="label">创建人：</span> {{currentFile && currentFile.createUser}}</div>
-            <div class="label-wapper"><span class="label">创建时间：</span> {{currentFile && currentFile.createTime}}</div>
-            <div class="label-wapper" style="cursor:pointer;" @click="downloadFile(currentFile)"><span class="label"> <i  class="el-icon-download download"></i></span><span class="download-file">下载文件</span></div>
+            <div class="label-wapper"><span class="label">{{t("wm.preview.last_update_person")}}</span> <span>{{currentFile && currentFile.updateUser}}</span></div>
+            <div class="label-wapper"><span class="label">{{t("wm.preview.last_update_date")}}</span> {{currentFile && currentFile.updateTime}}</div>
+            <div class="label-wapper"><span class="label">{{t("wm.preview.create_person")}}</span> {{currentFile && currentFile.createUser}}</div>
+            <div class="label-wapper"><span class="label">{{t("wm.preview.create_time")}}</span> {{currentFile && currentFile.createTime}}</div>
+            <div class="label-wapper" style="cursor:pointer;" @click="downloadFile(currentFile)"><span class="label"> <i  class="el-icon-download download"></i></span><span class="download-file">{{t("wm.preview.download")}}</span></div>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@ export default {
       previewEncode: 'UTF-8', // txt文件内容预览编码格式
       fileContent: '',
       previewMode:  {
-        text: ["txt", "nc", "json", "mpf", "spf", "eia", "stp", "prg", "tap", ""],
+        text: ["txt", "nc", "json", "mpf", "spf", "eia", "stp", "prg", "tap", "conf",""],
         image: ["jpg", "jpeg", "png", "svg", "gif", "bmp"],
         pdf: ["pdf"],
       }
@@ -105,6 +105,14 @@ export default {
       },
       deep: true,
     },
+  },
+  computed: {
+    fileSize() {
+      if (this.currentFile && this.currentFile.contentLength) {
+        return (this.currentFile.contentLength / 1024).toFixed(1) + "KB"
+      }
+      return ''
+    }
   },
   methods: {
     compare() {
@@ -179,6 +187,9 @@ export default {
     display: flex;
     width: 100%;
     overflow: hidden;
+    .list-wapper{
+      margin-top: 6px;
+    }
     .list{
       width: 300px;
       border-right: 1px solid #d8d8d8;
@@ -188,7 +199,7 @@ export default {
         font-size: 14px;
         text-align: right;
         line-height: 32px;
-        padding: 12px 6px 12px 0;
+        padding: 12px 6px 6px 0;
         .icon{
           font-size:18px;
           margin-right: 6px;
@@ -235,6 +246,7 @@ export default {
       }
       .label-wapper{
         margin-bottom: 24px;
+        display: flex;
         font-size: 14px;
         color:rgba(0, 0, 0, 0.25);
         .label{
@@ -242,6 +254,13 @@ export default {
           text-align: right;
           display: inline-block;
           color: rgba(0, 0, 0, 0.85);
+        }
+        .info-value{
+            display: inline-block;
+            max-width: 180px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
         .download{
           font-size: 20px;

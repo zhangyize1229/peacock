@@ -98,3 +98,10 @@ export default {
 | compare | 点击版本对比按钮  | function() | -- | --
 | closePreview | 关闭预览页面  | function() | -- | --
 | chooseFileIndex | 选择文件，需要前端传入当前文件的file的blob格式  | function(index) | -- | --
+
+### 注意事项
+1.只有以下格式的文件支持预览
+   1.text: ["txt", "nc", "json", "mpf", "spf", "eia", "stp", "prg", "tap", "conf", ""],
+   2.image: ["jpg", "jpeg", "png", "svg", "gif", "bmp"],
+   3.pdf: ["pdf"],
+2. 只有文本类的格式的文件才需要去获取文件流["txt", "nc", "json", "mpf", "spf", "eia", "stp", "prg", "tap", ""]
