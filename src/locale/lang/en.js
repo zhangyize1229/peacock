@@ -33,7 +33,8 @@ export default {
       preview: "Preview",
       download: "Download",
       delete: "Delete",
-      max_file_size: "Upload file size cannot exceed"
+      max_file_size: "Upload file size cannot exceed",
+      upload_error: "Too many files, please upload again!"
     },
     attachment: {
       file_size: "The file size is",

@@ -8,6 +8,7 @@
       multiple
       :before-upload="beforeUpload"
       :on-success="handleSuccess"
+      :on-error="handleError"
     >
       <el-button type="primary">{{ fileUplodBtn }}</el-button>
       <div slot="tip"></div>
@@ -188,6 +189,10 @@ export default {
       this.showUploadLoading = false;
       this.arrowUp = true;
       this.$emit("getFileList", this.fileList);
+    },
+    handleError() {
+      this.showUploadLoading = false;
+      this.$message.error( this.t("wm.fileUpload.upload_error") )
     },
     toggle() {
       this.arrowUp = !this.arrowUp;
