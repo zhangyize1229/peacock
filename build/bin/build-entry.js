@@ -18,12 +18,13 @@ import locale from './locale';
 const components = [
 {{install}},
 ];
+import highlight from "./directive/highlight"
 
 const install = function(Vue, opts = {}) {
   Vue.prototype.$OPTS = opts;
   locale.use(opts.locale);
   locale.i18n(opts.i18n);
-
+  Vue.use(highlight)
   components.forEach(component => {
     Vue.component(component.name, component);
   });

@@ -4,7 +4,7 @@
         <div>{{t("wm.preview.preview")}}</div>
         <i @click="close" class="el-icon-close title-icon"></i>
       </div>
-      <div class="wapper">
+      <div class="wapper" v-if="fileList.length > 0">
         <div class="list">
           <div class="icon-title" @click="compare" v-if="fileList.length > 1">
             <i class="el-icon-document-add icon"></i>
@@ -87,7 +87,7 @@ export default {
     }
   },
   created() {
-    this.currentFile = this.fileList[0]
+    this.currentFile = this.fileList && this.fileList[0]
     if (this.file) {
       this.read(this.file, this.previewEncode)
     }
