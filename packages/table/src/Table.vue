@@ -40,7 +40,7 @@
           </template>
         </column>
         <el-table-column
-          :label="t('link.menu')"
+          :label="t('wm.form.menu')"
           fixed="right"
           v-if="this.$scopedSlots.btn"
           header-align="left"
