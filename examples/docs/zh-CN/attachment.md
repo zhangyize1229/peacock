@@ -77,7 +77,7 @@
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值
 |---------|--------|-------| --------|--------
-| mode | 模式 | string | horizontal / vertical | vertical
+| mode | 模式 | string | horizontal / vertical | horizontal
 | accept | 接受上传的文件类型 | string |-- | --
 | show-add | 是否显示新增按钮 | boolean |-- | true
 | fileList | 上传的文件列表, 例如: [{fileName: 'food.jpg', link: 'https://xxx.cdn.com/xxx.jpg', size: '', type: '', time: ''}] | array | -- | []

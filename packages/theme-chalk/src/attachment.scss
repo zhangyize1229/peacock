@@ -17,12 +17,12 @@
       margin-left: 6px;
     }
   }
-  .main.vertical{
+  .main.horizontal{
     display: flex;
     flex-wrap: wrap;
   }
   .item{
-    width: 330px;
+    width: 200px;
     margin: 0 10px 10px 0;
     display: flex;
   }

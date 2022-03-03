@@ -27,7 +27,7 @@
           <i v-else class="peacock9 icon-file" style=" color: #7B7B7B;"></i>
         </div>
         <div class="text">
-          <div class="file-name">{{ i[props.fileName] }}</div>
+          <div class="file-name">{{ showName(i[props.fileName]) }}</div>
           <div class="attr" v-show="hover !== index">
             <div class="margin-right">{{ i[props.size] }}</div>
             <div>{{ i[props.time] }}</div>
@@ -75,7 +75,7 @@ export default {
     },
     mode: {
       type: String,
-      default: "vertical",
+      default: "horizontal",
     },
     accept: {
       type: String,
@@ -136,6 +136,16 @@ export default {
         this.onRemove(file, fileList);
       });
     },
+    showName(name) {
+      if(name && name.length>20) {
+        if(name.lastIndexOf('.')){
+          const suffix = name.substring(name.lastIndexOf('.')+1);
+          return name.slice(0,8) + '...' + suffix;
+        }
+      }else{
+        return  name;
+      }
+    }
   },
 };
 </script>

@@ -77,7 +77,7 @@
 
 | Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------
-| mode | mode | string | horizontal / vertical | vertical
+| mode | mode | string | horizontal / vertical | horizontal
 | accept | accepted file types | string |-- | --
 | show-add | whether to show a add button | boolean |-- | true
 | fileList | default uploaded files, e.g. : [{fileName: 'food.jpg', link: 'https://xxx.cdn.com/xxx.jpg', size: '', time: ''}] | array | -- | []
