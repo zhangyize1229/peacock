@@ -1,5 +1,5 @@
 <template>
-  <div class="wm-selectTable" :style="{ width: width }">
+  <div class="wm-selectTable" :style="{ width: width }" id="wm-selectTable">
     <el-input
       readonly
       v-model="selectData"
@@ -50,8 +50,10 @@
           @current-change="changeCurrentPage"
           @prev-click="changeCurrentPage"
           @next-click="changeCurrentPage"
+          pager-count=5
         >
         </el-pagination>
+        <el-button @click="clickInput" style="position: absolute;right: 0;bottom: 0px;" type="primary">确定</el-button>
       </div>
     </div>
   </div>
@@ -80,7 +82,7 @@ export default {
     // 表格的每页数据
     pageSize: {
       type: Number,
-      default: 10,
+      default: 5,
     },
     // 组件宽度
     width: {

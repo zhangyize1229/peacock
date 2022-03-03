@@ -141,8 +141,12 @@ export default {
       showUploadLoading: false,
       showBox: false,
       canPreviewList,
-      fileUplodBtn: this.t("wm.fileUpload.click_upload"),
     };
+  },
+  computed: {
+    fileUplodBtn() {
+      return this.fileUplodBtnText ? this.fileUplodBtnText : this.t("wm.fileUpload.click_upload")
+    }
   },
   methods: {
     created() {
