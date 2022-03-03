@@ -80,9 +80,10 @@ import Pagination from "./Pagination";
 import { Table } from "element-ui";
 import { byAsc, byDesc } from "./util";
 import Column from "./Column.vue";
-
+import Locale from "../../../src/mixins/locale";
 export default {
   name: "WmTable",
+  mixins: [Locale],
   components: {
     Pagination,
     Column,

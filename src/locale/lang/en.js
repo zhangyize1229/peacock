@@ -45,7 +45,8 @@ export default {
       add: "Add",
       edit: "Edit",
       saveBtn: "Save",
-      cancelBtn: "Cancel"
+      cancelBtn: "Cancel",
+      menu: "Menu"
     },
     preview: {
       preview: "File Preview",

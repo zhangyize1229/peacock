@@ -43,7 +43,8 @@ export default {
       add: "新增",
       edit: "编辑",
       saveBtn: "保存",
-      cancelBtn: "取消"
+      cancelBtn: "取消",
+      menu: '操作'
     },
     preview: {
       preview: "文件预览",
