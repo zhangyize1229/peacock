@@ -137,7 +137,7 @@ export default {
       });
     },
     showName(name) {
-      if(name && name.length>20) {
+      if(name && name.length>=15) {
         if(name.lastIndexOf('.')){
           const suffix = name.substring(name.lastIndexOf('.')+1);
           return name.slice(0,8) + '...' + suffix;
