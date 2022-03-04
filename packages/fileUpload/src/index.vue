@@ -109,6 +109,7 @@
 <script>
 import Locale from "../../../src/mixins/locale";
 import filePreview from "./filePreview.vue";
+import { formatStorageSize } from "../../../src/utils/utils"
 import { canPreviewList, previewMode } from "./utils";
 export default {
   components: { filePreview },
@@ -167,13 +168,13 @@ export default {
       this.arrowUp = false;
       this.beforeUploadFileList.push({
         name: file.name,
-        size: Math.round(file.size / 1024),
+        size: formatStorageSize(file.size),
       });
     },
     handleSuccess(file) {
       this.beforeUploadFileList.forEach((res) => {
         if (res.name === file.originalName) {
-          file.size = res.size + "kb";
+          file.size = res.size;
           file.status = 1;
           let a = /.*\.(.*)$/;
           let suffix = "";

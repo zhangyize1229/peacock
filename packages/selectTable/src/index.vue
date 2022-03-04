@@ -43,10 +43,10 @@
           </el-table-column>
         </el-table>
         <el-pagination
-          :hide-on-single-page="true"
           :total="copyTableData.length"
           :page-size="pageSize"
           layout="prev, pager, next"
+          :current-page.sync="currentPage"
           @current-change="changeCurrentPage"
           @prev-click="changeCurrentPage"
           @next-click="changeCurrentPage"

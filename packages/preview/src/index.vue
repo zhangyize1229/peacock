@@ -47,9 +47,9 @@
                 </el-option>
               </el-select>
             </div>
-            <div class="label-wapper"><span class="label">{{t("wm.preview.last_update_person")}}</span> <span>{{currentFile && currentFile.updateUser}}</span></div>
+            <div class="label-wapper"><span class="label">{{t("wm.preview.last_update_person")}}</span> <span>{{currentFile && currentFile.updateUserName}}</span></div>
             <div class="label-wapper"><span class="label">{{t("wm.preview.last_update_date")}}</span> {{currentFile && currentFile.updateTime}}</div>
-            <div class="label-wapper"><span class="label">{{t("wm.preview.create_person")}}</span> {{currentFile && currentFile.createUser}}</div>
+            <div class="label-wapper"><span class="label">{{t("wm.preview.create_person")}}</span> {{currentFile && currentFile.createUserName}}</div>
             <div class="label-wapper"><span class="label">{{t("wm.preview.create_time")}}</span> {{currentFile && currentFile.createTime}}</div>
             <div class="label-wapper" style="cursor:pointer;" @click="downloadFile(currentFile)"><span class="label"> <i  class="el-icon-download download"></i></span><span class="download-file">{{t("wm.preview.download")}}</span></div>
           </div>
@@ -59,6 +59,7 @@
 </template>
 <script>
 import Locale from "../../../src/mixins/locale";
+import { formatStorageSize } from '../../../src/utils/utils'
 export default {
   name: "wmPreview",
   mixins: [Locale],
@@ -109,7 +110,7 @@ export default {
   computed: {
     fileSize() {
       if (this.currentFile && this.currentFile.contentLength) {
-        return (this.currentFile.contentLength / 1024).toFixed(1) + "KB"
+        return formatStorageSize(this.currentFile.contentLength) 
       }
       return ''
     }
