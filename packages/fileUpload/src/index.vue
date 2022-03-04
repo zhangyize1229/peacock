@@ -16,7 +16,7 @@
     <div
       class="fileUpload-Box"
       style="display: block; overflow-y: auto; overflow-x: hidden"
-      v-if="showBox"
+      v-if="showBox && !hideTable"
       :style="{ height: arrowUp ? '300px' : '60px' }"
     >
       <div class="box-title">
@@ -119,6 +119,10 @@ export default {
     handleRequest: {
       type: Function,
       required: true,
+    },
+    hideTable: {
+      type: Boolean,
+      default: false
     },
     maxFileSize: {
       type: Number,
