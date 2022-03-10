@@ -16,7 +16,7 @@
                 <div class="number">{{fileInfo.version}}</div>
                 <div class="current" v-if="fileInfo.isCurrent"> {{t("wm.preview.current")}}</div>
               </div> 
-              <div class="date">{{t("wm.preview.update_date")}}{{fileInfo.updateDate}}</div>
+              <div class="date">{{t("wm.preview.update_date")}}{{fileInfo.updateTime ? fileInfo.updateTime : '-'}}</div>
             </div>
           </div>
         </div>
@@ -47,8 +47,8 @@
                 </el-option>
               </el-select>
             </div>
-            <div class="label-wapper"><span class="label">{{t("wm.preview.last_update_person")}}</span> <span>{{currentFile && currentFile.updateUserName}}</span></div>
-            <div class="label-wapper"><span class="label">{{t("wm.preview.last_update_date")}}</span> {{currentFile && currentFile.updateTime}}</div>
+            <div class="label-wapper"><span class="label">{{t("wm.preview.last_update_person")}}</span> <span>{{(currentFile && currentFile.updateUser) ? (currentFile && currentFile.updateUser) : '-'}}</span></div>
+            <div class="label-wapper"><span class="label">{{t("wm.preview.last_update_date")}}</span> {{(currentFile && currentFile.updateTime) ? (currentFile && currentFile.updateTime) : "-"}}</div>
             <div class="label-wapper"><span class="label">{{t("wm.preview.create_person")}}</span> {{currentFile && currentFile.createUserName}}</div>
             <div class="label-wapper"><span class="label">{{t("wm.preview.create_time")}}</span> {{currentFile && currentFile.createTime}}</div>
             <div class="label-wapper" style="cursor:pointer;" @click="downloadFile(currentFile)"><span class="label"> <i  class="el-icon-download download"></i></span><span class="download-file">{{t("wm.preview.download")}}</span></div>
@@ -195,6 +195,7 @@ export default {
       width: 300px;
       border-right: 1px solid #d8d8d8;
       height: 100%;
+      overflow: auto;
       .icon-title{
         color:#1890FF;
         font-size: 14px;
