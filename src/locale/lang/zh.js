@@ -60,6 +60,12 @@ export default {
       create_person: "创建人：",
       create_time: "创建时间：",
       download: "下载文件"
+    },
+    compare: {
+      file_compare: "文件对比",
+      version: '版本',
+      current_version: '当前版本',
+      set_version: '设置为当前版本',
     }
   },
 };

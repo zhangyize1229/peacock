@@ -54,7 +54,9 @@ export default {
         version: '1.0',
         contentLength: 1000
       }],
-      file: null
+      file: new Blob(["Hello World!"], {
+         type: 'text/plain'
+      })
     }
   },
   methods: {

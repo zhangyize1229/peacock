@@ -8,11 +8,11 @@
 </template>
 
 <script>
-  import { use } from 'main/locale';
-  import zhLocale from 'main/locale/lang/zh';
-  import enLocale from 'main/locale/lang/en';
+  import { use } from '../src/locale';
+  import zhLocale from '../src/locale/lang/zh';
+  import enLocale from '../src/locale/lang/en';
   const lang = location.hash.replace('#', '').split('/')[1] || 'zh-CN';
-  console.log(zhLocale);
+  console.log(lang);
   const localize = lang => {
     switch (lang) {
       case 'zh-CN':
@@ -22,7 +22,7 @@
         use(enLocale);
         break;
       default:
-        use(zhLocale);
+        use(enLocale);
     }
   };
   localize(lang);

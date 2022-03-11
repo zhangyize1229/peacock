@@ -1,0 +1,52 @@
+@import "mixins/mixins";
+@include b(diff) {
+  height: 100%;
+  width: 100%;
+  .d2h-wrapper, .d2h-files-diff{
+    height: 100%;
+  }
+  .d2h-files-diff{
+    overflow: auto;
+  }
+  .d2h-file-wrapper{
+    border: none;
+    margin: 0;
+    border-radius: 0;
+    height: 100%;
+  }
+  .d2h-file-header{
+    display: none;
+  }
+  .d2h-info{
+    display: none;
+  }
+  .d2h-code-side-linenumber{
+    display: none;
+  }
+  .d2h-code-line-prefix{
+    display: none;
+  }
+  .d2h-code-side-line{
+    padding: 0;
+  }
+  .d2h-del, .d2h-ins{
+    background-color: #fff6d2;
+    border: none;
+  }
+  .d2h-code-side-line del, .d2h-code-side-line ins{
+    background-color: #fff6d2;
+    color: #f6b13c;
+  }
+  .d2h-code-line-ctn {
+    padding: 8px 0 8px 8px;
+    box-sizing: border-box;
+  }
+  .d2h-file-side-diff{
+    box-sizing: border-box;
+    border: 1px solid #d8d8d8;
+    height: 100%;
+    &:first-child{
+      border-right: none;
+    }
+  }
+}

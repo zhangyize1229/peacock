@@ -46,6 +46,14 @@
             {
               "path": "/preview",
               "title": "文件预览"
+            },
+            {
+              "path": "/diff",
+              "title": "diff"
+            },
+            {
+              "path": "/compare",
+              "title": "文件对比"
             }
           ]
         }
@@ -99,6 +107,14 @@
             {
               "path": "/preview",
               "title": "preview"
+            },
+            {
+              "path": "/diff",
+              "title": "Diff"
+            },
+            {
+              "path": "/compare",
+              "title": "compare"
             }
           ]
         }

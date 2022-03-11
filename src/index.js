@@ -7,6 +7,8 @@ import Attachment from '../packages/attachment/index.js';
 import Table from '../packages/table/index.js';
 import Form from '../packages/form/index.js';
 import Preview from '../packages/preview/index.js';
+import Diff from '../packages/diff/index.js';
+import Compare from '../packages/compare/index.js';
 import locale from './locale';
 
 const components = [
@@ -17,6 +19,8 @@ const components = [
   Table,
   Form,
   Preview,
+  Diff,
+  Compare,
 ];
 import highlight from "./directive/highlight"
 
@@ -42,7 +46,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '0.1.66',
+  version: '0.1.72',
   locale: locale.use,
   i18n: locale.i18n,
   install,
@@ -52,5 +56,7 @@ export default {
   Attachment,
   Table,
   Form,
-  Preview
+  Preview,
+  Diff,
+  Compare
 };

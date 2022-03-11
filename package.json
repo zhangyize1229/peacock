@@ -1,6 +1,6 @@
 {
   "name": "peacock9",
-  "version": "0.1.68",
+  "version": "0.1.72",
   "private": false,
   "license": "MIT",
   "main": "lib/wm.umd.min.js",
@@ -17,6 +17,8 @@
   "dependencies": {
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
+    "diff": "^5.0.0",
+    "diff2html": "^3.4.16",
     "element-ui": "^2.15.6",
     "throttle-debounce": "^1.0.1",
     "vue": "^2.6.11",

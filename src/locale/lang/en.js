@@ -62,6 +62,12 @@ export default {
       create_person: "Created by:",
       create_time: "Created on:",
       download: "Download File"
+    },
+    compare: {
+      file_compare: "File comparison",
+      version: 'Version',
+      current_version: 'Current Version',
+      set_version: 'Set version',
     }
   },
 };

@@ -5,5 +5,7 @@
   "attachment": "./packages/attachment/index.js",
   "table": "./packages/table/index.js",
   "form": "./packages/form/index.js",
-  "preview": "/packages/preview/index.js"
+  "preview": "/packages/preview/index.js",
+  "diff": "/packages/diff/index.js",
+  "compare": "/packages/compare/index.js"
 }
