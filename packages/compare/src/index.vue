@@ -50,7 +50,7 @@
         </template>
         <div class="compare-con" v-if="same">
 
-          <div class="compare-content-left compare-content-item"><div style="overflow-x: auto">{{leftStr}}</div></div>
+          <div class="compare-content-left compare-content-item"><div style="overflow-x: auto; border-right: 1px solid #d8d8d8;">{{leftStr}}</div></div>
           <div class="compare-content-right compare-content-item"><div style="overflow-x: auto">{{rightStr}}</div></div>
         </div>
       </div>
