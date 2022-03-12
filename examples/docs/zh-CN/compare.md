@@ -3,7 +3,7 @@
 :::demo
 
 ```html
-<div>
+<div style="height: 300px;">
   <wm-compare :file-list="fileList" :right-file="rightFile" :left-file="leftFile" @setVersion="getVersion" @onChange="onChange" @onClose="onClose">
   </wm-compare>
 </div>
@@ -21,7 +21,7 @@
           contentType:"application/octet-stream",
           suffix:"txt",
           version:"2.0",
-          versionDesc:null
+          versionDesc:"2.0"
         },
         {
           filename:null,
@@ -34,7 +34,7 @@
           contentType:"application/octet-stream",
           suffix:"txt",
           version:"1.0",
-          versionDesc:null
+          versionDesc:"1.0"
         },
         {
           filename:null,
@@ -47,15 +47,15 @@
           contentType:"application/octet-stream",
           suffix:"txt",
           version:"3.0",
-          versionDesc:null
+          versionDesc:"3.0"
         }],
         leftFile: {
           objectKey:"upload/20220304/cb64cf68a0db6716da4c4cd6fe55f5a6.txt",
-          content: new Blob(["12345"], {type: 'text/plain'}),
+          content: new Blob(["sadfsdafsdafsadfsdafsdafsadfsadfsadfsadfsadfsadfsadfwerterfgvsdfsadfsadf\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1"], {type: 'text/plain'}),
         },
         rightFile: {
           objectKey:"upload/20220303/78e89f0f512e76cc30b3fd6075c1b472.txt",
-          content: new Blob(["12345"], {type: 'text/plain'}),
+          content: new Blob(["sadfsdafsdafsadfsdafsdafsadfsadfsadfsadfsadfsadfsadfwerterfgvsdfsadfsadf\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1"], {type: 'text/plain'}),
         }
       };
     },
@@ -74,7 +74,7 @@
             this.leftFile= {...data, ...{content: new Blob(["12345sadfsadf"], {type: 'text/plain'})}}
             break;
           case 'right':
-            this.rightFile = {...data, ...{content: new Blob(["123s45sadfsadfs"], {type: 'text/plain'})}}
+            this.rightFile = {...data, ...{content: new Blob(["123s45sadfsadfssadfgvsdfsadfsadf\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1"], {type: 'text/plain'})}}
             break;
         }
       }

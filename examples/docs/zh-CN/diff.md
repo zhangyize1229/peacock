@@ -5,7 +5,7 @@
 :::demo
 
 ```html
-<div style="height: 200px;">
+<div style="height: 150px;">
     <wm-diff :old-string="oldString" :new-string="newString" />
 </div>
 <script>

@@ -21,7 +21,7 @@
           contentType:"application/octet-stream",
           suffix:"txt",
           version:"2.0",
-          versionDesc:null
+          versionDesc:"2.0"
         },
         {
           filename:null,
@@ -34,7 +34,7 @@
           contentType:"application/octet-stream",
           suffix:"txt",
           version:"1.0",
-          versionDesc:null
+          versionDesc:"1.0"
         },
         {
           filename:null,
@@ -47,7 +47,7 @@
           contentType:"application/octet-stream",
           suffix:"txt",
           version:"3.0",
-          versionDesc:null
+          versionDesc:"3.0"
         }],
         rightFile: {
           objectKey:"upload/20220304/cb64cf68a0db6716da4c4cd6fe55f5a6.txt",

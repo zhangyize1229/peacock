@@ -6,7 +6,8 @@
     height: 100%;
   }
   .d2h-files-diff{
-    overflow: auto;
+    border: 1px solid #d8d8d8;
+    overflow-y: auto;
   }
   .d2h-file-wrapper{
     border: none;
@@ -43,10 +44,8 @@
   }
   .d2h-file-side-diff{
     box-sizing: border-box;
-    border: 1px solid #d8d8d8;
-    height: 100%;
     &:first-child{
-      border-right: none;
+      border-right: 1px solid #d8d8d8;
     }
   }
 }

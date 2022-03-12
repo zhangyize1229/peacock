@@ -13,7 +13,7 @@
           <div class="list-wapper" v-for="(fileInfo, index) in fileList" :key="index">
             <div class="version" @click="choose(index)" :style="{'background': index===current ? '#D0EDFF': '#fff'}">
               <div class="version-wapper">
-                <div class="number">{{fileInfo.version}}</div>
+                <div class="number">{{fileInfo.versionDesc}}</div>
                 <div class="current" v-if="fileInfo.isCurrent"> {{t("wm.preview.current")}}</div>
               </div> 
               <div class="date">{{t("wm.preview.update_date")}}{{fileInfo.updateTime ? fileInfo.updateTime : '-'}}</div>

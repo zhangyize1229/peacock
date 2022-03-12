@@ -48,10 +48,11 @@
         <template v-if="!same">
           <wm-diff :oldString="leftStr" :newString="rightStr" @customRender="customRender" />
         </template>
-        <template v-if="same">
-          <div class="compare-content-left compare-content-item">{{leftStr}}</div>
-          <div class="compare-content-right compare-content-item">{{rightStr}}</div>
-        </template>
+        <div class="compare-con" v-if="same">
+
+          <div class="compare-content-left compare-content-item"><div style="overflow-x: auto">{{leftStr}}</div></div>
+          <div class="compare-content-right compare-content-item"><div style="overflow-x: auto">{{rightStr}}</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -101,7 +102,7 @@ export default {
       type: Object,
       default: () => {
         return {
-          version: "version",
+          version: "versionDesc",
           objectKey: "objectKey",
           content: "content",
           isCurrent: "isCurrent"
