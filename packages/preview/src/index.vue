@@ -6,7 +6,7 @@
       </div>
       <div class="wapper" v-if="fileList.length > 0">
         <div class="list">
-          <div class="icon-title" @click="compare" v-if="fileList.length > 1">
+          <div class="icon-title" @click="compare" v-if="(fileList.length > 1) && (!currentFile.suffix || previewMode.text.includes(currentFile.suffix.toLowerCase()))">
             <i class="el-icon-document-add icon"></i>
             {{t("wm.preview.compare")}}
           </div>
@@ -35,7 +35,7 @@
         <div class="info">
           <div class="info-title">{{t("wm.preview.file_info")}}</div>
           <div>
-            <div class="label-wapper"><span class="label">{{t("wm.preview.name")}}</span> <span class="info-value"> {{currentFile && currentFile.filename}}</span></div>
+            <div class="label-wapper"><span class="label">{{t("wm.preview.name")}}</span> <span class="info-value"> {{(currentFile && currentFile.filename) ? (currentFile && currentFile.filename) : (currentFile && currentFile.name)}}</span></div>
             <div class="label-wapper"><span class="label">{{t("wm.preview.size")}}</span> {{fileSize}}</div>
             <div class="label-wapper" v-if="!currentFile.suffix || previewMode.text.includes(currentFile.suffix.toLowerCase())"><span class="label">{{t("wm.preview.code")}}</span> 
               <el-select v-model="previewEncode">
@@ -154,7 +154,7 @@ export default {
       let that = this;
       xhr.onload = function () {
         if (this.status === 200 || this.status === 304) {
-          that.createObject(this.response, content.filename);
+          that.createObject(this.response, content.filename || content.name);
         }
       };
     },
