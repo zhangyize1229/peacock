@@ -24,10 +24,10 @@
           <pre v-highlight="fileContent" v-if="!currentFile.suffix || previewMode.text.includes(currentFile.suffix.toLowerCase())">
             <code></code>     
           </pre>
-          <template v-if="previewMode.pdf.includes(currentFile.suffix.toLowerCase())">
+          <template v-if="previewMode.pdf.includes(currentFile.suffix && currentFile.suffix.toLowerCase())">
             <embed :src="currentFile && currentFile.link" type="application/pdf" style="width: 100%;height: calc(100% - 5px);" />
           </template>
-          <template v-if="previewMode.image.includes(currentFile.suffix.toLowerCase())">
+          <template v-if="previewMode.image.includes(currentFile.suffix && currentFile.suffix.toLowerCase())">
             <img :src="currentFile && currentFile.link" style="max-width: 100%;height: auto;" />
           </template>
         </div>
