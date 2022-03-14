@@ -12,57 +12,71 @@
     data() {
       return {
         fileList: [{
-          filename:null,
-          objectKey:"upload/20220304/cb64cf68a0db6716da4c4cd6fe55f5a6.txt",
+          filename:2,
+          objectKey:"upload/002.txt",
           isCurrent:1,
-          link:"http://192.168.3.250:31032/000000-bladex/upload/20220304/cb64cf68a0db6716da4c4cd6fe55f5a6.txt",
-          contentMd5:"825349594",
-          contentLength:1,
-          contentType:"application/octet-stream",
-          suffix:"txt",
-          version:"2.0",
-          versionDesc:"2.0"
+          versionDesc:"2.0",
+          content: new Blob(["11111111111111111111111111\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1"], {type: 'text/plain'}),
         },
         {
-          filename:null,
-          objectKey:"upload/20220303/78e89f0f512e76cc30b3fd6075c1b472.txt",
+          filename:1,
+          objectKey:"upload/001.txt",
           isCurrent:0,
-          covertTime:null,
-          link:"http://192.168.3.250:31032/000000-bladex/upload/20220303/78e89f0f512e76cc30b3fd6075c1b472.txt",
-          contentMd5:"1228563095",
-          contentLength:1,
-          contentType:"application/octet-stream",
-          suffix:"txt",
-          version:"1.0",
-          versionDesc:"1.0"
+          versionDesc:"1.0",
+          content: new Blob(["11111111111111111111111111\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1"], {type: 'text/plain'}),
         },
         {
-          filename:null,
-          objectKey:"upload/20220303/78e89f0f512e76cc30b3fd6075c1b432.txt",
+          filename:3,
+          objectKey:"003.txt",
           isCurrent:0,
-          covertTime:null,
-          link:"http://192.168.3.250:31032/000000-bladex/upload/20220303/78e89f0f512e76cc30b3fd6075c1b234.txt",
-          contentMd5:"122853454235",
-          contentLength:1,
-          contentType:"application/octet-stream",
-          suffix:"txt",
-          version:"3.0",
-          versionDesc:"3.0"
+          versionDesc:"3.0",
+          content: new Blob(["111111111"], {type: 'text/plain'}),
+        },
+        {
+          filename:4,
+          objectKey:"upload/004.txt",
+          isCurrent:0,
+          versionDesc:"4.0",
+          content: new Blob(["111111111"], {type: 'text/plain'}),
         }],
-        leftFile: {
-          objectKey:"upload/20220304/cb64cf68a0db6716da4c4cd6fe55f5a6.txt",
-          content: new Blob(["sadfsdafsdafsadfsdafsdafsadfsadfsadfsadfsadfsadfsadfwerterfgvsdfsadfsadf\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1"], {type: 'text/plain'}),
-        },
-        rightFile: {
-          objectKey:"upload/20220303/78e89f0f512e76cc30b3fd6075c1b472.txt",
-          content: new Blob(["sadfsdafsdafsadfsdafsdafsadfsadfsadfsadfsadfsadfsadfwerterfgvsdfsadfsadf\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1"], {type: 'text/plain'}),
-        }
+        leftFile: {},
+        rightFile: {}
       };
+    },
+    created() {
+      this.leftFile = this.fileList[0];
+      this.rightFile = this.fileList[1];
     },
     methods: {
       getVersion(obj) {
-        console.log(obj)
-        // ajax....
+          this.fileList= [{
+              filename:2,
+              objectKey:"upload/002.txt",
+              isCurrent:0,
+              versionDesc:"2.0",
+              content: new Blob(["11111111111111111111111111\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1"], {type: 'text/plain'}),
+          },
+              {
+                  filename:1,
+                  objectKey:"upload/001.txt",
+                  isCurrent:1,
+                  versionDesc:"1.0",
+                  content: new Blob(["11111111111111111111111111\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1"], {type: 'text/plain'}),
+              },
+              {
+                  filename:3,
+                  objectKey:"003.txt",
+                  isCurrent:0,
+                  versionDesc:"3.0",
+                  content: new Blob(["111111111"], {type: 'text/plain'}),
+              },
+              {
+                  filename:4,
+                  objectKey:"upload/004.txt",
+                  isCurrent:0,
+                  versionDesc:"4.0",
+                  content: new Blob(["111111111"], {type: 'text/plain'}),
+              }]
       },
       onClose(){
       // close
@@ -70,11 +84,17 @@
       onChange(params) {
         const {type, data} = params
         switch (type) {
-          case 'left': 
-            this.leftFile= {...data, ...{content: new Blob(["12345sadfsadf"], {type: 'text/plain'})}}
+          case 'left':
+            this.leftFile= {
+                filename:null,
+                objectKey:"upload/20220303/78e89f0f512e76csdafc30b3fd6075c1b432.txt",
+                isCurrent:0,
+                versionDesc:"3.0",
+                content: new Blob(["111111111"], {type: 'text/plain'}),
+            }
             break;
           case 'right':
-            this.rightFile = {...data, ...{content: new Blob(["123s45sadfsadfssadfgvsdfsadfsadf\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1"], {type: 'text/plain'})}}
+            this.rightFile = data
             break;
         }
       }
@@ -106,7 +126,7 @@
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值
 |---------|--------|-------| --------|--------
-| version | 指定文件版本为选项对象的某个属性值 |string |-- | 'version'
+| version | 指定文件版本为选项对象的某个属性值 |string |-- | 'versionDesc'
 | objectKey | 指定文件地址为选项对象的某个属性值 |string |-- | 'objectKey'
 | content | 指定文件流为选项对象的某个属性值 |string |-- | 'content'
 | isCurrent | 指定当前版本为选项对象的某个属性值 |string |-- | 'isCurrent'

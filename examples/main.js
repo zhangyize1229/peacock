@@ -29,7 +29,7 @@ const messages = {
   },
 };
 const i18n = new VueI18n({
-  locale: localStorage.getItem("language") || "en",
+  locale: localStorage.getItem("language") || "zh",
   messages,
 });
 locale1.i18n((key, value) => i18n.t(key, value));
