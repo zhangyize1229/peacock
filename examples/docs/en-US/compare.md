@@ -3,79 +3,77 @@
 :::demo
 
 ```html
-<div>
-  <wm-compare :file-list="fileList" :right-file="rightFile" :left-file="leftFile" @setVersion="getVersion" @onChange="onChange">
-  </wm-compare>
+<div style="height: 300px;">
+    <wm-compare :file-list="fileList" :right-file="rightFile" :left-file="leftFile" @setVersion="getVersion" @onChange="onChange" @onClose="onClose">
+    </wm-compare>
 </div>
 <script>
-  export default {
-    data() {
-      return {
-        fileList: [{
-          filename:null,
-          objectKey:"upload/20220304/cb64cf68a0db6716da4c4cd6fe55f5a6.txt",
-          isCurrent:1,
-          link:"http://192.168.3.250:31032/000000-bladex/upload/20220304/cb64cf68a0db6716da4c4cd6fe55f5a6.txt",
-          contentMd5:"825349594",
-          contentLength:1,
-          contentType:"application/octet-stream",
-          suffix:"txt",
-          version:"2.0",
-          versionDesc:"2.0"
+    export default {
+        data() {
+            return {
+                fileList: [{
+                    filename:2,
+                    objectKey:"upload/002.txt",
+                    isCurrent:1,
+                    versionDesc:"2.0",
+                    content: new Blob(["11111111111111111111111111\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1"], {type: 'text/plain'}),
+                },
+                    {
+                        filename:1,
+                        objectKey:"upload/001.txt",
+                        isCurrent:0,
+                        versionDesc:"1.0",
+                        content: new Blob(["11111111111111111111111111\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1"], {type: 'text/plain'}),
+                    },
+                    {
+                        filename:3,
+                        objectKey:"003.txt",
+                        isCurrent:0,
+                        versionDesc:"3.0",
+                        content: new Blob(["111111111"], {type: 'text/plain'}),
+                    },
+                    {
+                        filename:4,
+                        objectKey:"upload/004.txt",
+                        isCurrent:0,
+                        versionDesc:"4.0",
+                        content: new Blob(["111111111"], {type: 'text/plain'}),
+                    }],
+                leftFile: {},
+                rightFile: {}
+            };
         },
-        {
-          filename:null,
-          objectKey:"upload/20220303/78e89f0f512e76cc30b3fd6075c1b472.txt",
-          isCurrent:0,
-          covertTime:null,
-          link:"http://192.168.3.250:31032/000000-bladex/upload/20220303/78e89f0f512e76cc30b3fd6075c1b472.txt",
-          contentMd5:"1228563095",
-          contentLength:1,
-          contentType:"application/octet-stream",
-          suffix:"txt",
-          version:"1.0",
-          versionDesc:"1.0"
+        created() {
+            this.leftFile = this.fileList[0];
+            this.rightFile = this.fileList[1];
         },
-        {
-          filename:null,
-          objectKey:"upload/20220303/78e89f0f512e76cc30b3fd6075c1b432.txt",
-          isCurrent:0,
-          covertTime:null,
-          link:"http://192.168.3.250:31032/000000-bladex/upload/20220303/78e89f0f512e76cc30b3fd6075c1b234.txt",
-          contentMd5:"122853454235",
-          contentLength:1,
-          contentType:"application/octet-stream",
-          suffix:"txt",
-          version:"3.0",
-          versionDesc:"3.0"
-        }],
-        rightFile: {
-          objectKey:"upload/20220304/cb64cf68a0db6716da4c4cd6fe55f5a6.txt",
-          content: '',
-        },
-        leftFile: {
-          objectKey:"upload/20220303/78e89f0f512e76cc30b3fd6075c1b472.txt",
-          content: '',
+        methods: {
+            getVersion(obj) {
+                console.log(obj)
+                // ajax....
+            },
+            onClose(){
+                // close
+            },
+            onChange(params) {
+                const {type, data} = params
+                switch (type) {
+                    case 'left':
+                        this.leftFile= {
+                            filename:null,
+                            objectKey:"upload/20220303/78e89f0f512e76csdafc30b3fd6075c1b432.txt",
+                            isCurrent:0,
+                            versionDesc:"3.0",
+                            content: new Blob(["111111111"], {type: 'text/plain'}),
+                        }
+                        break;
+                    case 'right':
+                        this.rightFile = data
+                        break;
+                }
+            }
         }
-      };
-    },
-    methods: {
-      getVersion(obj) {
-        console.log(obj)
-      },
-      onChange(params) {
-        const {type, data} = params
-        switch (type) {
-          case 'left': 
-            this.leftFile= {...data, ...{content: '11111'}}
-            break;
-          case 'right':
-            this.rightFile = {...data, ...{content: '22222'}}
-            break;
-        }
-      }
     }
-  }
 </script>
 ```
 
@@ -102,7 +100,7 @@
 
 | Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------
-| version | Specifies the version as an attribute value of the options object |string |-- | 'version'
+| version | Specifies the version as an attribute value of the options object |string |-- | 'versionDesc'
 | objectKey | Specifies the objectKey as an attribute value of the options object |string |-- | 'objectKey'
 | content | Specifies the file stream as an attribute value of the options object |string |-- | 'content'
 | isCurrent | Specifies the current version as an attribute value of the options object |string |-- | 'isCurrent'

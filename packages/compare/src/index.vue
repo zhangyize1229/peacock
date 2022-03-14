@@ -9,13 +9,13 @@
         <div class="compare-select-wrapper">
           <div class="compare-select-label">
             <span>{{ this.t('wm.compare.version') }}：</span>
-            <el-select v-model="leftFile[props.objectKey]" @change="(e)=>changeType(e,'left')">
+            <el-select style="width: 120px;" v-model="leftFile[props.version]" @change="(e)=>changeType(e,'left')">
               <el-option
-                v-for="item in fileList"
-                :key="item[props.objectKey]"
+                v-for="(item, index) in fileList"
+                :key="index"
                 :label="item[props.version]"
-                :value="item[props.objectKey]"
-                :disabled="rightFile[props.objectKey] == item[props.objectKey]"
+                :value="item[props.version]"
+                :disabled="rightFile[props.version] == item[props.version]"
               >
                 <div style="display: flex; align-items: center; justify-content: space-between">
                   <div>{{item[props.version]}}</div>
@@ -23,23 +23,25 @@
                 </div>
               </el-option>
             </el-select>
+            <span style="color: #1890FF; font-size: 14px; margin-left: 8px;">{{show(this.fileList, this.leftFile)}}</span>
           </div>
           <div class="compare-select-label" style="margin-left:20px;">
             <span>{{ this.t('wm.compare.version') }}：</span>
-            <el-select v-model="rightFile[props.objectKey]" @change="(e)=>changeType(e,'right')">
+            <el-select style="width: 120px;" v-model="rightFile[props.version]" @change="(e)=>changeType(e,'right')">
               <el-option
-                v-for="item in fileList"
-                :key="item[props.objectKey]"
+                v-for="(item, index) in fileList"
+                :key="index"
                 :label="item[props.version]"
-                :value="item[props.objectKey]"
-                :disabled="leftFile[props.objectKey] == item[props.objectKey]"
+                :value="item[props.version]"
+                :disabled="leftFile[props.version] == item[props.version]"
               >
                 <div style="display: flex; align-items: center; justify-content: space-between">
                   <span>{{item[props.version]}}</span>
-                  <span v-show="item[props.isCurrent]==1">{{ t('wm.compare.current_version') }}</span>
+                  <span  v-show="item[props.isCurrent]==1">{{ t('wm.compare.current_version') }}</span>
                 </div>
               </el-option>
             </el-select>
+            <span style="color: #1890FF; font-size: 14px; margin-left: 8px;">{{show(this.fileList, this.rightFile)}}</span>
           </div>
         </div>
           <div class="compare-setting-button" @click="setVersion">{{this.t('wm.compare.set_version')}}</div>
@@ -76,22 +78,11 @@ export default {
     leftFile: {
       required: true,
       type: Object,
-      default: () => {
-        return {
-          objectKey: '',
-          content: '',
-        }
-      }
     },
     rightFile: {
       required: true,
       type: Object,
-      default: () => {
-        return {
-          objectKey: '',
-          content: '',
-        }
-      }
+
     },
     fileList: {
       required: true,
@@ -115,6 +106,7 @@ export default {
       return this.leftStr === this.rightStr;
     },
     leftFileBlob(){
+      console.log(this.fileList)
       return this.leftFile[this.props.content]
     },
     rightFileBlob() {
@@ -152,9 +144,15 @@ export default {
       return obj && Object.keys(obj).length > 0
     },
     setVersion() {
-     const obj =this.fileList.find(v=>v[this.props.objectKey]==this.rightFile.objectKey)
+     const obj =this.fileList.find(v=>v[this.props.version]==this.rightFile[this.props.version])
       if(this.isNotNull(obj) ) {
         this.$emit('setVersion',obj )
+      }
+    },
+    show(array, data) {
+      const f =array.find(v=>v[this.props.version] === data[this.props.version])
+      if(f[this.props.isCurrent]===1){
+        return this.t('wm.compare.current_version')
       }
     },
     read (content, type) {
@@ -169,7 +167,7 @@ export default {
       };
     },
     changeType(e,type) {
-      const obj =this.fileList.find(v=>v[this.props.objectKey]==e)
+      const obj =this.fileList.find(v=>v[this.props.version]==e)
       if(this.isNotNull(obj) ) {
         this.$emit('onChange', {type,data:obj} )
       }
