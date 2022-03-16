@@ -51,7 +51,7 @@
             <div class="label-wapper"><span class="label">{{t("wm.preview.last_update_date")}}</span> {{(currentFile && currentFile.updateTime) ? (currentFile && currentFile.updateTime) : "-"}}</div>
             <div class="label-wapper"><span class="label">{{t("wm.preview.create_person")}}</span> {{(currentFile && currentFile.createUserName) ? (currentFile && currentFile.createUserName) : "-"}}</div>
             <div class="label-wapper"><span class="label">{{t("wm.preview.create_time")}}</span> {{currentFile && currentFile.createTime}}</div>
-            <div class="label-wapper" style="cursor:pointer;" @click="downloadFile(currentFile)"><span class="label"> <i  class="el-icon-download download"></i></span><span class="download-file">{{t("wm.preview.download")}}</span></div>
+            <div class="label-wapper" v-if="currentFile.link" style="cursor:pointer;" @click="downloadFile(currentFile)"><span class="label"> <i  class="el-icon-download download"></i></span><span class="download-file">{{t("wm.preview.download")}}</span></div>
           </div>
         </div>
       </div>
