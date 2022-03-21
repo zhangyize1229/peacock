@@ -34,7 +34,8 @@ export default {
       download: "Download",
       delete: "Delete",
       max_file_size: "Upload file size cannot exceed",
-      upload_error: "Too many files, please upload again!"
+      upload_error: "Too many files, please upload again!",
+      cover: 'If the file name is the same, the original file will be overwritten',
     },
     attachment: {
       file_size: "The file size is",

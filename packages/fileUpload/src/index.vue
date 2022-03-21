@@ -10,7 +10,9 @@
       :on-success="handleSuccess"
       :on-error="handleError"
     >
-      <el-button type="primary">{{ fileUplodBtn }}</el-button>
+      <el-tooltip effect="dark" :content="t('wm.fileUpload.cover')" placement="top">
+        <el-button type="primary"><i class="el-icon-warning-outline" style="margin-right: 8px;"></i>{{ fileUplodBtn }}</el-button>
+      </el-tooltip>
       <div slot="tip"></div>
     </el-upload>
     <div

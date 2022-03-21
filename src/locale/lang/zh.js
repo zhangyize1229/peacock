@@ -32,7 +32,8 @@ export default {
       download: "下载",
       delete: "删除",
       max_file_size: "上传文件大小不能超过",
-      upload_error:"文件过多，请重新上传！"
+      upload_error:"文件过多，请重新上传！",
+      cover: '如果文件名称相同，则会覆盖原文件',
     },
     attachment: {
       file_size: "文件大小为",
