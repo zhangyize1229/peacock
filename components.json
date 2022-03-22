@@ -7,5 +7,6 @@
   "form": "./packages/form/index.js",
   "preview": "/packages/preview/index.js",
   "diff": "/packages/diff/index.js",
-  "compare": "/packages/compare/index.js"
+  "compare": "/packages/compare/index.js",
+  "filter": "/packages/filter/index.js"
 }
