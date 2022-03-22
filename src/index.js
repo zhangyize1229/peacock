@@ -9,6 +9,7 @@ import Form from '../packages/form/index.js';
 import Preview from '../packages/preview/index.js';
 import Diff from '../packages/diff/index.js';
 import Compare from '../packages/compare/index.js';
+import Input from '../packages/input/index.js';
 import locale from './locale';
 
 const components = [
@@ -21,6 +22,7 @@ const components = [
   Preview,
   Diff,
   Compare,
+  Input,
 ];
 import highlight from "./directive/highlight"
 
@@ -58,5 +60,6 @@ export default {
   Form,
   Preview,
   Diff,
-  Compare
+  Compare,
+  Input
 };

@@ -67,6 +67,10 @@ export default {
       version: '版本',
       current_version: '当前版本',
       set_version: '设置为当前版本',
+    },
+    input: {
+      search: "查询",
+      placeholder: "输入检索内容",
     }
   },
 };

@@ -1,0 +1,12 @@
+@import "mixins/mixins";
+
+@include b(input) {
+  width: 300px;
+  .button{
+    width: 99px;
+    background-color: #1890ff!important;
+    color: #ffffff!important;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

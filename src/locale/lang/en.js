@@ -69,6 +69,10 @@ export default {
       version: 'Version',
       current_version: 'Current Version',
       set_version: 'Set version',
+    },
+    input: {
+      search: "Search",
+      placeholder: "Enter search content",
     }
   },
 };

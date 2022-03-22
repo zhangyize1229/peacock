@@ -54,6 +54,10 @@
             {
               "path": "/compare",
               "title": "文件对比"
+            },
+            {
+              "path": "/input",
+              "title": "快捷搜索"
             }
           ]
         }
@@ -115,6 +119,10 @@
             {
               "path": "/compare",
               "title": "compare"
+            },
+            {
+              "path": "/input",
+              "title": "input"
             }
           ]
         }
