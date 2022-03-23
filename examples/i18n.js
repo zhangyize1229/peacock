@@ -23,7 +23,8 @@ const messages = {
 
 EleLocale.i18n((key, value) => i18n.t(key, value));
 pLocale.i18n((key, value) => i18n.t(key, value));
+const lang = localStorage.getItem("PEACOCK_LANGUAGE")=='zh-CN'? 'zh': 'en';
 export const i18n = new VueI18n({
-  locale: localStorage.getItem("language") || "zh",
+  locale: lang,
   messages,
 });

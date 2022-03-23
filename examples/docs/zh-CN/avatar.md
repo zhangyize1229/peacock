@@ -42,3 +42,4 @@
 | circle | 是否圆形 | boolean | -- | true
 | maxSize | 上传文件的最大值 | number | -- | 5M
 | httpRequest | 自定义上传的钩子 | function(file) | -- | --
+| delImage | 删除 | function() | -- | --

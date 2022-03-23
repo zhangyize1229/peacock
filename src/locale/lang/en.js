@@ -79,6 +79,7 @@ export default {
     avatar: {
       add: 'Upload a photo',
       remove: 'Remove photo',
+      upload: 'Edit',
     }
   },
 };

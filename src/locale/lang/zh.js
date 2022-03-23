@@ -77,6 +77,7 @@ export default {
     avatar: {
       add: '上传图片',
       remove: '移除图片',
+      upload: '编辑',
     }
   },
 };

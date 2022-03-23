@@ -353,6 +353,7 @@
 </template>
 <script>
 import compoLang from "../i18n/component.json";
+import { i18n } from "../i18n"
 import Element from "main/index.js";
 
 const { version } = Element;
@@ -400,6 +401,7 @@ export default {
     switchLang(targetLang) {
       if (this.lang === targetLang) return;
       localStorage.setItem("PEACOCK_LANGUAGE", targetLang);
+      i18n.locale = targetLang=='zh-CN' ? 'zh' : 'en';
       this.$router.push(this.$route.path.replace(this.lang, targetLang));
     },
 

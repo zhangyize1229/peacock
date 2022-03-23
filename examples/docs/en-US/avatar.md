@@ -29,3 +29,4 @@
 | circle | determine whether it's a circle | boolean | -- | true
 | maxSize | Maximum upload file size | number | -- | 5M
 | httpRequest | Customize the upload hook | function(file) | -- | --
+| delImage | delete | function() | -- | --

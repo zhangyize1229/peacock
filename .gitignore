@@ -24,6 +24,7 @@ pnpm-debug.log*
 .vscode
 examples/pages/en-US
 examples/pages/zh-CN
+examples/peacock9
 *.suo
 *.ntvs*
 *.njsproj
