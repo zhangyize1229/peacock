@@ -10,6 +10,7 @@ import Preview from '../packages/preview/index.js';
 import Diff from '../packages/diff/index.js';
 import Compare from '../packages/compare/index.js';
 import Input from '../packages/input/index.js';
+import Avatar from '../packages/avatar/index.js';
 import Pagination from '../packages/pagination/index.js';
 import locale from './locale';
 
@@ -24,6 +25,7 @@ const components = [
   Diff,
   Compare,
   Input,
+  Avatar,
   Pagination,
 ];
 import highlight from "./directive/highlight"
@@ -64,5 +66,6 @@ export default {
   Diff,
   Compare,
   Input,
+  Avatar,
   Pagination
 };

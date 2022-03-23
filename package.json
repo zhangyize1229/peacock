@@ -15,6 +15,7 @@
     "deploy:build": "npm run build:file && cross-env NODE_ENV=production webpack --config build/webpack.demo.js && echo element.eleme.io>>examples/peacock9/CNAME"
   },
   "dependencies": {
+    "@babel/core": "7.16.5",
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "diff": "^5.0.0",
