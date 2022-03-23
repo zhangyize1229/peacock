@@ -134,7 +134,7 @@ export default {
     change(page) {
       this.current = page.current
       this.size = page.size
-      this.$emit('change', this.current)
+      this.$emit('change', page)
     }
   }
 }
