@@ -139,11 +139,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.pager {
-  display: inline-block;
-  text-align: center;
-  line-height: 28px;
-}
-</style>

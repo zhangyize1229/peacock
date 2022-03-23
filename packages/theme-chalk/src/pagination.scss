@@ -1,0 +1,9 @@
+@import "mixins/mixins";
+
+@include b(pagination) {
+  .pager {
+    display: inline-block;
+    text-align: center;
+    line-height: 28px;
+  }
+}
