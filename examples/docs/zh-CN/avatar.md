@@ -4,8 +4,9 @@
 
 ```html
 <div style="width: 150px; height: 150px;">
-  <wm-avatar 
-    default-src="https://t7.baidu.com/it/u=4240641596,3235181048&fm=193&f=GIF"
+  <wm-avatar
+    :src="src"
+    default-src=""
     :http-request="httpRequest"
     @delImage="delImage" 
   />
@@ -14,7 +15,7 @@
   export default {
     data() {
       return {
-        src: ''
+        src: 'https://t7.baidu.com/it/u=4240641596,3235181048&fm=193&f=GIF'
       }
     },
     methods: {
