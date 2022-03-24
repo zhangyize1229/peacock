@@ -7,6 +7,10 @@
   .el-input__inner{
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+    border-color: $--color-primary;
+    &:hover{
+      border-color: $--color-primary;
+    }
   }
   .button{
     width: 50px;
@@ -18,7 +22,7 @@
     justify-content: center;
     align-items: center;
     .icon{
-      font-size: 26px;
+      font-size: 24px;
     }
   }
 }
