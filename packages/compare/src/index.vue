@@ -23,7 +23,7 @@
                 </div>
               </el-option>
             </el-select>
-            <span style="color: #1890FF; font-size: 14px; margin-left: 8px;">{{show(this.fileList, this.leftFile)}}</span>
+            <span class="current-version">{{show(this.fileList, this.leftFile)}}</span>
           </div>
           <div class="compare-select-label" style="margin-left:20px;">
             <span>{{ this.t('wm.compare.version') }}：</span>
@@ -41,7 +41,7 @@
                 </div>
               </el-option>
             </el-select>
-            <span style="color: #1890FF; font-size: 14px; margin-left: 8px;">{{show(this.fileList, this.rightFile)}}</span>
+            <span class="current-version">{{show(this.fileList, this.rightFile)}}</span>
           </div>
         </div>
           <div class="compare-setting-button" @click="setVersion">{{this.t('wm.compare.set_version')}}</div>

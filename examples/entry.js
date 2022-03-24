@@ -12,9 +12,10 @@ import MainHeader from './components/header';
 import SideNav from "./components/side-nav";
 
 import "element-ui/lib/theme-chalk/index.css";
+import './element-variables.scss'
 import "../packages/theme-chalk/lib/index.css";
 import './demo-styles/index.scss';
-import './assets/styles/common.css';
+import './assets/styles/common.scss';
 
 Vue.use(peacock9);
 Vue.use(ElementUI,{size: 'mini'});

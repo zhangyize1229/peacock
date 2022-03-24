@@ -1,10 +1,11 @@
 <style lang="scss" scoped>
+@import "../element-variables.scss";
 .headerWrapper {
   height: 80px;
 }
 
 #v3-banner {
-  background-color: #409eff;
+  background-color: $--color-primary;
   min-height: 30px;
   padding: 5px 60px;
   z-index: 19;
@@ -134,11 +135,11 @@
         color: #888;
 
         &:hover {
-          color: #409eff;
+          color: $--color-primary;
         }
         &.active {
           font-weight: bold;
-          color: #409eff;
+          color: $--color-primary;
         }
       }
     }
@@ -163,7 +164,7 @@
         left: calc(50% - 15px);
         width: 30px;
         height: 2px;
-        background: #409eff;
+        background: $--color-primary;
       }
     }
   }
@@ -199,7 +200,7 @@
   .is-active {
     span,
     i {
-      color: #409eff;
+      color: $--color-primary;
     }
     i {
       transform: rotateZ(180deg) translateY(3px);
@@ -209,7 +210,7 @@
   &:hover {
     span,
     i {
-      color: #409eff;
+      color: $--color-primary;
     }
   }
 }

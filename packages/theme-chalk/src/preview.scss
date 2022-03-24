@@ -1,3 +1,4 @@
+@import "common/var";
 @import "mixins/mixins";
 @include b(preview) {
   background-color:#F8F8F8;
@@ -34,7 +35,7 @@
       height: 100%;
       overflow: auto;
       .icon-title{
-        color:#1890FF;
+        color:$--color-primary;
         font-size: 14px;
         text-align: right;
         line-height: 32px;
@@ -48,7 +49,7 @@
         border: 1px solid #D8D8D8;
         margin: 0 6px 6px 6px;
         color:rgba(0, 0, 0, 0.85);
-        background: #fff;
+        background: $--color-white;
         font-size: 16px;
         .version-wapper{
           display: flex;
@@ -61,7 +62,7 @@
           margin: 0 0 8px 8px;
         }
         .current{
-          color:rgba(24, 144, 255, 100);
+          color:$--color-primary;
           font-size: 12px;
           border: 1px solid rgba(145, 213, 255, 100);
           padding: 2px 8px;
@@ -70,7 +71,7 @@
     }
     .content{
       flex: 1;
-      background: #fff;
+      background: $--color-white;
       margin: 6px 0 0 6px;
       border:1px solid rgba(216, 216, 216, 100);
       overflow: auto;
@@ -103,12 +104,12 @@
         }
         .download{
           font-size: 20px;
-          color: #1890Ff;
+          color: $--color-primary;
           margin-right: 10px;
           width: 110px;
         }
         .download-file{
-          color: #1890Ff;
+          color: $--color-primary;
         }
       }
     }

@@ -1,3 +1,4 @@
+@import "common/var";
 @import "mixins/mixins";
 
 @include b(upload) {
@@ -36,7 +37,7 @@
     font-weight: bold;
   }
   .content .content-title .dropdown-msg {
-    color: #4a90e2;
+    color: $--color-primary;
     cursor: pointer;
   }
   .content .showMore {

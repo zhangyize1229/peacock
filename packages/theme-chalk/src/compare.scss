@@ -1,3 +1,4 @@
+@import "common/var";
 @import "mixins/mixins";
 @include b(compare) {
   background-color:#F8F8F8;
@@ -39,11 +40,16 @@
       }
     }
     .compare-setting-button{
-      color: rgba(24, 144, 255, 100);
+      color: $--color-primary;
       font-size: 14px;
       right: 6px;
       position: absolute;
       cursor: pointer;
+    }
+    .current-version{
+      color: $--color-primary;
+      font-size: 14px;
+      margin-left: 8px;
     }
   }
   .compare-content{

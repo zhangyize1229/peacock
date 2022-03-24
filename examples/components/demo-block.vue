@@ -43,6 +43,7 @@
 </template>
 
 <style lang="scss">
+@import "../element-variables.scss";
   .demo-block {
     border: solid 1px #ebebeb;
     border-radius: 3px;
@@ -157,7 +158,7 @@
       }
 
       &:hover {
-        color: #409EFF;
+        color: $--color-primary;
         background-color: #f9fafc;
       }
 
