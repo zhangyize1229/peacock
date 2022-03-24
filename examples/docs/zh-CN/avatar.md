@@ -3,7 +3,7 @@
 :::demo
 
 ```html
-<div style="width: 150px; height: 150px;">
+<div style="width: 120px; height: 120px;">
   <wm-avatar
     :src="src"
     default-src=""

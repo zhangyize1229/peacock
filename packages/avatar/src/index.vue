@@ -20,7 +20,10 @@
           <div class="drop-item" @click="visible=false">{{t('wm.avatar.add')}}</div>
         </el-upload>
         <div class="drop-item" v-if="src" @click="()=>{visible=false;remove()}">{{t('wm.avatar.remove')}}</div>
-      <el-button slot="reference" class="btn" @click="()=>{visible=!visible}"><i class="el-icon-edit el-icon--left"></i>{{t('wm.avatar.upload')}}</el-button>
+      <div slot="reference" class="btn" @click="()=>{visible=!visible}">
+        <i class="el-icon-edit el-icon--left"></i>
+        <div>{{t('wm.avatar.upload')}}</div>
+      </div>
     </el-popover>
   </div>
 </template>
