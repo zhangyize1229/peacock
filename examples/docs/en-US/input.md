@@ -3,15 +3,20 @@
 :::demo
 
 ```html
-<wm-input @getValue="getValue" />
+<wm-input placeholder="" v-model="value" @getValue="getValue" />
 <script>
-  export default {
-    methods: {
-      getValue (value) {
-        console.log(value)
-      }
+    export default {
+        data() {
+            return {
+                value: '',
+            }
+        },
+        methods: {
+            getValue (value) {
+                console.log(value)
+            }
+        }
     }
-  }
 </script>
 ```
 
@@ -21,4 +26,6 @@
 
 | Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------
-| getValue | input content | string/number | -- | --
+/ value / v-model | binding value | string / number / boolean | -- | --
+| getValue | content | string/number | -- | --
+| placeholder | placeholder of Input | string | -- | Enter search content

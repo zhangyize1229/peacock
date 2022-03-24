@@ -1,12 +1,23 @@
 @import "mixins/mixins";
 
 @include b(input) {
-  width: 300px;
+  width: 100%;
+  display: flex;
+  .el-input__inner{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
   .button{
-    width: 99px;
+    width: 50px;
     background-color: #1890ff!important;
     color: #ffffff!important;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .icon{
+      font-size: 26px;
+    }
   }
 }
