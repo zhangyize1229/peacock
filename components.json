@@ -10,6 +10,6 @@
   "compare": "/packages/compare/index.js",
   "input": "/packages/input/index.js",
   "avatar": "/packages/avatar/index.js",
-  "pagination": "/packages/pagination/index.js"
+  "pagination": "/packages/pagination/index.js",
   "filter": "/packages/filter/index.js"
 }

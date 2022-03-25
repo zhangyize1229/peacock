@@ -1,25 +1,27 @@
 <template>
-  <el-popover
-    v-model="visible"
-    :visible-arrow="false"
-    placement="bottom-start"
-    popper-class="vm-popover"
-    trigger="manual">
-    <div slot="reference">
-      <div class="filter-item" v-if="visible==false"  @click="showVisible">
-        <div class="prefix">{{source.label}}</div>
-        <div class="inner">
-          <div class="value">{{value}}</div>
-          <i class="el-icon-arrow-down"></i>
+  <div class="filter-item">
+    <el-popover
+        v-model="visible"
+        :visible-arrow="false"
+        placement="bottom-start"
+        popper-class="vm-popover"
+        trigger="manual">
+      <div slot="reference">
+        <div class="filter-item-box" v-if="visible==false"  @click="showVisible">
+          <div class="prefix">{{source.label}}</div>
+          <div class="inner">
+            <div class="value">{{value}}</div>
+            <i class="el-icon-arrow-down"></i>
+          </div>
+        </div>
+        <div style="width: 160px;" v-if="visible==true">
+          <el-input type="number" ref="input" :placeholder="source.placeholder" :maxLength="source.maxlength" :min="source.min" v-model="value" @blur="handleBlur" />
         </div>
       </div>
-      <div style="width: 160px;" v-if="visible==true">
-        <el-input type="number" ref="input" :autofocus="true" :maxLength="source.maxlength" :min="source.min" v-model="value" @blur="()=>{visible=false}" />
-      </div>
-    </div>
-    <div v-for="(item, index) in source.dic" :key="index" class="filter-option-item" @click="handleOption(item)">{{item}}</div>
-  </el-popover>
-</template>value
+      <div v-for="(item, index) in source.dic" :key="index" class="filter-option-item" @click="handleOption(item)">{{item}}</div>
+    </el-popover>
+  </div>
+</template>
 <script>
  export default  {
    props: {
@@ -32,14 +34,23 @@
            placeholder: '',
            maxlength: 64,
            min: 0,
+           defaultValue: '',
          }
        }
      }
    },
+   watch: {
+     'source.defaultValue': {
+       handler(newValue) {
+         this.value = newValue
+       },
+       immediate: true
+     }
+   },
    data() {
      return {
-       value: '所有',
        visible: false,
+       value: '',
      }
    },
    methods: {
@@ -48,6 +59,12 @@
        this.$nextTick(()=>{
          this.$refs.input.focus();
        })
+     },
+     handleBlur({target: {value}}) {
+       if(value>=0) {
+         this.value = value;
+       }
+       this.visible = false;
      },
      handleOption(data) {
        this.value = data;

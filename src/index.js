@@ -69,7 +69,6 @@ export default {
   Compare,
   Input,
   Avatar,
-  Pagination
-  Compare,
+  Pagination,
   Filter
 };
