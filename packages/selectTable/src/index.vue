@@ -154,9 +154,10 @@ export default {
       if (this.type === "checkbox") {
         this.choosenData.forEach((res) => {
           this.$refs.multipleTable.toggleRowSelection(res);
+          this.handleSelectData(this.choosenData);
         });
-        this.handleSelectData(this.choosenData);
       }
+      this.showInputData()
     }
   },
   watch: {
@@ -208,6 +209,17 @@ export default {
           });
         });
       }
+      this.showInputData()
+    },
+    handleSelectionChange(val) {
+      this.handleSelectData(val);
+    },
+    selectRadio(row) {
+      if (this.type === "radio") {
+        this.handleSelectData([row]);
+      }
+    },
+    showInputData() {
       this.chosenArray.forEach((res) => {
         for (const key in res) {
           this.columns.forEach((column) => {
@@ -228,14 +240,6 @@ export default {
           0,
           this.selectData.length - 1
         );
-      }
-    },
-    handleSelectionChange(val) {
-      this.handleSelectData(val);
-    },
-    selectRadio(row) {
-      if (this.type === "radio") {
-        this.handleSelectData([row]);
       }
     },
     changeCurrentPage(val) {
