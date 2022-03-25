@@ -64,8 +64,11 @@
         .current{
           color:$--color-primary;
           font-size: 12px;
-          border: 1px solid rgba(145, 213, 255, 100);
+          border: 1px solid $--color-primary;
           padding: 2px 8px;
+        }
+        &.active{
+          background-color: rgba(59, 142, 142, 0.2);
         }
       }
     }
