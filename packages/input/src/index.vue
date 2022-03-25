@@ -1,6 +1,9 @@
 <template>
   <div class="wm-input">
-    <el-input v-model="value" :placeholder="ph" />
+    <el-input
+      :value="value"
+      @input="inputChange($event)"
+      :placeholder="ph" />
     <div class="button" @click="search"><i class="peacock9 icon-sousuo icon"></i></div>
   </div>
 </template>
@@ -11,7 +14,7 @@ export default {
   mixins: [Locale],
   props: {
     value: {
-      type: String,
+      type: String || Number,
       default: '',
     },
     placeholder: {
@@ -31,7 +34,10 @@ export default {
   methods: {
     search() {
       this.$emit('getValue', this.value);
-    }
+    },
+    inputChange(val) {
+      this.$emit("input", val);
+    },
   }
 }
 </script>
