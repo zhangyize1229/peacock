@@ -1,7 +1,7 @@
 <template>
   <div class="wm-input">
     <el-input
-      :value="value"
+      v-bind="$props"
       @input="inputChange($event)"
       :placeholder="ph" />
     <div class="button" @click="search"><i class="peacock9 icon-sousuo icon"></i></div>
@@ -9,18 +9,16 @@
 </template>
 <script>
 import Locale from "../../../src/mixins/locale";
+import { Input } from 'element-ui'
 export default {
   name: "WmInput",
   mixins: [Locale],
   props: {
-    value: {
-      type: String || Number,
-      default: '',
-    },
     placeholder: {
       type: String,
       default: '',
-    }
+    },
+    ...Input.props
   },
   computed: {
     ph(){

@@ -3,17 +3,17 @@
 :::demo
 
 ```html
-<wm-input style="width: 200px;" placeholder="" v-model="value" @getValue="getValue" />
+<wm-input style="width: 200px;" placeholder="111" v-model="value1" @getValue="getValue" clearable />
 <script>
   export default {
     data() {
       return {
-          value: '',
+          value1: '',
       }
     },
     methods: {
-      getValue (value) {
-        console.log(value)
+      getValue () {
+        console.log(this.value1)
       }
     }
   }
