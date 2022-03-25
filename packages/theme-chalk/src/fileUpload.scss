@@ -1,4 +1,4 @@
-
+@import "common/var";
 @import "mixins/mixins";
 
 @include b(fileUpload) 
@@ -11,7 +11,7 @@
     height: 300px;
     border-radius: 3px;
     box-shadow: 0 1px 6px rgb(0 0 0 / 30%);
-    background-color: #fff;
+    background-color: $--color-white;
     overflow: hidden;
     display: none;
     z-index: 100;

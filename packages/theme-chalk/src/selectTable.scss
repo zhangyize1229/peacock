@@ -1,7 +1,7 @@
 @import "mixins/mixins";
 @include b(selectTable) {
   .wm-selectTable {
-    display: relative;
+    position: relative;
   }
   .table-wapper {
     border: 1px solid #ccc;

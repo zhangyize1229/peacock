@@ -1,0 +1,54 @@
+@import "common/var";
+@import "mixins/mixins";
+@include b(avatar) {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  .el-image, .image-error{
+    width: 100%;
+    height: 100%;
+  }
+  .image-error{
+    background-color: #f5f7fa;
+    color: #909399;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn{
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background-color: $--color-white;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    font-size: 12px;
+    padding: 4px 10px;
+    cursor: pointer;
+  }
+  @at-root .avatar-popover {
+    min-width: 100px!important;
+    max-width: 120px;
+    padding: 10px 0!important;
+    .el-upload{
+      width: 100%;
+    }
+    .drop-item{
+      height: 26px;
+      line-height: 26px;
+      cursor: pointer;
+      text-overflow: ellipsis;
+      text-align: justify;
+      white-space: nowrap;
+      overflow: hidden;
+      padding: 0 12px 0 8px ;
+      color: #333333;
+      &:hover{
+        background-color: $--color-primary;
+        color: $--color-white;
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 <style lang="scss">
+@import "../element-variables.scss";
 .side-nav {
   width: 100%;
   box-sizing: border-box;
@@ -41,7 +42,7 @@
       font-weight: bold;
 
       &.active {
-        color: #409eff;
+        color: $--color-primary;
       }
     }
 
@@ -59,7 +60,7 @@
 
         &:hover,
         &.active {
-          color: #409eff;
+          color: $--color-primary;
         }
       }
     }

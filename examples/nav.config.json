@@ -56,6 +56,18 @@
               "title": "文件对比"
             },
             {
+              "path": "/input",
+              "title": "快捷搜索"
+            },
+            {
+              "path": "/avatar",
+              "title": "头像"
+            },
+            {
+              "path": "/pagination",
+              "title": "Pagination 分页"
+            },
+            {
               "path": "/filter",
               "title": "查询"
             }
@@ -119,6 +131,18 @@
             {
               "path": "/compare",
               "title": "compare"
+            },
+            {
+              "path": "/input",
+              "title": "input"
+            },
+            {
+              "path": "/avatar",
+              "title": "avatar"
+            },
+            {
+              "path": "/pagination",
+              "title": "pagination"
             },
             {
               "path": "/filter",

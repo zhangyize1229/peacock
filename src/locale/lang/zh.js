@@ -5,6 +5,8 @@ export default {
       yes: '是',
       no: '否',
       warning: '提示',
+      format_err: "格式错误",
+      is_delete: "是否删除",
     },
     upload: {
       download_template: "下载模板",
@@ -67,6 +69,15 @@ export default {
       version: '版本',
       current_version: '当前版本',
       set_version: '设置为当前版本',
+    },
+    input: {
+      search: "查询",
+      placeholder: "输入检索内容",
+    },
+    avatar: {
+      add: '上传图片',
+      remove: '移除图片',
+      upload: '编辑',
     }
   },
 };

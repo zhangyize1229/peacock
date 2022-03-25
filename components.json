@@ -8,5 +8,8 @@
   "preview": "/packages/preview/index.js",
   "diff": "/packages/diff/index.js",
   "compare": "/packages/compare/index.js",
+  "input": "/packages/input/index.js",
+  "avatar": "/packages/avatar/index.js",
+  "pagination": "/packages/pagination/index.js"
   "filter": "/packages/filter/index.js"
 }

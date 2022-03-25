@@ -25,11 +25,7 @@
     </el-form>
 
     <div class="dialog-footer">
-      <slot
-        name="footer"
-        v-bind:dataForm="dataForm"
-        v-if="this.$scopedSlots.btn"
-      ></slot>
+      <slot name="footer" v-bind:dataForm="dataForm" v-if="this.$scopedSlots.footer"></slot>
       <div v-else style="margin-left: 14px">
         <el-button
           class="button"
@@ -63,7 +59,7 @@ export default {
       default: "80px",
     },
     name: String,
-    enter: Boolean,
+    enter: Boolean
   },
   methods: {
     show(row, title) {

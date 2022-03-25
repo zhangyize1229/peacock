@@ -1,0 +1,28 @@
+@import "common/var";
+@import "mixins/mixins";
+
+@include b(input) {
+  width: 100%;
+  display: flex;
+  .el-input__inner{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-color: $--color-primary;
+    &:hover{
+      border-color: $--color-primary;
+    }
+  }
+  .button{
+    width: 50px;
+    background-color: $--color-primary;
+    color: $--color-white;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .icon{
+      font-size: 24px;
+    }
+  }
+}

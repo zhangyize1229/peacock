@@ -9,6 +9,9 @@ import Form from '../packages/form/index.js';
 import Preview from '../packages/preview/index.js';
 import Diff from '../packages/diff/index.js';
 import Compare from '../packages/compare/index.js';
+import Input from '../packages/input/index.js';
+import Avatar from '../packages/avatar/index.js';
+import Pagination from '../packages/pagination/index.js';
 import Filter from '../packages/filter/index.js';
 import locale from './locale';
 
@@ -22,6 +25,9 @@ const components = [
   Preview,
   Diff,
   Compare,
+  Input,
+  Avatar,
+  Pagination,
   Filter,
 ];
 import highlight from "./directive/highlight"
@@ -48,7 +54,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '0.1.83',
+  version: '0.1.91',
   locale: locale.use,
   i18n: locale.i18n,
   install,
@@ -60,6 +66,10 @@ export default {
   Form,
   Preview,
   Diff,
+  Compare,
+  Input,
+  Avatar,
+  Pagination
   Compare,
   Filter
 };

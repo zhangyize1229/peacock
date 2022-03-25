@@ -10,9 +10,10 @@
       :on-success="handleSuccess"
       :on-error="handleError"
     >
-      <el-tooltip effect="dark" :content="t('wm.fileUpload.cover')" placement="top">
-        <el-button type="primary"><i class="el-icon-warning-outline" style="margin-right: 8px;"></i>{{ fileUplodBtn }}</el-button>
+      <el-tooltip v-if="showTooltip" effect="dark" :content="toolTipContent" placement="top">
+        <el-button type="primary"><i :class="fileUploadBtnIcon" style="margin-right: 8px;"></i>{{ fileUplodBtn }}</el-button>
       </el-tooltip>
+      <el-button v-else type="primary"><i :class="fileUploadBtnIcon" style="margin-right: 8px;"></i>{{ fileUplodBtn }}</el-button>
       <div slot="tip"></div>
     </el-upload>
     <div
@@ -130,10 +131,22 @@ export default {
       type: Number,
       default: 20,
     },
+    fileUploadBtnIcon: {
+      type: String,
+      default: 'el-icon-warning-outline'
+    },
     fileUplodBtnText: {
       type: String,
       default: "",
     },
+    tooltipContent: {
+      type: String,
+      default: '',
+    },
+    showTooltip: {
+      type: Boolean,
+      default: true,
+    }
   },
   data() {
     return {
@@ -153,6 +166,9 @@ export default {
   computed: {
     fileUplodBtn() {
       return this.fileUplodBtnText ? this.fileUplodBtnText : this.t("wm.fileUpload.click_upload")
+    },
+    toolTipContent() {
+      return this.tooltipContent ? this.tooltipContent : this.t('wm.fileUpload.cover')
     }
   },
   methods: {

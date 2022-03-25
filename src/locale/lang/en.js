@@ -5,6 +5,8 @@ export default {
       yes: 'Yes',
       no: 'No',
       warning: 'Warning',
+      format_err: "Format error",
+      is_delete: "Delete or not",
     },
     upload: {
       download_template: "Download template",
@@ -69,6 +71,15 @@ export default {
       version: 'Version',
       current_version: 'Current Version',
       set_version: 'Set version',
+    },
+    input: {
+      search: "Search",
+      placeholder: "Enter search content",
+    },
+    avatar: {
+      add: 'Upload a photo',
+      remove: 'Remove photo',
+      upload: 'Edit',
     }
   },
 };
