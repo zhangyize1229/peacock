@@ -33,7 +33,7 @@
 | 参数 | 说明 | 类型 | 可选值 | 默认值
 |---------|--------|-------| --------|--------
 | handleRequest | 自定义上传的钩子，函数要有返回值  | function(file) | -- | --
-| fileUploadBtnIcon | 按钮图标  | string | -- | el-icon-warning-outline
+| fileUploadBtnIcon | 按钮图标  | string | -- | --
 | tooltipContent | tip内容  | string | -- | --
 
 

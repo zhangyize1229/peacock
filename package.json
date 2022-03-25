@@ -1,6 +1,6 @@
 {
   "name": "peacock9",
-  "version": "0.1.95",
+  "version": "0.1.96",
   "private": false,
   "license": "MIT",
   "main": "lib/wm.umd.min.js",
