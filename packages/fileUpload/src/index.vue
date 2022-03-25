@@ -10,10 +10,12 @@
       :on-success="handleSuccess"
       :on-error="handleError"
     >
-      <el-tooltip v-if="showTooltip" effect="dark" :content="toolTipContent" placement="top">
-        <el-button type="primary"><i :class="fileUploadBtnIcon" style="margin-right: 8px;"></i>{{ fileUplodBtn }}</el-button>
-      </el-tooltip>
-      <el-button v-else type="primary"><i :class="fileUploadBtnIcon" style="margin-right: 8px;"></i>{{ fileUplodBtn }}</el-button>
+      <template v-if="tooltipContent">
+        <el-tooltip  effect="dark" :content="tooltipContent" placement="top">
+          <el-button type="primary"><i v-if="fileUploadBtnIcon" :class="fileUploadBtnIcon" style="margin-right: 8px;"></i>{{t("wm.fileUpload.click_upload")}}</el-button>
+        </el-tooltip>
+      </template>
+      <el-button v-else type="primary"><i v-if="fileUploadBtnIcon" :class="fileUploadBtnIcon" style="margin-right: 8px;"></i>{{t("wm.fileUpload.click_upload")}}</el-button>
       <div slot="tip"></div>
     </el-upload>
     <div
@@ -133,19 +135,11 @@ export default {
     },
     fileUploadBtnIcon: {
       type: String,
-      default: 'el-icon-warning-outline'
-    },
-    fileUplodBtnText: {
-      type: String,
-      default: "",
+      default: ''
     },
     tooltipContent: {
-      type: String,
+      type: String || Number,
       default: '',
-    },
-    showTooltip: {
-      type: Boolean,
-      default: true,
     }
   },
   data() {
@@ -162,14 +156,6 @@ export default {
       showBox: false,
       canPreviewList,
     };
-  },
-  computed: {
-    fileUplodBtn() {
-      return this.fileUplodBtnText ? this.fileUplodBtnText : this.t("wm.fileUpload.click_upload")
-    },
-    toolTipContent() {
-      return this.tooltipContent ? this.tooltipContent : this.t('wm.fileUpload.cover')
-    }
   },
   methods: {
     created() {

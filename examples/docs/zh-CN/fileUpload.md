@@ -5,7 +5,7 @@
 :::demo
 
 ```html
-<WmFileUpload :handleRequest="handleRequest" @getFileList="getFileList"  >
+<WmFileUpload tooltipContent="" fileUploadBtnIcon="" :handleRequest="handleRequest" @getFileList="getFileList"  >
 </WmFileUpload>
 <script>
   export default {
@@ -34,9 +34,7 @@
 |---------|--------|-------| --------|--------
 | handleRequest | 自定义上传的钩子，函数要有返回值  | function(file) | -- | --
 | fileUploadBtnIcon | 按钮图标  | string | -- | el-icon-warning-outline
-| fileUplodBtnText | 按钮文字  | string | -- | 上传文件
-| showTooltip | 是否展示tip  | boolean | -- | false
-| tooltipContent | tip内容  | string | -- | 如果文件名称相同，则会覆盖原文件
+| tooltipContent | tip内容  | string | -- | --
 
 
 ### Methods
