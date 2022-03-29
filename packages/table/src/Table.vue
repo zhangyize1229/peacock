@@ -96,7 +96,13 @@ export default {
     columns: { type: Array },
     query: Object,
     url: String,
-    limit: { type: Number, default: 10 },
+    limit: { 
+      type: Number,
+      default(){
+        var page = [].concat((this.$OPTS.table && this.$OPTS.table.pageSizes) || []);
+        return page.length !=0 ? page[0] : 10;
+      }
+    },
     //分页方式 server client
     paginationType: { type: String, default: "server" },
     showAll: { type: Boolean, default: false },
@@ -105,9 +111,7 @@ export default {
     pageSizes: {
       type: Array,
       default() {
-        var page = [].concat(
-          (this.$OPTS.table && this.$OPTS.table.pageSizes) || []
-        );
+        var page = [].concat((this.$OPTS.table && this.$OPTS.table.pageSizes) || []);
         return page.length != 0 ? page : [10, 20, 30, 50];
       },
     },
