@@ -22,9 +22,10 @@
         @sort-change="sortChange"
         @cell-click="cellClick"
         :row-class-name="defaultRowClassName"
-        @select="selectChange"
+        @select="selectChange"  
         v-bind="$props"
         ref="table"
+        v-show="this.content.length!=0 || !this.$scopedSlots.empty"
       >
         <el-table-column width="1px" style="display: none"></el-table-column>
         <column :columns="columns">
@@ -72,6 +73,9 @@
         :auto-scroll="autoScroll"
       ></Pagination>
     </template>
+
+    <slot name="empty" v-if="content.length==0"></slot>
+
   </div>
 </template>
 
