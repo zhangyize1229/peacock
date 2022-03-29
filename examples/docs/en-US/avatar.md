@@ -26,7 +26,7 @@
 | src | Image source, same as native | string | -- | --
 | defaultSrc | Defalut image | string | -- | --
 | fit | Indicate how the image should be resized to fit its container, same as object-fit | string | -- | --
-| circle | determine whether it's a circle | boolean | -- | true
+| circle | determine whether it's a circle | boolean | -- | false
 | maxSize | Maximum upload file size | number | -- | 5M
 | httpRequest | Customize the upload hook | function(file) | -- | --
 | delImage | delete | function() | -- | --

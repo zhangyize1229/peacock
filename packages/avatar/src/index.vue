@@ -35,7 +35,7 @@ export default {
   props: {
     circle: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     defaultSrc: {
       type: String,

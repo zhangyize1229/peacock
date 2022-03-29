@@ -39,7 +39,7 @@
 | src | 图片源，同原生 | string | -- | --
 | defaultSrc | 默认图片 | string | -- | --
 | fit | 确定图片如何适应容器框，同原生 object-fit | string | -- | --
-| circle | 是否圆形 | boolean | -- | true
+| circle | 是否圆形 | boolean | -- | false
 | maxSize | 上传文件的最大值 | number | -- | 5M
 | httpRequest | 自定义上传的钩子 | function(file) | -- | --
 | delImage | 删除 | function() | -- | --

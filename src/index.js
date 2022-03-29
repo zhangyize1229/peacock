@@ -52,7 +52,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '0.1.96',
+  version: '0.1.97',
   locale: locale.use,
   i18n: locale.i18n,
   install,
