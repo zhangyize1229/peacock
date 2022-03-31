@@ -29,8 +29,8 @@
         <div class="text">
           <div class="file-name">{{ showName(i[props.fileName]) }}</div>
           <div class="attr" v-show="hover !== index">
-            <div v-if="i[props.size]" class="margin-right">{{ i[props.size] }}</div>
-            <div>{{ i[props.time] }}</div>
+            <div v-if="i[props.size]" class="margin-right">{{ showSize(i[props.size]) }}</div>
+            <div class="file-time">{{ i[props.time] }}</div>
           </div>
           <div class="icon" v-show="hover == index">
             <i
@@ -144,6 +144,20 @@ export default {
         }
       }else{
         return  name;
+      }
+    },
+    showSize(size) {
+      if(size && Number(size)>0) {
+        const unit = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'];
+        let n = size instanceof Number ? size : Number(size);
+        let index = 0;
+        while (Number.parseInt(String(n),10) >= 1024 && index < unit.length -1) {
+          n /= 1024;
+          index ++;
+        };
+        return n.toFixed(1) + unit[index]
+      } else {
+        return  size;
       }
     }
   },

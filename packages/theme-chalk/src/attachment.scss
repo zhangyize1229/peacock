@@ -38,6 +38,11 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .file-time {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   .attr, .icon{
     color: #979797;
     display: flex;

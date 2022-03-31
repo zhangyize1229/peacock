@@ -13,14 +13,14 @@
           {
             fileName: '生产计划模板 (3-1)的副本.xlsx',
             link: '',
-            size: '',
+            size: '11264',
             type: 'image/png',
             time: '2022-2-1 24:59:59',
           },
           {
             fileName: '图片图片图片图片图片图片.png',
             link: '',
-            size: '',
+            size: null,
             type: 'image/jpeg',
             time: '',
           },
