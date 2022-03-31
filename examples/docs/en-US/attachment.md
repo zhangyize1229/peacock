@@ -15,7 +15,7 @@
             link: '',
             size: '29k',
             type: 'image/png',
-            time: '2022-2-1',
+            time: '2022-2-1 24:59:59',
           },
           {
             fileName: '图片图片图片图片图片图片.png',
@@ -91,6 +91,6 @@
 |---------|--------|-------| --------|--------
 | fileName | Specifies the filename as an attribute value of the options object |string |-- | 'fileName'
 | link | Specify the file path as a property value of the options object |string |-- | 'link'
-| size | Specifies the file size as a property value of the options object |string |-- | 'size'
+| size | Specifies the file size as a property value of the options object | string / number |-- | 'size'
 | type | Specifies the file type as a property value of the options object |string |-- | 'type'
 | time | Specify the creation time as a property value of the options object |string |-- | 'time'

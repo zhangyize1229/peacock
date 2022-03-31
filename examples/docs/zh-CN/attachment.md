@@ -13,9 +13,9 @@
           {
             fileName: '生产计划模板 (3-1)的副本.xlsx',
             link: '',
-            size: '29k',
+            size: '',
             type: 'image/png',
-            time: '2022-2-1',
+            time: '2022-2-1 24:59:59',
           },
           {
             fileName: '图片图片图片图片图片图片.png',
@@ -92,6 +92,6 @@
 |---------|--------|-------| --------|--------
 | fileName | 指定文件名为选项对象的某个属性值 |string |-- | 'fileName'
 | link | 指定文件路径为选项对象的某个属性值 |string |-- | 'link'
-| size | 指定文件大小为选项对象的某个属性值 |string |-- | 'size'
+| size | 指定文件大小为选项对象的某个属性值 |string / number |-- | 'size'
 | type | 指定文件类型为选项对象的某个属性值 |string |-- | 'type'
 | time | 指定创建时间为选项对象的某个属性值 |string |-- | 'time'

@@ -29,7 +29,7 @@
         <div class="text">
           <div class="file-name">{{ showName(i[props.fileName]) }}</div>
           <div class="attr" v-show="hover !== index">
-            <div class="margin-right">{{ i[props.size] }}</div>
+            <div v-if="i[props.size]" class="margin-right">{{ i[props.size] }}</div>
             <div>{{ i[props.time] }}</div>
           </div>
           <div class="icon" v-show="hover == index">
