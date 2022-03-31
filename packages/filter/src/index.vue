@@ -2,16 +2,18 @@
   <div class="wm-filter">
     <Autocomplete :source="base.size" />
     <Select :source="base.status" />
+    <Picker :source="base.picker" />
   </div>
 </template>
 <script>
 import Locale from "../../../src/mixins/locale";
 import Autocomplete from "./autocomplete";
-import Select from "./select"
+import Select from "./select";
+import Picker from "./picker"
 export default {
   name: "WmFilter",
   mixins: [Locale],
-  components: {Autocomplete, Select},
+  components: {Autocomplete, Select, Picker},
   props: {
 
   },
@@ -35,6 +37,10 @@ export default {
           label: '状态',
           dic: this.statusMap,
           defaultValue: []
+        },
+        picker: {
+          label: '预计开始',
+          defaultValue: [],
         }
       }
     },

@@ -13,12 +13,18 @@
             <div class="value">{{value}}</div>
             <i class="el-icon-arrow-down"></i>
           </div>
+          <div class="icon">
+            <i v-if="value" class="el-icon-remove" @click.stop="()=>{value=''}"></i>
+            <i v-else class="el-icon-error" @click.stop="()=>{}"></i>
+          </div>
         </div>
         <div style="width: 160px;" v-if="visible==true">
           <el-input type="number" ref="input" :placeholder="source.placeholder" :maxLength="source.maxlength" :min="source.min" v-model="value" @blur="handleBlur" />
         </div>
       </div>
-      <div v-for="(item, index) in source.dic" :key="index" class="filter-option-item" @click="handleOption(item)">{{item}}</div>
+      <div>
+        <div v-for="(item, index) in source.dic" :key="index" class="filter-option-item" @click="handleOption(item)">{{item}}</div>
+      </div>
     </el-popover>
   </div>
 </template>
@@ -61,7 +67,7 @@
        })
      },
      handleBlur({target: {value}}) {
-       if(value>=0) {
+       if(value && value>=0) {
          this.value = value;
        }
        this.visible = false;

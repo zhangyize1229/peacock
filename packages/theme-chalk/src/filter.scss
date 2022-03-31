@@ -1,6 +1,9 @@
 @import "common/var";
 @import "mixins/mixins";
-
+%fix-center{
+  display: flex;
+  align-items: center;
+}
 @include b(filter) {
   width: 100%;
   font-size: 12px;
@@ -22,6 +25,7 @@
     height: 26px;
     line-height: 26px;
     cursor: pointer;
+    position: relative;
     .prefix{
       color:$--color-primary;
     }
@@ -39,11 +43,17 @@
         padding: 0 10px;
       }
     }
-  }
-  .only-border-bottom{
-    .el-input__inner{
-      border: none;
-      border-bottom: 1px solid #DCDFE6;
+    .icon{
+      position: absolute;
+      right: -4px;
+      top: -10px;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 1;
+      color: #8c95a8;
+      &:hover{
+        color: $--color-primary;
+      }
     }
   }
   @at-root .vm-popover{
@@ -53,17 +63,25 @@
       line-height: 34px;
       font-size: 12px;
       cursor: pointer;
-      padding-left: 8px;
+      padding: 0 8px;
       &:hover{
         color: $--color-primary;
         background-color: #f5f7fa;
       }
     }
-  }
-
-
-  .fix-center{
-    display: flex;
-    align-items: center;
+    .only-border-bottom{
+      .el-input__inner{
+        border: none;
+        border-bottom: 1px solid #DCDFE6;
+      }
+      .el-input__prefix{
+        @extend %fix-center;
+      }
+    }
+    .check-label{
+      color: #182b50;
+      font-size: 12px;
+      margin: 10px 0;
+    }
   }
 }
