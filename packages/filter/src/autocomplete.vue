@@ -11,9 +11,9 @@
           <div class="prefix">{{source.label}}</div>
           <div class="inner">
             <div class="value">{{value}}</div>
-            <i class="el-icon-arrow-down"></i>
+            <i class="el-icon-arrow-down icon"></i>
           </div>
-          <div class="icon">
+          <div class="icon opt">
             <i v-if="value" class="el-icon-remove" @click.stop="()=>{value=''}"></i>
             <i v-else class="el-icon-error" @click.stop="()=>{}"></i>
           </div>
