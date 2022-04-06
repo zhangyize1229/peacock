@@ -78,6 +78,23 @@ export default {
       add: '上传图片',
       remove: '移除图片',
       upload: '编辑',
+    },
+    filter: {
+      all: '所有',
+      scale: '规模',
+      status: '状态',
+      expected_time: '预计开始',
+      cc_person: '抄送人',
+      start_time: '开始时间',
+      end_time: '结束时间',
+      null: '为空',
+      not_null: '不为空',
+      person: '人员',
+      post: '岗位',
+      enter_search_size: '回车搜索规模',
+      last_week: '最近一周',
+      last_month: '最近一个月',
+      last_three_month: '最近三个月'
     }
   },
 };

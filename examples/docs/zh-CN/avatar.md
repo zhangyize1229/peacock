@@ -3,8 +3,9 @@
 :::demo
 
 ```html
-<div style="width: 120px; height: 120px;">
+<div>
   <wm-avatar
+    :width="120"
     :src="src"
     default-src=""
     :http-request="httpRequest"
@@ -37,6 +38,7 @@
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值
 |---------|--------|-------| --------|--------
+| width | 宽度 | number | -- | --
 | src | 图片源，同原生 | string | -- | --
 | defaultSrc | 默认图片 | string | -- | --
 | fit | 确定图片如何适应容器框，同原生 object-fit | string | -- | --

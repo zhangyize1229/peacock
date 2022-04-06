@@ -4,17 +4,19 @@
         :visible-arrow="false"
         placement="bottom-start"
         popper-class="vm-popover popper-width"
+        @hide="hide"
         trigger="click">
       <div slot="reference">
-        <div class="filter-item-box" @click="showVisible">
+        <div class="filter-item-box">
           <div class="prefix">{{source.label}}</div>
           <div class="inner">
-            <div class="value">{{value}}</div>
+            <div v-if="value" class="value">{{value}}</div>
+            <div v-else class="value placeholder">{{placeholder}}</div>
             <i class="el-icon-arrow-down icon"></i>
           </div>
           <div class="icon opt">
             <i v-if="value" class="el-icon-remove" @click.stop="reset"></i>
-            <i v-else class="el-icon-error" @click.stop="()=>{}"></i>
+<!--            <i v-else class="el-icon-error" @click.stop="()=>{}"></i>-->
           </div>
         </div>
       </div>
@@ -25,21 +27,18 @@
           </el-radio-group>
         </div>
         <div class="divider"></div>
-        <template v-if="radio ==='user' && source.userDic.length>0">
-<!--          <div class="filter-option-item user" v-for="(item, index) in source.userDic" :key="index" @click="handleUserChange(item)">-->
-<!--            <Avatar class="avatar" :src="item.src" fit="contain" :hide-btn="true" />-->
-<!--            <div class="name">{{item.label}}</div>-->
-          <el-checkbox-group v-model="userChecked" >
+        <template v-if="radio === source.radioList[0].value && source.userDic.length>0">
+          <el-checkbox-group v-model="userChecked">
             <div v-for="(item, index) in source.userDic" :key="index" class="filter-option-item user">
               <el-checkbox :label="item.value" ><br /></el-checkbox>
-              <Avatar class="avatar" :src="item.src" fit="contain" :hide-btn="true" />
-              <div>{{item.label}}</div>
+              <Avatar :width="30" class="avatar" :src="item.src" fit="contain" :hide-btn="true" />
+              <div class="name">{{item.label}}</div>
             </div>
           </el-checkbox-group>
 <!--          </div>-->
         </template>
-        <template v-if="radio== 'post' && source.postDic.length>0">
-          <el-checkbox-group v-model="postChecked" >
+        <template v-if="radio=== source.radioList[1].value && source.postDic.length>0">
+          <el-checkbox-group v-model="postChecked">
             <div v-for="(item, index) in source.postDic" :key="index" class="filter-option-item">
               <el-checkbox :label="item.value">{{item.label}}</el-checkbox>
             </div>
@@ -66,6 +65,10 @@ export default  {
           radioValue: '',
         }
       }
+    },
+    placeholder: {
+      type: String,
+      default: ''
     }
   },
   components: { Avatar },
@@ -74,6 +77,8 @@ export default  {
       postChecked: [],
       userChecked: [],
       radio: '',
+      userOld : [],
+      postOld: []
     }
   },
   watch: {
@@ -81,8 +86,8 @@ export default  {
       handler(v) {
         const { radioValue, userDefaultValue, postDefaultValue } = v;
         this.radio = radioValue;
-        this.userChecked = userDefaultValue;
-        this.postChecked = postDefaultValue;
+        this.userChecked = this.userOld = userDefaultValue;
+        this.postChecked = this.postOld = postDefaultValue;
       },
       immediate: true,
       deep: true,
@@ -97,17 +102,18 @@ export default  {
     },
   },
   methods: {
-    showVisible() {
-      console.log(1111)
-    },
-    handleUserChange(item) {
-      const { value } = item;
-      this.userChecked = Array.from(new Set([...this.userChecked, ...[value]]));
+    hide() {
+      if(this.userOld.toString() !== this.userChecked.toString() || this.postOld.toString() !== this.postChecked.toString()) {
+        this.userOld = this.userChecked;
+        this.postOld = this.postChecked;
+        this.$emit('getValue', {type: 'user', value: {userChecked: this.userChecked,postChecked: this.postChecked}});
+      }
     },
     reset() {
-      this.postChecked= [];
-      this.userChecked= [];
-    }
+      this.postChecked = [];
+      this.userChecked = [];
+      this.hide();
+    },
   }
 }
 </script>

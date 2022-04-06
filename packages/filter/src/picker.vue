@@ -10,13 +10,14 @@
       align="right"
       unlink-panels
       range-separator="-"
-      start-placeholder="开始时间"
-      end-placeholder="结束时间"
-      :picker-options="pickerOptions">
-    </el-date-picker>
+      value-format="YYYY-MM-dd"
+      :start-placeholder="source.startPlaceholder"
+      :end-placeholder="source.endPlaceholder"
+      :picker-options="source.pickerOptions"
+    />
     <div class="icon opt">
       <i v-if="value && value.length>0" class="el-icon-remove" @click.stop="reset"></i>
-      <i v-else class="el-icon-error" @click.stop="()=>{}"></i>
+<!--      <i v-else class="el-icon-error" @click.stop="()=>{}"></i>-->
     </div>
   </div>
 </template>
@@ -29,7 +30,9 @@ export default  {
         return {
           label: '',
           defaultValue: [],
-          pleaseholder: '',
+          startPlaceholder: '',
+          endPlaceholder: '',
+          pickerOptions: {}
         }
       }
     }
@@ -37,24 +40,6 @@ export default  {
   data() {
     return {
       value: [],
-      pickerOptions: {
-        shortcuts: [{
-          text: '今年至今',
-          onClick(picker) {
-            const end = new Date();
-            const start = new Date(new Date().getFullYear(), 0);
-            picker.$emit('pick', [start, end]);
-          }
-        }, {
-          text: '最近六个月',
-          onClick(picker) {
-            const end = new Date();
-            const start = new Date();
-            start.setMonth(start.getMonth() - 6);
-            picker.$emit('pick', [start, end]);
-          }
-        }]
-      },
     }
   },
   watch: {
@@ -64,6 +49,9 @@ export default  {
       },
       immediate: true
     },
+    value(v) {
+      this.$emit('getValue',{type: 'picker', value: v});
+    }
   },
   methods: {
     reset() {

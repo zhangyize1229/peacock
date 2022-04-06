@@ -10,16 +10,26 @@
         <div class="filter-item-box" v-if="visible==false"  @click="showVisible">
           <div class="prefix">{{source.label}}</div>
           <div class="inner">
-            <div class="value">{{value}}</div>
+            <div v-if="value" class="value">{{value}}</div>
+            <div v-else class="value placeholder">{{placeholder}}</div>
             <i class="el-icon-arrow-down icon"></i>
           </div>
           <div class="icon opt">
-            <i v-if="value" class="el-icon-remove" @click.stop="()=>{value=''}"></i>
-            <i v-else class="el-icon-error" @click.stop="()=>{}"></i>
+            <i v-if="value" class="el-icon-remove" @click.stop="()=>{value='';$emit('getValue',{type: 'size', value: ''});}"></i>
+<!--            <i v-else class="el-icon-error" @click.stop="()=>{}"></i>-->
           </div>
         </div>
         <div style="width: 160px;" v-if="visible==true">
-          <el-input type="number" ref="input" :placeholder="source.placeholder" :maxLength="source.maxlength" :min="source.min" v-model="value" @blur="handleBlur" />
+          <el-input
+            type="number"
+            ref="input"
+            :placeholder="source.placeholder"
+            :maxLength="source.maxlength"
+            :min="source.min"
+            v-model="value"
+            @blur="handleBlur"
+            @keyup.enter.native="handleBlur"
+          />
         </div>
       </div>
       <div>
@@ -43,6 +53,10 @@
            defaultValue: '',
          }
        }
+     },
+     placeholder: {
+       type: String,
+       default: ''
      }
    },
    watch: {
@@ -51,12 +65,13 @@
          this.value = newValue
        },
        immediate: true
-     }
+     },
    },
    data() {
      return {
        visible: false,
        value: '',
+       oldValue: '',
      }
    },
    methods: {
@@ -67,13 +82,16 @@
        })
      },
      handleBlur({target: {value}}) {
-       if(value && value>=0) {
-         this.value = value;
-       }
        this.visible = false;
+       if(value && value>=0 && this.oldValue !== value) {
+         this.value = value;
+         this.oldValue = value
+         this.$emit('getValue',{type: 'size', value: this.value});
+       }
      },
      handleOption(data) {
        this.value = data;
+       this.$emit('getValue',{type: 'size', value: this.value});
      }
    }
  }

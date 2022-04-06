@@ -10,7 +10,9 @@ $placeholder-color: #8c95a8;
   font-size: 12px;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   .filter-item {
+    margin-bottom: 8px;
     &:not(:last-child){
       margin-right: 8px;
     }
@@ -19,7 +21,7 @@ $placeholder-color: #8c95a8;
     display: inline-flex;
     align-items: center;
     border: 1px solid $--color-primary;
-    min-width: 105px;
+    min-width: 132px;
     max-width: 360px;
     padding: 0 10px;
     box-sizing: border-box;
@@ -43,6 +45,9 @@ $placeholder-color: #8c95a8;
         overflow-x: hidden;
         padding: 0 10px;
       }
+      .placeholder{
+        color: $placeholder-color;
+      }
     }
     .icon{
       color: $placeholder-color;
@@ -64,12 +69,15 @@ $placeholder-color: #8c95a8;
     .filter-option-item {
       height: 34px;
       line-height: 34px;
-      font-size: 12px;
+      font-size: 14px;
       cursor: pointer;
       padding: 0 8px;
       &:hover{
         color: $--color-primary;
         background-color: #f5f7fa;
+      }
+      .el-checkbox.is-checked~.name{
+        color: $--color-primary;
       }
     }
     // checkbox input
@@ -134,6 +142,10 @@ $placeholder-color: #8c95a8;
     }
     .el-range-input{
       width: 100%;
+      cursor: pointer;
+      &::placeholder{
+        color: $placeholder-color;
+      }
     }
   }
   @at-root .el-picker-panel{

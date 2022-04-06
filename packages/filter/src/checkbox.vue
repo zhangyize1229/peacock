@@ -4,17 +4,19 @@
         :visible-arrow="false"
         placement="bottom-start"
         popper-class="vm-popover"
+        @hide="hide"
         trigger="click">
       <div slot="reference">
         <div class="filter-item-box" @click="showVisible">
           <div class="prefix">{{source.label}}</div>
           <div class="inner">
-            <div class="value">{{value}}</div>
+            <div v-if="value" class="value">{{value}}</div>
+            <div v-else class="value placeholder">{{placeholder}}</div>
             <i class="el-icon-arrow-down icon"></i>
           </div>
           <div class="icon opt">
             <i v-if="value" class="el-icon-remove" @click.stop="reset"></i>
-            <i v-else class="el-icon-error" @click.stop="()=>{}"></i>
+<!--            <i v-else class="el-icon-error" @click.stop="()=>{}"></i>-->
           </div>
         </div>
       </div>
@@ -58,6 +60,10 @@ export default  {
           defaultValue: []
         }
       }
+    },
+    placeholder: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -66,24 +72,31 @@ export default  {
       checked: [],
       inputValue: '',
       checkedList: [],
-      noCheckedList: []
+      noCheckedList: [],
+      old: [],
     }
   },
   watch: {
     'source.defaultValue': {
       handler(v) {
         if(this.source.dic && this.source.dic.length) {
-          this.checked = v;
+          this.checked = this.old = v;
           this.handleChange(v);
         }
       },
       immediate: true
-    }
+    },
   },
   methods: {
     showVisible() {
       this.inputValue = '';
       this.handleChange();
+    },
+    hide() {
+      if(this.old.toString() !== this.checked.toString()) {
+        this.old = this.checked;
+        this.$emit('getValue', {type: 'status', value: this.checked })
+      }
     },
     handleChange() {
       let checkedList = [];
@@ -116,6 +129,7 @@ export default  {
       this.value='';
       this.checked= [];
       this.handleChange();
+      this.hide();
     }
   }
 }

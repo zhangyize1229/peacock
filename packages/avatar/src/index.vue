@@ -1,5 +1,5 @@
 <template>
-  <div class="wm-avatar" ref="vm-avatar">
+  <div class="wm-avatar" ref="vm-avatar" :style="{'width': width+'px','height': width+'px'}">
     <el-image :src="src ? src: defaultSrc" :fit="fit" :style="{'borderRadius': circle ? '50%' : '' }">
       <div slot="error" class="image-error" :style="{'fontSize': width/3+'px'}">
         <i class="el-icon-picture-outline"></i>
@@ -63,20 +63,16 @@ export default {
     httpRequest: {
       type: Function,
     },
+    width: Number,
   },
   data() {
     return{
       accept: 'image/*',
       visible: false,
-      width: 0
     }
-  },
-  mounted() {
-    this.width = this.$refs['vm-avatar'].clientWidth;
   },
   methods: {
     beforeUpload(file) {
-      console.log(file)
       const { size, type } = file;
       if(!type.includes('image/')){
         this.$message.warning(
