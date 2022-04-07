@@ -1,7 +1,8 @@
 <template>
-  <div class="filter-item filter-item-box" style="min-width: 130px;">
+  <div class="filter-item filter-item-box" style="min-width: 130px;" @click="()=>{$refs['datepicker'].focus()}">
     <div class="prefix">{{source.label}}</div>
     <el-date-picker
+      ref="datepicker"
       class="filter-picker"
       v-model="value"
       clear-icon=""
@@ -10,7 +11,7 @@
       align="right"
       unlink-panels
       range-separator="-"
-      value-format="YYYY-MM-dd"
+      value-format="yyyy-MM-dd"
       :start-placeholder="source.startPlaceholder"
       :end-placeholder="source.endPlaceholder"
       :picker-options="source.pickerOptions"

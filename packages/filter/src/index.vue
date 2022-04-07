@@ -62,6 +62,7 @@ export default {
         pickerOptions: 'pickerOptions',
         startPlaceholder: 'startPlaceholder',
         endPlaceholder: 'endPlaceholder',
+        defaultValue: 'defaultValue',
       }
       return {...p, ...this.pickerProps}
     },
@@ -138,7 +139,10 @@ export default {
         postDic: [],
         userDefaultValue: [],
         postDefaultValue: [],
-        radioList: [{label: this.t('wm.filter.person'), value: 'user'}, {label: this.t('wm.filter.post'), value: 'post'}],
+        radioList: [
+          {label: this.t('wm.filter.person'), value: 'user'},
+          {label: this.t('wm.filter.post'), value: 'post'}
+        ],
         radioValue: 'user',
       }
       return {

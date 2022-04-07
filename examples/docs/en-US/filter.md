@@ -1,43 +1,32 @@
-## 高级查询
+## filter
 
 :::demo
 
 ```html
-<wm-filter 
-  :size="size" 
-  :status="status" 
-  :user="user"
-  :picker="picker"
-  @search ="getValue"
+<wm-filter
+        :status="status"
+        :user="user"
+        @search ="getValue"
 />
 <script>
-  export default {
-    data() {
-      return {
-        size: {
-          defaultValue: '为空'
+    export default {
+        data() {
+            return {
+                status: {
+                    dic:[{label: 'In development', value: '0'}, {label: 'planning', value: '1'}],
+                },
+                user: {
+                    userDic: [{label: 'zhangsan', value: '1'},{label: 'lisi', value: '2'}],
+                    postDic: [{label: 'admin', value: '1'},{label: 'General staff', value: '2'}],
+                },
+            };
         },
-        status: {
-          dic:[{label: '开发中', value: '0'}, {label: '规划中', value: '1'}],
-          defaultValue: [],
-        },
-        picker: {},
-        user: {
-          userDic: [{label: 'zhangsan', value: '1'},{label: 'lisi', value: '2'}],
-          postDic: [{label: '管理员', value: '1'},{label: '普通员工', value: '2'}],
-          userDefaultValue: [],
-          postDefaultValue: [],
-          radioList: [{label: '员工1', value: 1}, {label: '岗位1', value: 2}],
-          radioValue: 1,
-        },
-      };
-    },
-    methods: {
-      getValue(value) {
-        console.log(value)
-      }
+        methods: {
+            getValue(value) {
+                console.log(value)
+            }
+        }
     }
-  }
 </script>
 ```
 
@@ -45,60 +34,111 @@
 
 ### Attributes
 
-| 参数 | 说明 | 类型 | 可选值 | 默认值
+| Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------
-| size | 规模, 具体参数看下表sizeProps | object | -- | --
-| status | 状态, 具体参数看下表statusProps | object | -- | --
-| picker | 时间, 具体参数看下表pickerProps | object | -- | --
-| user | 抄送人, 具体参数看下表userProps | object | -- | --
+| size | configuration options, see the following table size | object | -- | --
+| status | configuration options, see the following table status | object | -- | --
+| picker | configuration options, see the following table picker | object | -- | --
+| user | configuration options, see the following table user | object | -- | --
+| sizeProps | configuration options, see the following table sizeProps | object | -- | --
+| statusProps | configuration options, see the following table statusProps | object | -- | --
+| pickerProps | configuration options, see the following table pickerProps | object | -- | --
+| userProps | configuration options, see the following table userProps | object | -- | --
+
+### size
+
+| Attribute | Description | Type | Accepted Values | Default
+|---------|--------|-------| --------|--------
+| label | label | string | -- | scale
+| placeholder | placeholder of Input | string | -- | Enter search size
+| maxlength | same as maxlength in native input | number | -- | 64
+| min | same as min in native input | number | -- | 0
+| dic | drop down options,see the following table dicProps | array | -- | null,not null
+| defaultValue | selected by default | string | null / not null / number | --
+
+### status
+
+| Attribute | Description | Type | Accepted Values | Default
+|---------|--------|-------| --------|--------
+| label | label | string | -- | status
+| dic | drop down options, see the following table dicProps | array | -- | --
+| defaultValue | selected by default | string | -- | --
+
+### picker
+
+| Attribute | Description | Type | Accepted Values | Default
+|---------|--------|-------| --------|--------
+| label | label | string | -- | expected to start
+| startPlaceholder | placeholder of Input | string | -- | Start time
+| endPlaceholder | placeholder of Input | string | -- | Start time
+| pickerOptions |  element DatePicker | array | -- | last week,last month,last 3 month
+| defaultValue | selected by default | string | -- | --
+
+### user
+
+| Attribute | Description | Type | Accepted Values | Default
+|---------|--------|-------| --------|--------
+| label | label | string | -- | cc person
+| placeholder | placeholder of Input | string | -- | 
+| radioList | radioList | array | -- | person, post
+| radioValue | selected by default | string | person, post | person
+| userDic | drop down options, see the following table dicProps | array | -- | --
+| postDic | drop down options, see the following table dicProps | array | -- | --
+| userDefaultValue | selected by default | array | -- | --
+| postDefaultValue | selected by default | array | -- | --
 
 
 ### sizeProps
 
-| 参数 | 说明 | 类型 | 可选值 | 默认值
+| Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------
-| label | 指定为选项对象的某个属性值 |string |-- | 'label'
-| placeholder | 指定为选项对象的某个属性值 |string |-- | 'placeholder'
-| maxlength | 指定为选项对象的某个属性值 |number |-- | 'maxlength'
-| min | 指定为选项对象的某个属性值 |number |-- | 'min'
-| defaultValue | 指定为选项对象的某个属性值 |string |-- | 'defaultValue'
-| dic | 指定为选项对象的某个属性值,具体属性看下表dicProps |array | -- | 'dic'
+| label | specified as a property value of the options object |string |-- | 'label'
+| placeholder | specified as a property value of the options object |string |-- | 'placeholder'
+| maxlength | specified as a property value of the options object |number |-- | 'maxlength'
+| min | specified as a property value of the options object |number |-- | 'min'
+| defaultValue | specified as a property value of the options object |string |-- | 'defaultValue'
+| dic | specified as a property value of the options object |array | -- | 'dic'
 
 ### statusProps
 
-| 参数 | 说明 | 类型 | 可选值 | 默认值
+| Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------
-| label | 指定为选项对象的某个属性值 |string |-- | 'label'
-| defaultValue | 指定为选项对象的某个属性值 |array |-- | 'defaultValue'
-| dic | 指定为选项对象的某个属性值,具体属性看下表dicProps |array | -- | 'dic'
+| label | specified as a property value of the options object |string |-- | 'label'
+| defaultValue | specified as a property value of the options object |array |-- | 'defaultValue'
+| dic | specified as a property value of the options object |array | -- | 'dic'
 
 ### pickerProps
 
-| 参数 | 说明 | 类型 | 可选值 | 默认值
+| Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------
-| label | 指定为选项对象的某个属性值 |string |-- | 'label'
-| pickOptions | 指定为选项对象的某个属性值 |array |-- | 'pickOptions'
-| defaultValue | 指定为选项对象的某个属性值 |array |-- | 'defaultValue'
-| startPlaceholder | 指定为选项对象的某个属性值 |string |-- | 'startPlaceholder'
-| endPlaceholder | 指定为选项对象的某个属性值 |string |-- | 'endPlaceholder'
+| label | specified as a property value of the options object |string |-- | 'label'
+| pickOptions | specified as a property value of the options object |array |-- | 'pickOptions'
+| defaultValue | specified as a property value of the options object |array |-- | 'defaultValue'
+| startPlaceholder | specified as a property value of the options object |string |-- | 'startPlaceholder'
+| endPlaceholder | specified as a property value of the options object |string |-- | 'endPlaceholder'
 
 ### userProps
 
-| 参数 | 说明 | 类型 | 可选值 | 默认值
+| Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------
-| label | 指定为选项对象的某个属性值 |string |-- | 'label'
-| userDic | 指定为选项对象的某个属性值,具体属性看下表dicProps |array |-- | 'userDic'
-| postDic | 指定为选项对象的某个属性值,具体属性看下表dicProps |array |-- | 'postDic'
-| userDefaultValue | 指定为选项对象的某个属性值 |array |-- | 'userDefaultValue'
-| postDefaultValue | 指定为选项对象的某个属性值 |array |-- | 'postDefaultValue'
-| radioList | 指定为选项对象的某个属性值 |array |-- | 'radioList'
-| radioValue | 指定为选项对象的某个属性值 | string / number |-- | 'radioValue'
+| label | specified as a property value of the options object |string |-- | 'label'
+| userDic | specified as a property value of the options object |array |-- | 'userDic'
+| postDic | specified as a property value of the options object |array |-- | 'postDic'
+| userDefaultValue | specified as a property value of the options object |array |-- | 'userDefaultValue'
+| postDefaultValue | specified as a property value of the options object |array |-- | 'postDefaultValue'
+| radioList | specified as a property value of the options object |array |-- | 'radioList'
+| radioValue | specified as a property value of the options object | string / number |-- | 'radioValue'
 
 ### dicProps
 
-| 参数 | 说明 | 类型 | 可选值 | 默认值
+| Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------
-| avatar | 指定为选项对象的某个属性值 |string |-- | 'avatar'
-| label | 指定为选项对象的某个属性值 |string |-- | 'label'
-| value | 指定为选项对象的某个属性值 |string | -- | 'value'
+| avatar | specified as a property value of the options object |string |-- | 'avatar'
+| label | specified as a property value of the options object |string |-- | 'label'
+| value | specified as a property value of the options object |string | -- | 'value'
 
+### Methods
+
+| Method | Description | Parameters
+|---------|--------|-------
+| search | getParams | --
