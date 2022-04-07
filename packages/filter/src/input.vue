@@ -5,11 +5,12 @@
       :placeholder="source.placeholder"
       :maxLength="source.maxlength"
       v-model="value"
-      prefix-icon="el-icon-search"
       clearable
+      @clear="clear"
       @blur="handleBlur"
       @keyup.enter.native="handleBlur"
     />
+    <div class="search" @mousedown="search($event)"><i class="el-icon-search"></i></div>
   </div>
 </template>
 <script>
@@ -45,14 +46,20 @@ export default  {
     }
   },
   methods: {
-    handleBlur({target: {value}}) {
-      if(value && value>=0 && this.oldValue !== value) {
-        this.value = value;
-        this.oldValue = value
-        this.$emit('getValue',{type: 'search', value: this.value});
+    handleBlur() {
+      if(this.oldValue !== this.value) {
+        this.oldValue = this.value
+        return this.$emit('getValue',{type: 'search', value: this.value});
       }
       this.$refs['input'].blur();
-    }
+    },
+    clear() {
+      this.handleBlur();
+    },
+    search(event) {
+      this.oldValue = this.value;
+      return this.$emit('getValue',{type: 'search', value: this.value});
+    },
   }
 }
 </script>

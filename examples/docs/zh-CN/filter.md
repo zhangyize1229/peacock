@@ -3,7 +3,8 @@
 :::demo
 
 ```html
-<wm-filter 
+<wm-filter
+  :search="search"
   :size="size" 
   :status="status" 
   :user="user"
@@ -14,6 +15,9 @@
   export default {
     data() {
       return {
+        search: {
+          defaultValue: 'hello'
+        },
         size: {
           defaultValue: '为空'
         },
