@@ -49,6 +49,7 @@
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值
 |---------|--------|-------| --------|--------
+| search | 搜索, 具体参数看下表search | object | -- | --
 | size | 规模, 具体参数看下表size | object | -- | --
 | status | 状态, 具体参数看下表status | object | -- | --
 | picker | 时间, 具体参数看下表picker | object | -- | --
@@ -57,6 +58,15 @@
 | statusProps | 状态props, 具体参数看下表statusProps | object | -- | --
 | pickerProps | 时间props, 具体参数看下表pickerProps | object | -- | --
 | userProps | 抄送人props, 具体参数看下表userProps | object | -- | --
+
+### search
+
+| 参数 | 说明 | 类型 | 可选值 | 默认值
+|---------|--------|-------| --------|--------
+| placeholder | 输入框占位文本 | string | -- | 请输入关键词
+| maxlength | 原生属性，最大输入长度 | number | -- | 64
+| defaultValue | 默认 | string | -- | --
+
 
 ### size
 

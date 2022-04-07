@@ -94,7 +94,8 @@ export default {
       enter_search_size: '回车搜索规模',
       last_week: '最近一周',
       last_month: '最近一个月',
-      last_three_month: '最近三个月'
+      last_three_month: '最近三个月',
+      enter_keyword: '输入关键字',
     }
   },
 };

@@ -16,6 +16,12 @@ $placeholder-color: #8c95a8;
     &:not(:last-child){
       margin-right: 8px;
     }
+    &.input{
+      .el-input__inner{
+        border: 1px solid $--color-primary;
+        border-radius: 0;
+      }
+    }
   }
   .filter-item-box{
     display: inline-flex;

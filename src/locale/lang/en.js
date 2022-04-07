@@ -96,7 +96,8 @@ export default {
       enter_search_size: 'Enter search size',
       last_week: 'Last week',
       last_month: 'Last month',
-      last_three_month: 'Last 3 months'
+      last_three_month: 'Last 3 months',
+      enter_keyword: 'Enter keywords',
     }
   },
 };

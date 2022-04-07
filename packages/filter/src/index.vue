@@ -1,5 +1,6 @@
 <template>
   <div class="wm-filter">
+    <Input :source="base.search" @getValue="getValue" />
     <Autocomplete :source="base.size" :placeholder="placeholder" @getValue="getValue" />
     <Checkbox :source="base.status" :placeholder="placeholder" @getValue="getValue" />
     <Picker :source="base.picker" @getValue="getValue" />
@@ -8,6 +9,7 @@
 </template>
 <script>
 import Locale from "../../../src/mixins/locale";
+import Input from "./input"
 import Autocomplete from "./autocomplete";
 import Checkbox from "./checkbox";
 import Picker from "./picker"
@@ -16,17 +18,20 @@ export default {
   name: "WmFilter",
   mixins: [Locale],
   components: {
+    Input,
     Autocomplete,
     Checkbox,
     Picker,
     Select
   },
   props: {
+    search: Object,
     size: Object,
     status: Object,
     picker: Object,
     user: Object,
 
+    searchProps: Object,
     sizeProps: Object,
     statusProps: Object,
     pickerProps: Object,
@@ -36,6 +41,14 @@ export default {
   computed: {
     placeholder: function () {
       return this.t("wm.filter.all")
+    },
+    cSearchProps: function () {
+      const p = {
+        placeholder: "placeholder",
+        maxlength: "maxLength",
+        defaultValue: "defaultValue",
+      }
+      return {...p, ...this.sizeProps}
     },
     cSizeProps: function () {
       const p= {
@@ -87,6 +100,11 @@ export default {
       return {...p, ...this.dicProps}
     },
     base: function () {
+      const search = {
+        placeholder: '输入标题关键字',
+        maxlength: 64,
+        defaultValue: '',
+      }
       const size = {
         label: this.t('wm.filter.scale'),
         placeholder: this.t('wm.filter.enter_search_size'),
@@ -146,6 +164,7 @@ export default {
         radioValue: 'user',
       }
       return {
+        search: this.handleProp(search, this.search, this.cSearchProps),
         size: this.handleProp(size, this.size, this.cSizeProps),
         status: this.handleProp(status, this.status, this.cStatusProps),
         picker: this.handleProp(picker, this.picker, this.cPickerProps),
@@ -155,7 +174,7 @@ export default {
   },
   data() {
     return {
-      values : {size: '', status: [], picker: [], user: {userChecked: [], postChecked: []}}
+      values : {search: '',size: '', status: [], picker: [], user: {userChecked: [], postChecked: []}}
     }
   },
   methods: {

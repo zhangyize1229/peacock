@@ -36,6 +36,7 @@
 
 | Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------
+| search | configuration options, see the following table search | object | -- | --
 | size | configuration options, see the following table size | object | -- | --
 | status | configuration options, see the following table status | object | -- | --
 | picker | configuration options, see the following table picker | object | -- | --
@@ -44,6 +45,14 @@
 | statusProps | configuration options, see the following table statusProps | object | -- | --
 | pickerProps | configuration options, see the following table pickerProps | object | -- | --
 | userProps | configuration options, see the following table userProps | object | -- | --
+
+### search
+
+| Attribute | Description | Type | Accepted Values | Default
+|---------|--------|-------| --------|--------
+| placeholder |placeholder of Input | string | -- | enter keywords
+| maxlength | same as maxlength in native input | number | -- | 64
+| defaultValue | defaultValue | string | -- | --
 
 ### size
 
