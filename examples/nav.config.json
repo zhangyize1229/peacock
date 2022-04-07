@@ -66,6 +66,10 @@
             {
               "path": "/pagination",
               "title": "Pagination 分页"
+            },
+            {
+              "path": "/filter",
+              "title": "查询"
             }
           ]
         }
@@ -139,6 +143,10 @@
             {
               "path": "/pagination",
               "title": "pagination"
+            },
+            {
+              "path": "/filter",
+              "title": "filter"
             }
           ]
         }

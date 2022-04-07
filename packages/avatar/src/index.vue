@@ -1,30 +1,33 @@
 <template>
-  <div class="wm-avatar">
+  <div class="wm-avatar" ref="vm-avatar" :style="{'width': width+'px','height': width+'px'}">
     <el-image :src="src ? src: defaultSrc" :fit="fit" :style="{'borderRadius': circle ? '50%' : '' }">
-      <div slot="error" class="image-error">
+      <div slot="error" class="image-error" :style="{'fontSize': width/3+'px'}">
         <i class="el-icon-picture-outline"></i>
       </div>
     </el-image>
-    <el-popover
-      trigger="manual"
-      placement="bottom"
-      popper-class="avatar-popover"
-      v-model="visible">
+    <template v-if="!hideBtn">
+      <el-popover
+          trigger="manual"
+          placement="bottom"
+          popper-class="avatar-popover"
+          v-model="visible">
         <el-upload
-          action=""
-          :accept="accept"
-          :show-file-list="false"
-          :before-upload="beforeUpload"
-          :http-request="httpRequest"
+            action=""
+            :accept="accept"
+            :show-file-list="false"
+            :before-upload="beforeUpload"
+            :http-request="httpRequest"
         >
           <div class="drop-item" @click="visible=false">{{t('wm.avatar.add')}}</div>
         </el-upload>
         <div class="drop-item" v-if="src" @click="()=>{visible=false;remove()}">{{t('wm.avatar.remove')}}</div>
-      <div slot="reference" class="btn" @click="()=>{visible=!visible}">
-        <i class="el-icon-edit el-icon--left"></i>
-        <div>{{t('wm.avatar.upload')}}</div>
-      </div>
-    </el-popover>
+        <div slot="reference" class="btn" @click="()=>{visible=!visible}">
+          <i class="el-icon-edit el-icon--left"></i>
+          <div>{{t('wm.avatar.upload')}}</div>
+        </div>
+      </el-popover>
+    </template>
+
   </div>
 </template>
 <script>
@@ -53,10 +56,14 @@ export default {
       type: Number,
       default: 1024 * 1024 * 5,
     },
+    hideBtn: {
+      type: Boolean,
+      default: false,
+    },
     httpRequest: {
-      required: true,
       type: Function,
     },
+    width: Number,
   },
   data() {
     return{
@@ -66,7 +73,6 @@ export default {
   },
   methods: {
     beforeUpload(file) {
-      console.log(file)
       const { size, type } = file;
       if(!type.includes('image/')){
         this.$message.warning(

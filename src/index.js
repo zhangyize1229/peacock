@@ -12,6 +12,7 @@ import Compare from '../packages/compare/index.js';
 import Input from '../packages/input/index.js';
 import Avatar from '../packages/avatar/index.js';
 import Pagination from '../packages/pagination/index.js';
+import Filter from '../packages/filter/index.js';
 import locale from './locale';
 
 const components = [
@@ -27,6 +28,7 @@ const components = [
   Input,
   Avatar,
   Pagination,
+  Filter,
 ];
 import highlight from "./directive/highlight"
 
@@ -67,5 +69,6 @@ export default {
   Compare,
   Input,
   Avatar,
-  Pagination
+  Pagination,
+  Filter
 };

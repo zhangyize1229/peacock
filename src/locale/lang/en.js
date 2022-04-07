@@ -80,6 +80,23 @@ export default {
       add: 'Upload a photo',
       remove: 'Remove photo',
       upload: 'Edit',
+    },
+    filter: {
+      all: 'All',
+      scale: 'Scale',
+      status: 'Status',
+      expected_time: 'Expected to start',
+      cc_person: 'CC person',
+      start_time: 'Start time',
+      end_time: 'End time',
+      null: 'Null',
+      not_null: 'Not null',
+      person: 'Person',
+      post: 'Post',
+      enter_search_size: 'Enter search size',
+      last_week: 'Last week',
+      last_month: 'Last month',
+      last_three_month: 'Last 3 months'
     }
   },
 };
