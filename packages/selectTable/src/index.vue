@@ -103,6 +103,11 @@ export default {
       type: String,
       default: "",
     },
+    // 输入框中是否展示表格title
+    showLabelName: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {
@@ -229,8 +234,12 @@ export default {
                 !this.selectData) ||
               (!this.showField && key === column.dataIndex)
             ) {
-              this.selectData +=
-                column.title + "：" + res[this.showField] + "，";
+              if (this.showLabelName) {
+                this.selectData +=
+                  column.title + "：" + res[this.showField] + "，";
+              } else {
+                 this.selectData += res[this.showField] + "，";
+              }
             }
           });
         }

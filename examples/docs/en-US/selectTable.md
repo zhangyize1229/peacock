@@ -37,3 +37,4 @@
 | showField | 输入框显示的字段名，如果为空，则全部显示  | String | 格式： 'width'   | 默认为''
 | choosenData | 外层选中的数据回传  | Array | 格式： 同tableData  必传项为id，以及showField | 默认为[]
 | placeholder | 组件的输入框的提示  | String | 格式： ''   | 默认为''
+| showLabelName | input输入框是否显示表格的title名  | Boolean | 格式： true   | 默认为true

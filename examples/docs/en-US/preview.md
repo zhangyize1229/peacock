@@ -5,7 +5,7 @@
 ```html
 <template>
     <div>
-      <wm-preview  :fileList="fileList" :file="file" @compare="compare" @closePreview="closePreview" @chooseFileIndex="chooseFileIndex"></wm-preview>
+      <wm-preview  :fileList="fileList" @compare="compare" @closePreview="closePreview" @chooseFileIndex="chooseFileIndex"></wm-preview>
     </div>
 </template>      
 
@@ -88,7 +88,6 @@ export default {
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值
 |---------|--------|-------| --------|--------
-| file | 文本文件的流 | Blob | 
 | fileList | 文件列表 | Array | []
 
 ### Methods

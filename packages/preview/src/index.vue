@@ -79,9 +79,6 @@ export default {
     }
   },
   props: {
-    file: {
-      type: Blob
-    },
     fileList: {
       type: Array,
       default: () => [],
@@ -89,20 +86,23 @@ export default {
   },
   created() {
     this.currentFile = this.fileList && this.fileList[0]
-    if (this.file) {
-      this.read(this.file, this.previewEncode)
+    if ((!this.currentFile.suffix || this.previewMode.text.includes(this.currentFile.suffix.toLowerCase()))) {
+      this.previewFile(this.currentFile.link, this.previewEncode)
     }
   },
   watch: {
     previewEncode: {
       handler(val){
-       this.read(this.file, val)
+       this.previewFile(this.currentFile.link, val)
       },
       deep: true,
     },
-    file: {
+    current: {
       handler(val){
-       this.read(val, this.previewEncode)
+        console.log(112, val)
+        if ((!this.currentFile.suffix || this.previewMode.text.includes(this.currentFile.suffix.toLowerCase()))) {
+          this.previewFile(this.fileList[val].link, this.previewEncode)
+        }
       },
       deep: true,
     },
@@ -121,13 +121,6 @@ export default {
     },
     close() {
       this.$emit('closePreview')
-    },
-    read (content, encode) {
-      let reader = new FileReader();
-      reader.readAsText(content, encode);
-      reader.onload = (e) => {
-        this.fileContent = reader.result
-      };
     },
     choose(index) {
       this.current = index
@@ -158,6 +151,28 @@ export default {
         }
       };
     },
+    previewFile (url, type) {
+      let req = new XMLHttpRequest()
+      req.open('GET', url)
+      req.responseType = 'blob'
+      req.send()
+      req.onload = () => {
+        const blob = req.response
+        var reader = new FileReader()
+        reader.readAsArrayBuffer(blob)
+        reader.onload = loadEvent => {
+          const buffer = loadEvent.target.result
+          const txtReader = new FileReader()
+          txtReader.onload = (txtEvent) => {
+            this.fileContent =  txtEvent.target.result
+          }
+          txtReader.readAsText(new Blob([buffer]), type)
+        }
+      }
+      req.onerror = (re) => {
+        console.log('error', re)
+      }
+		}
   }
 };
 </script>
