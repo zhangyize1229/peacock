@@ -8,15 +8,16 @@
         trigger="click">
       <div slot="reference">
         <div class="filter-item-box" @click="showVisible">
-          <div class="prefix">{{source.label}}</div>
+          <div class="prefix">{{form.label}}</div>
           <div class="inner">
-            <div v-if="value" class="value">{{value}}</div>
-            <div v-else class="value placeholder">{{placeholder}}</div>
-            <i class="el-icon-arrow-down icon"></i>
-          </div>
-          <div class="icon opt">
-            <i v-if="value" class="el-icon-remove" @click.stop="reset"></i>
-<!--            <i v-else class="el-icon-error" @click.stop="()=>{}"></i>-->
+            <template v-if="value">
+              <div class="value">{{str}}</div>
+              <i class="el-icon-error icon opt" @click.stop="reset"></i>
+            </template>
+            <template v-else>
+              <div class="value placeholder">{{t("wm.filter.all")}}</div>
+              <i class="el-icon-arrow-down icon"></i>
+            </template>
           </div>
         </div>
       </div>
@@ -30,7 +31,7 @@
         </div>
         <template v-if="checkedList.length>0">
           <div class="check-label">已选项</div>
-          <el-checkbox-group v-model="checked" @change="handleChange" >
+          <el-checkbox-group v-model="value" @change="handleChange" >
             <div v-for="(item, index) in checkedList" :key="index" class="filter-option-item">
               <el-checkbox :label="item.value">{{item.label}}</el-checkbox>
             </div>
@@ -38,7 +39,7 @@
         </template>
         <div v-if="checkedList.length>0 && noCheckedList.length>0" class="divider"></div>
         <template v-if="noCheckedList.length>0">
-          <el-checkbox-group v-model="checked" @change="handleChange" >
+          <el-checkbox-group v-model="value" @change="handleChange" >
             <div v-for="(item, index) in noCheckedList" :key="index" class="filter-option-item">
               <el-checkbox :label="item.value">{{item.label}}</el-checkbox>
             </div>
@@ -49,42 +50,51 @@
   </div>
 </template>
 <script>
+import Locale from "../../../src/mixins/locale";
+
 export default  {
+  componentName: 'status',
+  mixins: [Locale],
   props: {
-    source: {
-      type: Object,
-      default: () => {
-        return {
-          label: '',
-          dic: [],
-          defaultValue: []
-        }
-      }
-    },
-    placeholder: {
-      type: String,
-      default: ''
-    }
+    source: Object,
+    // props: Object
   },
   data() {
     return {
-      value: '',
-      checked: [],
+      str: '',
+      value: [],
       inputValue: '',
       checkedList: [],
       noCheckedList: [],
       old: [],
     }
   },
+  computed: {
+    form(){
+      const p = {
+        label: this.t('wm.filter.status'),
+      }
+      return { ...p, ...this.source }
+    },
+    // formProps(){
+    //   const p= {
+    //     label: "label",
+    //     dic: "dic",
+    //     defaultValue: "defaultValue",
+    //   }
+    //   return { ...p, ...this.props }
+    // }
+  },
   watch: {
-    'source.defaultValue': {
+    form: {
       handler(v) {
-        if(this.source.dic && this.source.dic.length) {
-          this.checked = this.old = v;
-          this.handleChange(v);
+        if( v.defaultValue && v.dic && v.dic.length) {
+          this.value = this.old = v.defaultValue;
+          this.handleChange(v.defaultValue);
         }
       },
-      immediate: true
+      immediate: true,
+      deep: true,
     },
   },
   methods: {
@@ -93,19 +103,19 @@ export default  {
       this.handleChange();
     },
     hide() {
-      if(this.old.toString() !== this.checked.toString()) {
-        this.old = this.checked;
-        this.$emit('getValue', {type: 'status', value: this.checked })
+      if(this.old.toString() !== this.value.toString()) {
+        this.old = this.value;
+        this.$emit('change', {type: 'status', value: this.value })
       }
     },
     handleChange() {
       let checkedList = [];
       let noCheckedList = [];
-      if(!this.checked) {
+      if(!this.value) {
         return this.noCheckedList = this.filterByInput(this.source.dic);
       }
       this.source.dic.map(v=>{
-        if(this.checked.indexOf(v.value)!==-1) {
+        if(this.value.indexOf(v.value)!==-1) {
           checkedList = checkedList.concat([v])
         } else {
           noCheckedList = noCheckedList.concat([v])
@@ -113,7 +123,7 @@ export default  {
       })
       this.checkedList = this.filterByInput(checkedList);
       this.noCheckedList = this.filterByInput(noCheckedList);
-      this.value = checkedList.length>0?checkedList.map(v=>v.label).join(';') : '';
+      this.str = checkedList.length>0?checkedList.map(v=>v.label).join(';') : '';
     },
     filterByInput(arr, key='label'){
       if(!this.inputValue) {
@@ -126,8 +136,8 @@ export default  {
       this.handleChange();
     },
     reset() {
-      this.value='';
-      this.checked= [];
+      this.str='';
+      this.value= [];
       this.handleChange();
       this.hide();
     }

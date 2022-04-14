@@ -1,46 +1,57 @@
 ## 高级查询
 
+### 基础用法
+
 :::demo
 
 ```html
-<wm-filter
-  :search="search"
-  :size="size" 
-  :status="status" 
-  :user="user"
-  :picker="picker"
-  @search ="getValue"
-/>
+<div style="width: 200px;">
+  <wm-filter-option :source="search" @change="handleChange"></wm-filter-option>
+</div>
+<wm-filter-option :source="size" @change="handleChange"></wm-filter-option>
+<wm-filter-option :source="status" @change="handleChange"></wm-filter-option>
+<wm-filter-option :source="picker" @change="handleChange"></wm-filter-option>
+<wm-filter-option :source="user" @change="handleChange"></wm-filter-option>
 <script>
   export default {
     data() {
       return {
         search: {
+          component: 'search',
           defaultValue: 'hello'
         },
         size: {
+          component: 'size',
           defaultValue: '为空'
         },
         status: {
+          component: 'status',
           dic:[{label: '开发中', value: '0'}, {label: '规划中', value: '1'}],
           defaultValue: ['0'],
         },
         picker: {
+          component: 'picker',
           defaultValue : ['2022-04-07','2022-04-08']
         },
         user: {
-          userDic: [{label: 'zhangsan', value: '1'},{label: 'lisi', value: '2'}],
-          postDic: [{label: '管理员', value: '1'},{label: '普通员工', value: '2'}],
-          userDefaultValue: ['1'],
-          postDefaultValue: ['1', '2'],
-          radioList: [{label: '员工1', value: 1}, {label: '岗位1', value: 2}],
-          radioValue: 1,
+          component: 'user',
+          radioList: [{
+            label: '员工1',
+            value: 1,
+            dic:[{label: 'zhangsan', value: '1',avatar: '',},{label: 'lisi', value: '2',avatar: ''}],
+            defaultValue: ['1'],
+          }, {
+            label: '岗位1',
+            value: 2,
+            dic: [{label: '管理员', value: '1'},{label: '普通员工', value: '2'}],
+            defaultValue: ['1'],
+          }],
         },
       };
     },
     methods: {
-      getValue(value) {
-        console.log(value)
+      handleChange(v) {
+        console.log(v)
       }
     }
   }
@@ -49,124 +60,167 @@
 
 :::
 
-### Attributes
+### group 模式
+
+:::demo
+
+```html
+<wm-filter @change="handleChange">
+  <wm-filter-option :source="search"></wm-filter-option>
+  <wm-filter-option :source="size"></wm-filter-option>
+  <wm-filter-option :source="status"></wm-filter-option>
+  <wm-filter-option :source="picker"></wm-filter-option>
+  <wm-filter-option :source="user"></wm-filter-option>
+</wm-filter>
+<script>
+  export default {
+    data() {
+      return {
+        search: {
+          component: 'search',
+          defaultValue: 'hello'
+        },
+        size: {
+          component: 'size',
+          defaultValue: '为空'
+        },
+        status: {
+          component: 'status',
+          dic:[{label: '开发中', value: '0'}, {label: '规划中', value: '1'}],
+          defaultValue: ['0'],
+        },
+        picker: {
+          component: 'picker',
+          defaultValue : ['2022-04-07','2022-04-08']
+        },
+        user: {
+          component: 'user',
+          radioList: [{
+            label: '员工1',
+            value: 1,
+            dic:[{label: 'zhangsan', value: '1'},{label: 'lisi', value: '2'}],
+            defaultValue: ['1'],
+          }, {
+            label: '岗位1',
+            value: 2,
+            dic: [{label: '管理员', value: '1'},{label: '普通员工', value: '2'}],
+            defaultValue: ['1'],
+          },{
+            label: '测试',
+            value: 3,
+            dic: [{label: '测试1', value: '1'},{label: '测试2', value: '2'}],
+            defaultValue: ['1'],
+          }],
+        },
+      };
+    },
+    methods: {
+      handleChange(v) {
+        console.log(v)
+      }
+    }
+  }
+</script>
+```
+
+:::
+
+### schema 模式
+
+:::demo
+
+```html
+<wm-filter :schema="schema" @change="handleChange">
+</wm-filter>
+<script>
+  export default {
+    data() {
+      return {
+        schema: [
+          {
+            component: 'search',
+            defaultValue: 'hello'
+          },
+          {
+            component: 'size',
+            defaultValue: '1'
+          },
+          {
+            component: 'status',
+            dic:[{label: '开发中', value: '0'}, {label: '规划中', value: '1'}],
+            defaultValue: ['0'],
+          },
+          {
+            component: 'picker',
+            defaultValue:['2022-04-07','2022-04-08']
+          },
+          {
+            component: 'user',
+            radioList: [{ 
+                label: '员工1', 
+                value: 1,
+                dic:[{label: 'zhangsan', value: '1'},{label: 'lisi', value: '2'}],
+                defaultValue: ['1'],  
+              }, {
+                label: '岗位1',
+                value: 2,
+                dic: [{label: '管理员', value: '1'},{label: '普通员工', value: '2'}],
+                defaultValue: ['1'],
+            }],
+          }
+        ]
+      };
+    },
+    methods: {
+      handleChange(val){
+          console.log(val)
+      }
+    }
+  }
+</script>
+```
+
+:::
+
+### wm-filter Attributes
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值
 |---------|--------|-------| --------|--------
-| search | 搜索, 具体参数看下表search | object | -- | --
-| size | 规模, 具体参数看下表size | object | -- | --
-| status | 状态, 具体参数看下表status | object | -- | --
-| picker | 时间, 具体参数看下表picker | object | -- | --
-| user | 抄送人, 具体参数看下表user | object | -- | --
-| sizeProps | 规模props, 具体参数看下表sizeProps | object | -- | --
-| statusProps | 状态props, 具体参数看下表statusProps | object | -- | --
-| pickerProps | 时间props, 具体参数看下表pickerProps | object | -- | --
-| userProps | 抄送人props, 具体参数看下表userProps | object | -- | --
+| schema | wm-filter  | array | -- | --
 
-### search
+### wm-filter-option Attributes
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值
 |---------|--------|-------| --------|--------
-| placeholder | 输入框占位文本 | string | -- | 请输入关键词
-| maxlength | 原生属性，最大输入长度 | number | -- | 64
-| defaultValue | 默认 | string | -- | --
+| source | wm-filter-option, 具体参数如下表  | object | -- | --
 
-
-### size
+### source Attributes
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值
 |---------|--------|-------| --------|--------
-| label | 标题 | string | -- | 规模
-| placeholder | 输入框占位文本 | string | -- | 回车搜索规模
-| maxlength | 原生属性，最大输入长度 | number | -- | 64
-| min | 原生属性，设置最小值 | number | -- | 0
-| dic | 下拉选项,具体属性看下表dicProps | array | -- | 为空,不为空
-| defaultValue | 默认选中 | string | 为空 / 不为空 / number | --
+| component | 组件  | string | search/size/status/picker/user | --
+| label | 标题  | string | -- | --
+| defaultValue | 默认值  | string/array | search/size为string  | --
+| dic | 下拉数据 格式：{label:'', value:''} | array | --  | --
+| radioList | 具体参数如下表 | array | --  | --
 
-### status
-
-| 参数 | 说明 | 类型 | 可选值 | 默认值
-|---------|--------|-------| --------|--------
-| label | 标题 | string | -- | 状态
-| dic | 下拉选项,具体属性看下表dicProps | array | -- | --
-| defaultValue | 默认选中 | string | -- | --
-
-### picker
+### radioList Attributes
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值
 |---------|--------|-------| --------|--------
-| label | 标题 | string | -- | 预计开始
-| startPlaceholder | 输入框占位文本 | string | -- | 开始时间
-| endPlaceholder | 输入框占位文本 | string | -- | 结束时间
-| pickerOptions | 同 element DatePicker | array | -- | 最近一周,最近一个月,最近三个月
-| defaultValue | 默认选中 | string | -- | --
-
-### user
-
-| 参数 | 说明 | 类型 | 可选值 | 默认值
-|---------|--------|-------| --------|--------
-| label | 标题 | string | -- | 抄送人
-| startPlaceholder | 输入框占位文本 | string | -- | 开始时间
-| endPlaceholder | 输入框占位文本 | string | -- | 结束时间
-| radioList | 选择 | array | -- | 员工, 岗位
-| radioValue | 默认选中 | string | 员工, 岗位 | 员工
-| userDic | 用户下拉选项,具体属性看下表dicProps | array | -- | --
-| postDic | 岗位下拉选项,具体属性看下表dicProps | array | -- | --
-| userDefaultValue | 用户下拉默认值 | array | -- | --
-| postDefaultValue | 岗位下拉默认值 | array | -- | --
+| label | Radio 的 label  | string | -- | --
+| value | Radio 的 value  | string/number | --  | --
+| dic | 下拉数据 格式：{label:'', value:'', avatar: ''} | array | --  | --
 
 
-### sizeProps
-
-| 参数 | 说明 | 类型 | 可选值 | 默认值
-|---------|--------|-------| --------|--------
-| label | 指定为选项对象的某个属性值 |string |-- | 'label'
-| placeholder | 指定为选项对象的某个属性值 |string |-- | 'placeholder'
-| maxlength | 指定为选项对象的某个属性值 |number |-- | 'maxlength'
-| min | 指定为选项对象的某个属性值 |number |-- | 'min'
-| defaultValue | 指定为选项对象的某个属性值 |string |-- | 'defaultValue'
-| dic | 指定为选项对象的某个属性值 |array | -- | 'dic'
-
-### statusProps
-
-| 参数 | 说明 | 类型 | 可选值 | 默认值
-|---------|--------|-------| --------|--------
-| label | 指定为选项对象的某个属性值 |string |-- | 'label'
-| defaultValue | 指定为选项对象的某个属性值 |array |-- | 'defaultValue'
-| dic | 指定为选项对象的某个属性值 |array | -- | 'dic'
-
-### pickerProps
-
-| 参数 | 说明 | 类型 | 可选值 | 默认值
-|---------|--------|-------| --------|--------
-| label | 指定为选项对象的某个属性值 |string |-- | 'label'
-| pickOptions | 指定为选项对象的某个属性值 |array |-- | 'pickOptions'
-| defaultValue | 指定为选项对象的某个属性值 |array |-- | 'defaultValue'
-| startPlaceholder | 指定为选项对象的某个属性值 |string |-- | 'startPlaceholder'
-| endPlaceholder | 指定为选项对象的某个属性值 |string |-- | 'endPlaceholder'
-
-### userProps
-
-| 参数 | 说明 | 类型 | 可选值 | 默认值
-|---------|--------|-------| --------|--------
-| label | 指定为选项对象的某个属性值 |string |-- | 'label'
-| userDic | 指定为选项对象的某个属性值 |array |-- | 'userDic'
-| postDic | 指定为选项对象的某个属性值 |array |-- | 'postDic'
-| userDefaultValue | 指定为选项对象的某个属性值 |array |-- | 'userDefaultValue'
-| postDefaultValue | 指定为选项对象的某个属性值 |array |-- | 'postDefaultValue'
-| radioList | 指定为选项对象的某个属性值 |array |-- | 'radioList'
-| radioValue | 指定为选项对象的某个属性值 | string / number |-- | 'radioValue'
-
-### dicProps
-
-| 参数 | 说明 | 类型 | 可选值 | 默认值
-|---------|--------|-------| --------|--------
-| avatar | 指定为选项对象的某个属性值 |string |-- | 'avatar'
-| label | 指定为选项对象的某个属性值 |string |-- | 'label'
-| value | 指定为选项对象的某个属性值 |string | -- | 'value'
-
-### Methods
+### wm-filter Event
 
 | 方法名 | 说明 | 参数
 |---------|--------|-------
-| search | 参数 | --
+| change | 参数 | --
+
+### wm-filter-option Event
+
+| 方法名 | 说明 | 参数
+|---------|--------|-------
+| change | 参数 | --

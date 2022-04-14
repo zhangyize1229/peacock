@@ -1,153 +1,226 @@
 ## filter
 
+### base
+
 :::demo
 
 ```html
-<wm-filter
-        :status="status"
-        :user="user"
-        @search ="getValue"
-/>
+<div style="width: 200px;">
+  <wm-filter-option :source="search" @change="handleChange"></wm-filter-option>
+</div>
+<wm-filter-option :source="size" @change="handleChange"></wm-filter-option>
+<wm-filter-option :source="status" @change="handleChange"></wm-filter-option>
+<wm-filter-option :source="picker" @change="handleChange"></wm-filter-option>
+<wm-filter-option :source="user" @change="handleChange"></wm-filter-option>
 <script>
-    export default {
-        data() {
-            return {
-                status: {
-                    dic:[{label: 'In development', value: '0'}, {label: 'planning', value: '1'}],
-                },
-                user: {
-                    userDic: [{label: 'zhangsan', value: '1'},{label: 'lisi', value: '2'}],
-                    postDic: [{label: 'admin', value: '1'},{label: 'General staff', value: '2'}],
-                },
-            };
+  export default {
+    data() {
+      return {
+        search: {
+          component: 'search',
+          defaultValue: 'hello'
         },
-        methods: {
-            getValue(value) {
-                console.log(value)
-            }
-        }
+        size: {
+          component: 'size',
+          defaultValue: '为空'
+        },
+        status: {
+          component: 'status',
+          dic:[{label: '开发中', value: '0'}, {label: '规划中', value: '1'}],
+          defaultValue: ['0'],
+        },
+        picker: {
+          component: 'picker',
+          defaultValue : ['2022-04-07','2022-04-08']
+        },
+        user: {
+          component: 'user',
+          radioList: [{
+            label: '员工1',
+            value: 1,
+            dic:[{label: 'zhangsan', value: '1',avatar: '',},{label: 'lisi', value: '2',avatar: ''}],
+            defaultValue: ['1'],
+          }, {
+            label: '岗位1',
+            value: 2,
+            dic: [{label: '管理员', value: '1'},{label: '普通员工', value: '2'}],
+            defaultValue: ['1'],
+          }],
+        },
+      };
+    },
+    methods: {
+      handleChange(v) {
+        console.log(v)
+      }
     }
+  }
 </script>
 ```
 
 :::
 
-### Attributes
+### group model
+
+:::demo
+
+```html
+<wm-filter @change="handleChange">
+  <wm-filter-option :source="search"></wm-filter-option>
+  <wm-filter-option :source="size"></wm-filter-option>
+  <wm-filter-option :source="status"></wm-filter-option>
+  <wm-filter-option :source="picker"></wm-filter-option>
+  <wm-filter-option :source="user"></wm-filter-option>
+</wm-filter>
+<script>
+  export default {
+    data() {
+      return {
+        search: {
+          component: 'search',
+          defaultValue: 'hello'
+        },
+        size: {
+          component: 'size',
+          defaultValue: '为空'
+        },
+        status: {
+          component: 'status',
+          dic:[{label: '开发中', value: '0'}, {label: '规划中', value: '1'}],
+          defaultValue: ['0'],
+        },
+        picker: {
+          component: 'picker',
+          defaultValue : ['2022-04-07','2022-04-08']
+        },
+        user: {
+          component: 'user',
+          radioList: [{
+            label: '员工1',
+            value: 1,
+            dic:[{label: 'zhangsan', value: '1'},{label: 'lisi', value: '2'}],
+            defaultValue: ['1'],
+          }, {
+            label: '岗位1',
+            value: 2,
+            dic: [{label: '管理员', value: '1'},{label: '普通员工', value: '2'}],
+            defaultValue: ['1'],
+          },{
+            label: '测试',
+            value: 3,
+            dic: [{label: '测试1', value: '1'},{label: '测试2', value: '2'}],
+            defaultValue: ['1'],
+          }],
+        },
+      };
+    },
+    methods: {
+      handleChange(v) {
+        console.log(v)
+      }
+    }
+  }
+</script>
+```
+
+:::
+
+### schema model
+
+:::demo
+
+```html
+<wm-filter :schema="schema" @change="handleChange">
+</wm-filter>
+<script>
+  export default {
+    data() {
+      return {
+        schema: [
+          {
+            component: 'search',
+            defaultValue: 'hello'
+          },
+          {
+            component: 'size',
+            defaultValue: '1'
+          },
+          {
+            component: 'status',
+            dic:[{label: '开发中', value: '0'}, {label: '规划中', value: '1'}],
+            defaultValue: ['0'],
+          },
+          {
+            component: 'picker',
+            defaultValue:['2022-04-07','2022-04-08']
+          },
+          {
+            component: 'user',
+            radioList: [{ 
+                label: '员工1', 
+                value: 1,
+                dic:[{label: 'zhangsan', value: '1'},{label: 'lisi', value: '2'}],
+                defaultValue: ['1'],  
+              }, {
+                label: '岗位1',
+                value: 2,
+                dic: [{label: '管理员', value: '1'},{label: '普通员工', value: '2'}],
+                defaultValue: ['1'],
+            }],
+          }
+        ]
+      };
+    },
+    methods: {
+      handleChange(val){
+          console.log(val)
+      }
+    }
+  }
+</script>
+```
+
+:::
+
+### wm-filter Attributes
 
 | Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------
-| search | configuration options, see the following table search | object | -- | --
-| size | configuration options, see the following table size | object | -- | --
-| status | configuration options, see the following table status | object | -- | --
-| picker | configuration options, see the following table picker | object | -- | --
-| user | configuration options, see the following table user | object | -- | --
-| sizeProps | configuration options, see the following table sizeProps | object | -- | --
-| statusProps | configuration options, see the following table statusProps | object | -- | --
-| pickerProps | configuration options, see the following table pickerProps | object | -- | --
-| userProps | configuration options, see the following table userProps | object | -- | --
+| schema | wm-filter  | array | -- | --
 
-### search
+### wm-filter-option Attributes
 
 | Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------
-| placeholder |placeholder of Input | string | -- | enter keywords
-| maxlength | same as maxlength in native input | number | -- | 64
-| defaultValue | defaultValue | string | -- | --
+| source | wm-filter-option, see the following table  | object | -- | --
 
-### size
+### source Attributes
 
 | Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------
-| label | label | string | -- | scale
-| placeholder | placeholder of Input | string | -- | Enter search size
-| maxlength | same as maxlength in native input | number | -- | 64
-| min | same as min in native input | number | -- | 0
-| dic | drop down options,see the following table dicProps | array | -- | null,not null
-| defaultValue | selected by default | string | null / not null / number | --
+| component | component  | string | search/size/status/picker/user | --
+| label | --  | string | -- | --
+| defaultValue | --  | string/array | search/size为string  | --
+| dic | dropdown data Format：{label:'', value:''} | array | --  | --
+| radioList | see the following table | array | --  | --
 
-### status
-
-| Attribute | Description | Type | Accepted Values | Default
-|---------|--------|-------| --------|--------
-| label | label | string | -- | status
-| dic | drop down options, see the following table dicProps | array | -- | --
-| defaultValue | selected by default | string | -- | --
-
-### picker
+### radioList Attributes
 
 | Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------
-| label | label | string | -- | expected to start
-| startPlaceholder | placeholder of Input | string | -- | Start time
-| endPlaceholder | placeholder of Input | string | -- | Start time
-| pickerOptions |  element DatePicker | array | -- | last week,last month,last 3 month
-| defaultValue | selected by default | string | -- | --
-
-### user
-
-| Attribute | Description | Type | Accepted Values | Default
-|---------|--------|-------| --------|--------
-| label | label | string | -- | cc person
-| placeholder | placeholder of Input | string | -- | 
-| radioList | radioList | array | -- | person, post
-| radioValue | selected by default | string | person, post | person
-| userDic | drop down options, see the following table dicProps | array | -- | --
-| postDic | drop down options, see the following table dicProps | array | -- | --
-| userDefaultValue | selected by default | array | -- | --
-| postDefaultValue | selected by default | array | -- | --
+| label | Radio label  | string | -- | --
+| value | Radio value  | string/number | --  | --
+| dic | dropdown data  Format：{label:'', value:'', avatar: ''} | array | --  | --
 
 
-### sizeProps
-
-| Attribute | Description | Type | Accepted Values | Default
-|---------|--------|-------| --------|--------
-| label | specified as a property value of the options object |string |-- | 'label'
-| placeholder | specified as a property value of the options object |string |-- | 'placeholder'
-| maxlength | specified as a property value of the options object |number |-- | 'maxlength'
-| min | specified as a property value of the options object |number |-- | 'min'
-| defaultValue | specified as a property value of the options object |string |-- | 'defaultValue'
-| dic | specified as a property value of the options object |array | -- | 'dic'
-
-### statusProps
-
-| Attribute | Description | Type | Accepted Values | Default
-|---------|--------|-------| --------|--------
-| label | specified as a property value of the options object |string |-- | 'label'
-| defaultValue | specified as a property value of the options object |array |-- | 'defaultValue'
-| dic | specified as a property value of the options object |array | -- | 'dic'
-
-### pickerProps
-
-| Attribute | Description | Type | Accepted Values | Default
-|---------|--------|-------| --------|--------
-| label | specified as a property value of the options object |string |-- | 'label'
-| pickOptions | specified as a property value of the options object |array |-- | 'pickOptions'
-| defaultValue | specified as a property value of the options object |array |-- | 'defaultValue'
-| startPlaceholder | specified as a property value of the options object |string |-- | 'startPlaceholder'
-| endPlaceholder | specified as a property value of the options object |string |-- | 'endPlaceholder'
-
-### userProps
-
-| Attribute | Description | Type | Accepted Values | Default
-|---------|--------|-------| --------|--------
-| label | specified as a property value of the options object |string |-- | 'label'
-| userDic | specified as a property value of the options object |array |-- | 'userDic'
-| postDic | specified as a property value of the options object |array |-- | 'postDic'
-| userDefaultValue | specified as a property value of the options object |array |-- | 'userDefaultValue'
-| postDefaultValue | specified as a property value of the options object |array |-- | 'postDefaultValue'
-| radioList | specified as a property value of the options object |array |-- | 'radioList'
-| radioValue | specified as a property value of the options object | string / number |-- | 'radioValue'
-
-### dicProps
-
-| Attribute | Description | Type | Accepted Values | Default
-|---------|--------|-------| --------|--------
-| avatar | specified as a property value of the options object |string |-- | 'avatar'
-| label | specified as a property value of the options object |string |-- | 'label'
-| value | specified as a property value of the options object |string | -- | 'value'
-
-### Methods
+### wm-filter Event
 
 | Method | Description | Parameters
 |---------|--------|-------
-| search | getParams | --
+| change | params | --
+
+### wm-filter-option Event
+
+| Method | Description | Parameters
+|---------|--------|-------
+| change | params | --

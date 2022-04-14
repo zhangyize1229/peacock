@@ -13,6 +13,7 @@ import Input from '../packages/input/index.js';
 import Avatar from '../packages/avatar/index.js';
 import Pagination from '../packages/pagination/index.js';
 import Filter from '../packages/filter/index.js';
+import FilterOption from '../packages/filter-option/index.js';
 import locale from './locale';
 
 const components = [
@@ -29,6 +30,7 @@ const components = [
   Avatar,
   Pagination,
   Filter,
+  FilterOption,
 ];
 import highlight from "./directive/highlight"
 
@@ -54,7 +56,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '0.2.6',
+  version: '0.2.7',
   locale: locale.use,
   i18n: locale.i18n,
   install,
@@ -70,5 +72,6 @@ export default {
   Input,
   Avatar,
   Pagination,
-  Filter
+  Filter,
+  FilterOption
 };

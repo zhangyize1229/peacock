@@ -1,6 +1,6 @@
 <template>
-  <div class="filter-item filter-item-box" style="min-width: 130px;" @click="()=>{$refs['datepicker'].focus()}">
-    <div class="prefix">{{source.label}}</div>
+  <div class="filter-item filter-item-box" @click="()=>{$refs['datepicker'].focus()}">
+    <div class="prefix">{{form.label}}</div>
     <el-date-picker
       ref="datepicker"
       class="filter-picker"
@@ -12,46 +12,86 @@
       unlink-panels
       range-separator="-"
       value-format="yyyy-MM-dd"
-      :start-placeholder="source.startPlaceholder"
-      :end-placeholder="source.endPlaceholder"
-      :picker-options="source.pickerOptions"
+      :start-placeholder="form.startPlaceholder"
+      :end-placeholder="form.endPlaceholder"
+      :picker-options="form.pickerOptions"
     />
-    <div class="icon opt">
-      <i v-if="value && value.length>0" class="el-icon-remove" @click.stop="reset"></i>
-<!--      <i v-else class="el-icon-error" @click.stop="()=>{}"></i>-->
+    <div class="icons" v-if="value.length>0">
+      <i class="el-icon-error icon opt" @click.stop="reset"></i>
     </div>
   </div>
 </template>
 <script>
+import Locale from "../../../src/mixins/locale";
 export default  {
+  componentName: 'picker',
+  mixins: [Locale],
   props: {
-    source: {
-      type: Object,
-      default: () => {
-        return {
-          label: '',
-          defaultValue: [],
-          startPlaceholder: '',
-          endPlaceholder: '',
-          pickerOptions: {}
-        }
-      }
-    }
+    source: Object,
+    // props: Object,
   },
   data() {
     return {
       value: [],
     }
   },
+  computed: {
+    form(){
+      const p ={
+        label: this.t('wm.filter.expected_time'),
+        pickerOptions: {
+          shortcuts: [{
+            text: this.t('wm.filter.last_week'),
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit('pick', [start, end]);
+            }
+          },{
+            text: this.t('wm.filter.last_month'),
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: this.t('wm.filter.last_three_month'),
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+              picker.$emit('pick', [start, end]);
+            }
+          }]
+        },
+        defaultValue: [],
+        startPlaceholder: this.t('wm.filter.start_time'),
+        endPlaceholder: this.t('wm.filter.end_time'),
+      }
+      return { ...p, ...this.source }
+    },
+    // formProps() {
+    //   const p = {
+    //     label: "label",
+    //     pickerOptions: 'pickerOptions',
+    //     startPlaceholder: 'startPlaceholder',
+    //     endPlaceholder: 'endPlaceholder',
+    //     defaultValue: 'defaultValue',
+    //   }
+    //   return {...p, ...this.props}
+    // }
+  },
   watch: {
-    'source.defaultValue': {
+    'form.defaultValue': {
       handler(v) {
         this.value = v;
       },
       immediate: true
     },
     value(v) {
-      this.$emit('getValue',{type: 'picker', value: v});
+      this.$emit('change',{type: 'picker', value: v});
     }
   },
   methods: {

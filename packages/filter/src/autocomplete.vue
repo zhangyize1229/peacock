@@ -8,24 +8,25 @@
         trigger="manual">
       <div slot="reference">
         <div class="filter-item-box" v-if="visible==false"  @click="showVisible">
-          <div class="prefix">{{source.label}}</div>
+          <div class="prefix">{{form.label}}</div>
           <div class="inner">
-            <div v-if="value" class="value">{{value}}</div>
-            <div v-else class="value placeholder">{{placeholder}}</div>
-            <i class="el-icon-arrow-down icon"></i>
-          </div>
-          <div class="icon opt">
-            <i v-if="value" class="el-icon-remove" @click.stop="()=>{value='';$emit('getValue',{type: 'size', value: ''});}"></i>
-<!--            <i v-else class="el-icon-error" @click.stop="()=>{}"></i>-->
+            <template v-if="value">
+              <div class="value">{{value}}</div>
+              <i class="el-icon-error icon opt" @click.stop="reset"></i>
+            </template>
+            <template v-else>
+              <div class="value placeholder">{{t("wm.filter.all")}}</div>
+              <i class="el-icon-arrow-down icon"></i>
+            </template>
           </div>
         </div>
         <div style="width: 160px;" v-if="visible==true">
           <el-input
             type="number"
             ref="input"
-            :placeholder="source.placeholder"
-            :maxLength="source.maxlength"
-            :min="source.min"
+            :placeholder="form.placeholder"
+            :maxLength="form.maxlength"
+            :min="form.min"
             v-model="value"
             @blur="handleBlur"
             @keyup.enter.native="handleBlur"
@@ -33,39 +34,20 @@
         </div>
       </div>
       <div>
-        <div v-for="(item, index) in source.dic" :key="index" class="filter-option-item" @click="handleOption(item)">{{item}}</div>
+        <div v-for="(item, index) in form.dic" :key="index" class="filter-option-item" @click="handleOption(item)">{{item}}</div>
       </div>
     </el-popover>
   </div>
 </template>
 <script>
+ import Locale from "../../../src/mixins/locale";
+
  export default  {
+   componentName: 'size',
+   mixins: [Locale],
    props: {
-     source: {
-       type: Object,
-       default: () => {
-         return {
-           dic: [],
-           label: '',
-           placeholder: '',
-           maxlength: 64,
-           min: 0,
-           defaultValue: '',
-         }
-       }
-     },
-     placeholder: {
-       type: String,
-       default: ''
-     }
-   },
-   watch: {
-     'source.defaultValue': {
-       handler(newValue) {
-         this.value = newValue
-       },
-       immediate: true
-     },
+     source: Object,
+     // props: Object,
    },
    data() {
      return {
@@ -73,6 +55,37 @@
        value: '',
        oldValue: '',
      }
+   },
+   computed: {
+     form(){
+       const p = {
+         label: this.t('wm.filter.scale'),
+         placeholder: this.t('wm.filter.enter_search_size'),
+         maxlength: 64,
+         min: 0,
+         dic: [this.t('wm.filter.null'), this.t('wm.filter.not_null')],
+       }
+       return { ...p, ...this.source }
+     },
+     // formProps() {
+     //   const p= {
+     //     label: "label",
+     //     placeholder: "placeholder",
+     //     maxlength: "maxLength",
+     //     min: 'min',
+     //     dic: "dic",
+     //     defaultValue: "defaultValue",
+     //   }
+     //   return { ...p, ...this.props }
+     // }
+   },
+   watch: {
+     'form.defaultValue': {
+       handler(newValue) {
+         this.value = newValue
+       },
+       immediate: true
+     },
    },
    methods: {
      showVisible() {
@@ -86,12 +99,17 @@
        if(value && value>=0 && this.oldValue !== value) {
          this.value = value;
          this.oldValue = value
-         this.$emit('getValue',{type: 'size', value: this.value});
+         this.$emit('change',{type: 'size', value: this.value});
        }
      },
      handleOption(data) {
        this.value = data;
-       this.$emit('getValue',{type: 'size', value: this.value});
+       this.$emit('change',{type: 'size', value: this.value});
+     },
+     reset() {
+       this.value='';
+       this.$emit('change',{type: 'size', value: ''});
+       this.$emit('change',{type: 'size', value: ''});
      }
    }
  }

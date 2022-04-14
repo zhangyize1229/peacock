@@ -1,0 +1,195 @@
+@import "common/var";
+@import "mixins/mixins";
+%fix-center{
+  display: flex;
+  align-items: center;
+}
+$placeholder-color: #8c95a8;
+@include b(filter-option) {
+  &:not(:last-child){
+    margin-right: 8px;
+  }
+  font-size: 12px;
+  .filter-item {
+    margin-bottom: 8px;
+    &.input{
+      min-width: 132px;
+      max-width: 360px;
+      border: 1px solid $--color-primary;
+      display: flex;
+      .el-input__inner{
+        border-radius: 0;
+        border: none;
+      }
+      .icons{
+        display: flex;
+        padding: 0 6px;
+        .item{
+          @extend %fix-center;
+          justify-content: center;
+          cursor: pointer;
+        }
+        .divider{
+          width: 1px;
+          background-color: $--color-primary;
+          margin: 0 6px;
+        }
+        .icon{
+          color: $placeholder-color;
+        }
+        .opt{
+          font-size: 16px;
+          cursor: pointer;
+          &:hover{
+            color: $--color-primary;
+          }
+        }
+        .search{
+          color: $--color-primary;
+        }
+      }
+    }
+  }
+  .filter-item-box{
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid $--color-primary;
+    min-width: 132px;
+    max-width: 360px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+    position: relative;
+    .prefix{
+      color:$--color-primary;
+    }
+    .inner{
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      overflow: hidden;
+      .value{
+        flex: 1;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow-x: hidden;
+        padding: 0 10px;
+      }
+      .placeholder{
+        color: $placeholder-color;
+      }
+    }
+    .icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .icon{
+      color: $placeholder-color;
+    }
+    .opt{
+      font-size: 16px;
+      cursor: pointer;
+      &:hover{
+        color: $--color-primary;
+      }
+    }
+  }
+  @at-root .vm-popover{
+    padding: 10px 0!important;
+    .filter-option-item {
+      height: 34px;
+      line-height: 34px;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 0 8px;
+      &:hover{
+        color: $--color-primary;
+        background-color: #f5f7fa;
+      }
+      .el-checkbox.is-checked~.name{
+        color: $--color-primary;
+      }
+    }
+    // checkbox input
+    .only-border-bottom{
+      margin-bottom: 10px;
+      .el-input__inner{
+        border: none;
+        border-bottom: 1px solid #DCDFE6;
+      }
+      .el-input__prefix{
+        @extend %fix-center;
+      }
+    }
+    .check-label{
+      color: #182b50;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    // select
+    .filter-radio{
+      min-width: 180px;
+      padding: 0 8px;
+      .el-radio-group{
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+      }
+    }
+    .user {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      padding: 6px 8px;
+      .el-checkbox{
+        width: 100%;
+        display: flex;
+        align-items: center;
+      }
+      .avatar {
+        width: 30px;
+        height: 30px;
+        margin-right: 8px;
+      }
+    }
+    .divider {
+      height: 1px;
+      width: 100%;
+      background-color: #DCDFE6;
+      margin: 10px 0;
+    }
+  }
+  @at-root .popover-width{
+    width: 240px;
+  }
+
+  // picker
+  .filter-picker {
+    &.el-date-editor--daterange.el-input__inner {
+      width: 170px;
+      border-color: $--color-primary;
+      border-radius: 0;
+      border-left: 0;
+      border-right: 0;
+    }
+    .el-input__icon{
+      display: none;
+    }
+    .el-range-input{
+      width: 100%;
+      cursor: pointer;
+      &::placeholder{
+        color: $placeholder-color;
+      }
+    }
+  }
+  @at-root .el-picker-panel{
+    .popper__arrow{
+      display: none!important;
+    }
+  }
+}

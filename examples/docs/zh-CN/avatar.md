@@ -9,7 +9,7 @@
     :src="src"
     default-src=""
     :http-request="httpRequest"
-    :hide-btn="true"
+    :hide-btn="false"
     @delImage="delImage" 
   />
 </div>
