@@ -94,11 +94,10 @@
          this.$refs.input.focus();
        })
      },
-     handleBlur({target: {value}}) {
+     handleBlur() {
        this.visible = false;
-       if(value && value>=0 && this.oldValue !== value) {
-         this.value = value;
-         this.oldValue = value
+       if(this.value >0 && this.oldValue !== this.value) {
+         this.oldValue = this.value
          this.$emit('change',{type: 'size', value: this.value});
        }
      },
@@ -108,7 +107,6 @@
      },
      reset() {
        this.value='';
-       this.$emit('change',{type: 'size', value: ''});
        this.$emit('change',{type: 'size', value: ''});
      }
    }

@@ -64,14 +64,19 @@ export default  {
       form: {
         radioList: []
       },
-      value: []
+      value: {}
     }
   },
   computed: {
     str(){
-      const arr =this.form.radioList.map(v=>v.dic.flatMap(i=>this.value[v.value].includes(i.value)?[i.label] : []));
-      const flat = arr.flat();
-      return  flat && flat.length>0?flat.join(';') : '';
+      const val = Object.values(this.value);
+      if(val.length){
+        const arr =this.form.radioList.map(v=>v.dic.flatMap(i=>this.value[v.value].includes(i.value)?[i.label] : []));
+        const flat = arr.flat();
+        return  flat && flat.length>0?flat.join(';') : '';
+      }else{
+        return  '';
+      }
     },
     // formProps() {
     //   const p = {
@@ -107,18 +112,28 @@ export default  {
   },
   methods: {
     hide() {
-      const { radioList } = this.form;
       const newArr = Object.values(this.value);
-      const oldArr = radioList.map(v=>v.defaultValue);
-      if(this.value.toString() !== oldArr.toString()) {
+      if(newArr.length) {
+        const { radioList } = this.form;
+        const oldArr = radioList.map(v=>v.defaultValue);
+        if(this.value.toString() !== oldArr.toString()) {
+          this.$emit('change', {type:'user', value:this.value})
+          this.form.radioList.forEach(v=>v.defaultValue = this.value)
+        }
+      }else{
+        this.resetObj();
         this.$emit('change', {type:'user', value:this.value})
-        this.form.radioList.forEach(v=>v.defaultValue = this.value)
       }
     },
     reset() {
-      this.value = [];
+      this.resetObj();
       this.hide();
     },
+    resetObj() {
+      Object.keys(this.value).forEach(v=>{
+        this.value[v] = []
+      });
+    }
   }
 }
 </script>

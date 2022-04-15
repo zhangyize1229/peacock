@@ -12,6 +12,7 @@ $placeholder-color: #8c95a8;
   font-size: 12px;
   .filter-item {
     margin-bottom: 8px;
+    display: flex;
     &.input{
       min-width: 132px;
       max-width: 360px;
