@@ -113,16 +113,11 @@ export default  {
   methods: {
     hide() {
       const newArr = Object.values(this.value);
-      if(newArr.length) {
-        const { radioList } = this.form;
-        const oldArr = radioList.map(v=>v.defaultValue);
-        if(this.value.toString() !== oldArr.toString()) {
-          this.$emit('change', {type:'user', value:this.value})
-          this.form.radioList.forEach(v=>v.defaultValue = this.value)
-        }
-      }else{
-        this.resetObj();
+      const { radioList } = this.form;
+      const oldArr = radioList.map(v=>v.defaultValue);
+      if(newArr.toString() !== oldArr.toString()) {
         this.$emit('change', {type:'user', value:this.value})
+        this.form.radioList.forEach(v=>v.defaultValue = this.value[v.value])
       }
     },
     reset() {
