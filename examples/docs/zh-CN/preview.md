@@ -5,7 +5,7 @@
 ```html
 <template>
     <div>
-      <wm-preview  :fileList="fileList"  @compare="compare" @closePreview="closePreview" @chooseFileIndex="chooseFileIndex"></wm-preview>
+      <wm-preview  :fileList="fileList"  @compare="compare" :file="file" @closePreview="closePreview" @chooseFileIndex="chooseFileIndex"></wm-preview>
     </div>
 </template>      
 
@@ -14,6 +14,7 @@
 export default {
   data() {
     return {
+      file: null
       // 当前选中的列表的下标
       fileList: [{
         objectKey: 'upload/20220210/440228f894965f1036ab6242274577b3.pdf',
@@ -88,6 +89,7 @@ export default {
 | 参数 | 说明 | 类型 | 可选值 | 默认值
 |---------|--------|-------| --------|--------
 | fileList | 文件列表 | Array | []
+| file | 文件（只有不存在link的时候才会用这个字段） | Blob | 
 
 ### Methods
 

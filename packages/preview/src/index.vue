@@ -82,18 +82,37 @@ export default {
     fileList: {
       type: Array,
       default: () => [],
-    }
+    },
+    file: {
+      type: Blob
+    },
   },
   created() {
     this.currentFile = this.fileList && this.fileList[0]
     if ((!this.currentFile.suffix || this.previewMode.text.includes(this.currentFile.suffix.toLowerCase()))) {
-      this.previewFile(this.currentFile.link, this.previewEncode)
+      if (this.currentFile.link) {
+        this.previewFile(this.currentFile.link, this.previewEncode)
+      } else if (this.file) {
+        this.read(this.file, this.previewEncode)
+      }
     }
   },
   watch: {
     previewEncode: {
       handler(val){
-       this.previewFile(this.currentFile.link, val)
+       if (this.currentFile.link) {
+         this.previewFile(this.currentFile.link, val)
+       } else if (this.file) {
+          this.read(this.file, val)
+       }
+      },
+      deep: true,
+    },
+    file: {
+      handler(val){
+       if(val) {
+         this.read(val, this.previewEncode)
+       }
       },
       deep: true,
     },
@@ -116,6 +135,13 @@ export default {
     }
   },
   methods: {
+    read (content, encode) {
+      let reader = new FileReader();
+      reader.readAsText(content, encode);
+      reader.onload = (e) => {
+        this.fileContent = reader.result
+      };
+    },
     compare() {
       this.$emit('compare')
     },
