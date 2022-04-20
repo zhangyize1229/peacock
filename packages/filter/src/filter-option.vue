@@ -6,21 +6,21 @@
 <script>
 import Locale from "../../../src/mixins/locale";
 import Emitter from '../../../src/mixins/emitter';
-import search from "./input"
-import size from "./autocomplete";
-import status from "./checkbox";
-import picker from "./picker"
-import user from "./select"
+import Input from "./input"
+import Radio from "./autocomplete";
+import Select from "./checkbox";
+import DatePicker from "./picker"
+import TabSelect from "./select"
 export default {
   name: "WmFilterOption",
   componentName: 'WmFilterOption',
   mixins: [Locale , Emitter],
   components: {
-    search,
-    size,
-    status,
-    picker,
-    user
+    Input,
+    Radio,
+    Select,
+    DatePicker,
+    TabSelect
   },
   props: {
     source: Object,
@@ -40,7 +40,7 @@ export default {
     },
   },
   methods: {
-    handleChange(data) {
+    handleChange() {
       this.$nextTick(() => {
         if (this.isGroup) {
           this.dispatch('WmFilter', 'change', '');

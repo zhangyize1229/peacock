@@ -25,7 +25,7 @@ export default {
       if (parent) {
         let param = {};
         parent.$children.forEach(child=>{
-          const type = child.$children[0].$options.componentName;
+          const type = child.$children[0].componentName;
           param[type] = child.$children[0].value
         })
         parent.$emit.apply(parent, [eventName].concat(param));

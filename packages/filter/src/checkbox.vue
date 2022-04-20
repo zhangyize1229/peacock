@@ -10,7 +10,7 @@
         <div class="filter-item-box" @click="showVisible">
           <div class="prefix">{{form.label}}</div>
           <div class="inner">
-            <template v-if="value">
+            <template v-if="value && value.length>0">
               <div class="value">{{str}}</div>
               <i class="el-icon-error icon opt" @click.stop="reset"></i>
             </template>
@@ -53,7 +53,7 @@
 import Locale from "../../../src/mixins/locale";
 
 export default  {
-  componentName: 'status',
+  componentName: 'Select',
   mixins: [Locale],
   props: {
     source: Object,
@@ -67,6 +67,7 @@ export default  {
       checkedList: [],
       noCheckedList: [],
       old: [],
+      componentName: ''
     }
   },
   computed: {
@@ -90,6 +91,7 @@ export default  {
       handler(v) {
         if( v.defaultValue && v.dic && v.dic.length) {
           this.value = this.old = v.defaultValue;
+          this.componentName = v.componentName;
           this.handleChange(v.defaultValue);
         }
       },
@@ -105,7 +107,7 @@ export default  {
     hide() {
       if(this.old.toString() !== this.value.toString()) {
         this.old = this.value;
-        this.$emit('change', {type: 'status', value: this.value })
+        this.$emit('change', {componentName: this.componentName, value: this.value })
       }
     },
     handleChange() {

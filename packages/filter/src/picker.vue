@@ -24,7 +24,7 @@
 <script>
 import Locale from "../../../src/mixins/locale";
 export default  {
-  componentName: 'picker',
+  componentName: 'DatePicker',
   mixins: [Locale],
   props: {
     source: Object,
@@ -33,6 +33,7 @@ export default  {
   data() {
     return {
       value: [],
+      componentName: ''
     }
   },
   computed: {
@@ -84,14 +85,15 @@ export default  {
     // }
   },
   watch: {
-    'form.defaultValue': {
+    'form': {
       handler(v) {
-        this.value = v;
+        this.value = v.defaultValue;
+        this.componentName = v.componentName;
       },
       immediate: true
     },
     value(v) {
-      this.$emit('change',{type: 'picker', value: v});
+      this.$emit('change',{componentName: this.componentName, value: v});
     }
   },
   methods: {

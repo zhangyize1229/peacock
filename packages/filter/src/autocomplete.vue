@@ -43,7 +43,7 @@
  import Locale from "../../../src/mixins/locale";
 
  export default  {
-   componentName: 'size',
+   componentName: 'Radio',
    mixins: [Locale],
    props: {
      source: Object,
@@ -54,6 +54,7 @@
        visible: false,
        value: '',
        oldValue: '',
+       componentName: '',
      }
    },
    computed: {
@@ -80,11 +81,13 @@
      // }
    },
    watch: {
-     'form.defaultValue': {
-       handler(newValue) {
-         this.value = newValue
+     'form': {
+       handler(v) {
+         this.value = v.defaultValue;
+         this.componentName = v.componentName;
        },
-       immediate: true
+       immediate: true,
+       deep: true
      },
    },
    methods: {
@@ -98,16 +101,16 @@
        this.visible = false;
        if(this.value >0 && this.oldValue !== this.value) {
          this.oldValue = this.value
-         this.$emit('change',{type: 'size', value: this.value});
+         this.$emit('change',{componentName: this.componentName, value: this.value});
        }
      },
      handleOption(data) {
        this.value = data;
-       this.$emit('change',{type: 'size', value: this.value});
+       this.$emit('change',{componentName: this.componentName, value: this.value});
      },
      reset() {
        this.value='';
-       this.$emit('change',{type: 'size', value: ''});
+       this.$emit('change',{componentName: this.componentName, value: ''});
      }
    }
  }

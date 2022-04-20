@@ -24,11 +24,11 @@
       <div>
         <div class="filter-radio">
           <el-radio-group v-model="radio">
-            <el-radio v-for="(item,index) in form.radioList" :key="index" :label="item.value">{{item.label}}</el-radio>
+            <el-radio v-for="(item,index) in form.tabSelectSource" :key="index" :label="item.value">{{item.label}}</el-radio>
           </el-radio-group>
         </div>
         <div class="divider"></div>
-        <div v-for="(item, index) in form.radioList" :key="index">
+        <div v-for="(item, index) in form.tabSelectSource" :key="index">
           <template v-if="item.value === radio">
             <el-checkbox-group v-model="value[item.value]">
               <div v-for="(i, j) in item.dic" :key="j" class="filter-option-item user">
@@ -51,7 +51,7 @@ import Avatar from "../../avatar/index"
 import Locale from "../../../src/mixins/locale";
 import {deepClone} from "../../../src/utils/utils";
 export default  {
-  componentName: 'user',
+  componentName: 'TabSelect',
   mixins: [Locale],
   props: {
     source: Object,
@@ -62,16 +62,17 @@ export default  {
     return {
       radio: '',
       form: {
-        radioList: []
+        tabSelectSource: []
       },
-      value: {}
+      value: {},
+      componentName: '',
     }
   },
   computed: {
     str(){
       const val = Object.values(this.value);
       if(val.length){
-        const arr =this.form.radioList.map(v=>v.dic.flatMap(i=>this.value[v.value].includes(i.value)?[i.label] : []));
+        const arr =this.form.tabSelectSource.map(v=>v.dic.flatMap(i=>this.value[v.value].includes(i.value)?[i.label] : []));
         const flat = arr.flat();
         return  flat && flat.length>0?flat.join(';') : '';
       }else{
@@ -85,7 +86,7 @@ export default  {
     //     postDic: "postDic",
     //     userDefaultValue: "userDefaultValue",
     //     postDefaultValue: "postDefaultValue",
-    //     radioList: "radioList",
+    //     tabSelectSource: "tabSelectSource",
     //     radioValue: "radioValue",
     //   }
     //   return {...p, ...this.props}
@@ -98,13 +99,14 @@ export default  {
           label: this.t('wm.filter.cc_person'),
         }
         const data = {...deepClone(v), ...p}
-        this.radio = data.radioList[0].value;
+        this.radio = data.tabSelectSource[0].value;
         let checked = {};
-        data.radioList.forEach(v=>{
+        data.tabSelectSource.forEach(v=>{
           checked[v.value]=(v.defaultValue);
         })
         this.form = data;
         this.value = checked;
+        this.componentName = v.componentName;
       },
       deep: true,
       immediate:true
@@ -113,11 +115,11 @@ export default  {
   methods: {
     hide() {
       const newArr = Object.values(this.value);
-      const { radioList } = this.form;
-      const oldArr = radioList.map(v=>v.defaultValue);
+      const { tabSelectSource } = this.form;
+      const oldArr = tabSelectSource.map(v=>v.defaultValue);
       if(newArr.toString() !== oldArr.toString()) {
-        this.$emit('change', {type:'user', value:this.value})
-        this.form.radioList.forEach(v=>v.defaultValue = this.value[v.value])
+        this.$emit('change', {componentName:this.componentName, value:this.value})
+        this.form.tabSelectSource.forEach(v=>v.defaultValue = this.value[v.value])
       }
     },
     reset() {

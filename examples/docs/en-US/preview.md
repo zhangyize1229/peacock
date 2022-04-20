@@ -14,7 +14,7 @@
 export default {
   data() {
     return {
-      file: null
+      file: null,
       // 当前选中的列表的下标
       fileList: [{
         objectKey: 'upload/20220210/440228f894965f1036ab6242274577b3.pdf',

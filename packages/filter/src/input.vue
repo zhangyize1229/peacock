@@ -24,18 +24,20 @@
 import Locale from "../../../src/mixins/locale";
 
 export default  {
-  componentName: 'search',
+  componentName: 'Input',
   mixins: [Locale],
   props: {
     source: Object,
     // props: Object,
   },
   watch: {
-    'form.defaultValue': {
-      handler(newValue) {
-        this.value = newValue
+    'form': {
+      handler(v) {
+        this.value = v.defaultValue;
+        this.componentName = v.componentName;
       },
-      immediate: true
+      immediate: true,
+      deep: true
     },
   },
   computed: {
@@ -61,25 +63,27 @@ export default  {
     return {
       value: '',
       oldValue: '',
+      componentName: '',
     }
   },
   methods: {
     handleBlur() {
       if(this.oldValue !== this.value) {
         this.oldValue = this.value
-        return this.$emit('change',{type: 'search', value: this.value});
+        return this.$emit('change',{componentName: this.componentName, value: this.value});
       }
       this.$refs['input'].blur();
     },
     clear() {
       this.handleBlur();
     },
-    search(event) {
+    search() {
       this.oldValue = this.value;
-      return this.$emit('change',{type: 'search', value: this.value});
+      return this.$emit('change',{componentName: this.componentName, value: this.value});
     },
     reset() {
       this.value="";
+      return this.$emit('change',{componentName: this.componentName, value: this.value});
     }
   }
 }

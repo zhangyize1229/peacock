@@ -19,18 +19,5 @@ export default {
     schema: Array,
     value: [],
   },
-  computed: {
-    keys(){
-      if(this.schema && this.schema.length>0) {
-        let obj = {};
-        this.schema.map(v=>{
-          obj[v.component] = v.defaultValue;
-        });
-        return obj;
-      }else{
-        return []
-      }
-    },
-  }
 }
 </script>

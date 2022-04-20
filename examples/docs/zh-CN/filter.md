@@ -6,36 +6,42 @@
 
 ```html
 <div style="width: 200px;">
-  <wm-filter-option :source="search" @change="handleChange"></wm-filter-option>
+  <wm-filter-option :source="input" @change="handleChange"></wm-filter-option>
 </div>
-<wm-filter-option :source="size" @change="handleChange"></wm-filter-option>
-<wm-filter-option :source="status" @change="handleChange"></wm-filter-option>
-<wm-filter-option :source="picker" @change="handleChange"></wm-filter-option>
-<wm-filter-option :source="user" @change="handleChange"></wm-filter-option>
+<wm-filter-option :source="radio" @change="handleChange"></wm-filter-option>
+<wm-filter-option :source="select" @change="handleChange"></wm-filter-option>
+<wm-filter-option :source="datePicker" @change="handleChange"></wm-filter-option>
+<wm-filter-option :source="tabSelect" @change="handleChange"></wm-filter-option>
 <script>
   export default {
     data() {
       return {
-        search: {
-          component: 'search',
+        input: {
+          component: 'Input',
+          componentName: 'input',
           defaultValue: 'hello'
         },
-        size: {
-          component: 'size',
-          defaultValue: '为空'
+        radio: {
+          component: 'Radio',
+          componentName: 'radio',
+          defaultValue: '为空',
+          dic: []
         },
-        status: {
-          component: 'status',
+        select: {
+          component: 'Select',
+          componentName: 'select',
           dic:[{label: '开发中', value: '0'}, {label: '规划中', value: '1'}],
           defaultValue: ['0'],
         },
-        picker: {
-          component: 'picker',
+        datePicker: {
+          component: 'DatePicker',
+          componentName: 'datePicker',
           defaultValue : ['2022-04-07','2022-04-08']
         },
-        user: {
-          component: 'user',
-          radioList: [{
+        tabSelect: {
+          component: 'TabSelect',
+          componentName: 'tabSelect',
+          tabSelectSource: [{
             label: '员工1',
             value: 1,
             dic:[{label: 'zhangsan', value: '1',avatar: '',},{label: 'lisi', value: '2',avatar: ''}],
@@ -66,36 +72,47 @@
 
 ```html
 <wm-filter @change="handleChange">
-  <wm-filter-option :source="search"></wm-filter-option>
-  <wm-filter-option :source="size"></wm-filter-option>
-  <wm-filter-option :source="status"></wm-filter-option>
-  <wm-filter-option :source="picker"></wm-filter-option>
-  <wm-filter-option :source="user"></wm-filter-option>
+  <wm-filter-option :source="input"></wm-filter-option>
+  <wm-filter-option :source="input1"></wm-filter-option>
+  <wm-filter-option :source="radio"></wm-filter-option>
+  <wm-filter-option :source="select"></wm-filter-option>
+  <wm-filter-option :source="datePicker"></wm-filter-option>
+  <wm-filter-option :source="tabSelect"></wm-filter-option>
 </wm-filter>
 <script>
   export default {
     data() {
       return {
-        search: {
-          component: 'search',
+        input: {
+          component: 'Input',
+          componentName: 'input',
           defaultValue: 'hello'
         },
-        size: {
-          component: 'size',
+        input1: {
+          component: 'Input',
+          componentName: 'input1',
+          defaultValue: 'hello1'
+        },
+        radio: {
+          component: 'Radio',
+          componentName: 'radio',
           defaultValue: '为空'
         },
-        status: {
-          component: 'status',
+        select: {
+          component: 'Select',
+          componentName: 'select',
           dic:[{label: '开发中', value: '0'}, {label: '规划中', value: '1'}],
           defaultValue: ['0'],
         },
-        picker: {
-          component: 'picker',
+        datePicker: {
+          component: 'DatePicker',
+          componentName: 'datePicker',
           defaultValue : ['2022-04-07','2022-04-08']
         },
-        user: {
-          component: 'user',
-          radioList: [{
+        tabSelect: {
+          component: 'TabSelect',
+          componentName: 'tabSelect',
+          tabSelectSource: [{
             label: '员工1',
             value: 1,
             dic:[{label: 'zhangsan', value: '1'},{label: 'lisi', value: '2'}],
@@ -138,25 +155,30 @@
       return {
         schema: [
           {
-            component: 'search',
+            component: 'Input',
+            componentName: 'input',
             defaultValue: 'hello'
           },
           {
-            component: 'size',
+            component: 'Radio',
+            componentName: 'radio',
             defaultValue: '1'
           },
           {
-            component: 'status',
+            component: 'Select',
+            componentName: 'select',
             dic:[{label: '开发中', value: '0'}, {label: '规划中', value: '1'}],
             defaultValue: ['0'],
           },
           {
-            component: 'picker',
+            component: 'DatePicker',
+            componentName: 'datePicker',
             defaultValue:['2022-04-07','2022-04-08']
           },
           {
-            component: 'user',
-            radioList: [{ 
+            component: 'TabSelect',
+            componentName: 'tabSelect',
+            tabSelectSource: [{ 
                 label: '员工1', 
                 value: 1,
                 dic:[{label: 'zhangsan', value: '1'},{label: 'lisi', value: '2'}],
@@ -198,9 +220,10 @@
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值
 |---------|--------|-------| --------|--------
-| component | 组件  | string | search/size/status/picker/user | --
+| component | 组件  | string | Input/Radio/Select/DatePicker/TabSelect | --
+| componentName | 组件名称  | string | -- | --
 | label | 标题  | string | -- | --
-| defaultValue | 默认值  | string/array | search/size为string  | --
+| defaultValue | 默认值  | string/array | input/radio为string  | --
 | dic | 下拉数据 格式：{label:'', value:''} | array | --  | --
 | radioList | 具体参数如下表 | array | --  | --
 
