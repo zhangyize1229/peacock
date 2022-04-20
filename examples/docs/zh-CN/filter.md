@@ -225,9 +225,9 @@
 | label | 标题  | string | -- | --
 | defaultValue | 默认值  | string/array | input/radio为string  | --
 | dic | 下拉数据 格式：{label:'', value:''} | array | --  | --
-| radioList | 具体参数如下表 | array | --  | --
+| tabSelectSource | 具体参数如下表 | array | --  | --
 
-### radioList Attributes
+### tabSelectSource Attributes
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值
 |---------|--------|-------| --------|--------

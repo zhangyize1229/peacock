@@ -225,9 +225,9 @@
 | label | --  | string | -- | --
 | defaultValue | --  | string/array | Input/Radio string  | --
 | dic | dropdown data Format：{label:'', value:''} | array | --  | --
-| radioList | see the following table | array | --  | --
+| tabSelectSource | see the following table | array | --  | --
 
-### radioList Attributes
+### tabSelectSource Attributes
 
 | Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------

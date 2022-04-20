@@ -1,42 +1,72 @@
 <template>
   <div class="filter-item">
-    <el-popover
+    <template v-if="form.dic.length==0">
+      <div class="filter-item-box" v-if="visible==false"  @click="showVisible">
+        <div class="prefix">{{form.label}}</div>
+        <div class="inner">
+          <template v-if="value">
+            <div class="value">{{value}}</div>
+            <i class="el-icon-error icon opt" @click.stop="reset"></i>
+          </template>
+          <template v-else>
+            <div class="value placeholder">{{t("wm.filter.all")}}</div>
+            <i class="el-icon-arrow-down icon"></i>
+          </template>
+        </div>
+      </div>
+      <div style="width: 160px;" v-if="visible==true">
+        <el-input
+          type="number"
+          ref="input"
+          :placeholder="form.placeholder"
+          :maxLength="form.maxlength"
+          :min="form.min"
+          v-model="value"
+          @blur="handleBlur"
+          @keyup.enter.native="handleBlur"
+        />
+      </div>
+    </template>
+    <template v-else>
+      <el-popover
         v-model="visible"
         :visible-arrow="false"
         placement="bottom-start"
         popper-class="vm-popover"
         trigger="manual">
-      <div slot="reference">
-        <div class="filter-item-box" v-if="visible==false"  @click="showVisible">
-          <div class="prefix">{{form.label}}</div>
-          <div class="inner">
-            <template v-if="value">
-              <div class="value">{{value}}</div>
-              <i class="el-icon-error icon opt" @click.stop="reset"></i>
-            </template>
-            <template v-else>
-              <div class="value placeholder">{{t("wm.filter.all")}}</div>
-              <i class="el-icon-arrow-down icon"></i>
-            </template>
+        <div slot="reference">
+          <div class="filter-item-box" v-if="visible==false"  @click="showVisible">
+            <div class="prefix">{{form.label}}</div>
+            <div class="inner">
+              <template v-if="value">
+                <div class="value">{{value}}</div>
+                <i class="el-icon-error icon opt" @click.stop="reset"></i>
+              </template>
+              <template v-else>
+                <div class="value placeholder">{{t("wm.filter.all")}}</div>
+                <i class="el-icon-arrow-down icon"></i>
+              </template>
+            </div>
+          </div>
+          <div style="width: 160px;" v-if="visible==true">
+            <el-input
+              type="number"
+              ref="input"
+              :placeholder="form.placeholder"
+              :maxLength="form.maxlength"
+              :min="form.min"
+              v-model="value"
+              @blur="handleBlur"
+              @keyup.enter.native="handleBlur"
+            />
           </div>
         </div>
-        <div style="width: 160px;" v-if="visible==true">
-          <el-input
-            type="number"
-            ref="input"
-            :placeholder="form.placeholder"
-            :maxLength="form.maxlength"
-            :min="form.min"
-            v-model="value"
-            @blur="handleBlur"
-            @keyup.enter.native="handleBlur"
-          />
+        <div>
+          <div v-for="(item, index) in form.dic" :key="index" class="filter-option-item" @click="handleOption(item)">{{item}}</div>
         </div>
-      </div>
-      <div>
-        <div v-for="(item, index) in form.dic" :key="index" class="filter-option-item" @click="handleOption(item)">{{item}}</div>
-      </div>
-    </el-popover>
+      </el-popover>
+    </template>
+
   </div>
 </template>
 <script>
