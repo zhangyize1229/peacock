@@ -76,7 +76,7 @@
    componentName: 'Radio',
    mixins: [Locale],
    props: {
-     source: Object,
+     model: Object,
      // props: Object,
    },
    data() {
@@ -96,7 +96,7 @@
          min: 0,
          dic: [this.t('wm.filter.null'), this.t('wm.filter.not_null')],
        }
-       return { ...p, ...this.source }
+       return { ...p, ...this.model }
      },
      // formProps() {
      //   const p= {

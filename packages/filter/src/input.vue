@@ -27,7 +27,7 @@ export default  {
   componentName: 'Input',
   mixins: [Locale],
   props: {
-    source: Object,
+    model: Object,
     // props: Object,
   },
   watch: {
@@ -47,7 +47,7 @@ export default  {
         defaultValue: '',
         placeholder: this.t('wm.filter.enter_keyword'),
       }
-      return {...p, ...this.source }
+      return {...p, ...this.model }
     },
     // formProps(){
     //   const p = {

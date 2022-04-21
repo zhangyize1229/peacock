@@ -1,6 +1,6 @@
 <template>
   <div class="wm-filter-option">
-    <component :is="source.component" v-bind="$props" v-on="$listeners" @change="handleChange" />
+    <component :is="model.component" v-bind="$props" v-on="$listeners" @change="handleChange" />
   </div>
 </template>
 <script>
@@ -23,7 +23,7 @@ export default {
     TabSelect
   },
   props: {
-    source: Object,
+    model: Object,
     props: Object,
   },
   computed: {

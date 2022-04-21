@@ -6,12 +6,12 @@
 
 ```html
 <div style="width: 200px;">
-  <wm-filter-option :source="input" @change="handleChange"></wm-filter-option>
+  <wm-filter-option :model="input" @change="handleChange"></wm-filter-option>
 </div>
-<wm-filter-option :source="radio" @change="handleChange"></wm-filter-option>
-<wm-filter-option :source="select" @change="handleChange"></wm-filter-option>
-<wm-filter-option :source="datePicker" @change="handleChange"></wm-filter-option>
-<wm-filter-option :source="tabSelect" @change="handleChange"></wm-filter-option>
+<wm-filter-option :model="radio" @change="handleChange"></wm-filter-option>
+<wm-filter-option :model="select" @change="handleChange"></wm-filter-option>
+<wm-filter-option :model="datePicker" @change="handleChange"></wm-filter-option>
+<wm-filter-option :model="tabSelect" @change="handleChange"></wm-filter-option>
 <script>
   export default {
     data() {
@@ -72,12 +72,12 @@
 
 ```html
 <wm-filter @change="handleChange">
-  <wm-filter-option :source="input"></wm-filter-option>
-  <wm-filter-option :source="input1"></wm-filter-option>
-  <wm-filter-option :source="radio"></wm-filter-option>
-  <wm-filter-option :source="select"></wm-filter-option>
-  <wm-filter-option :source="datePicker"></wm-filter-option>
-  <wm-filter-option :source="tabSelect"></wm-filter-option>
+  <wm-filter-option :model="input"></wm-filter-option>
+  <wm-filter-option :model="input1"></wm-filter-option>
+  <wm-filter-option :model="radio"></wm-filter-option>
+  <wm-filter-option :model="select"></wm-filter-option>
+  <wm-filter-option :model="datePicker"></wm-filter-option>
+  <wm-filter-option :model="tabSelect"></wm-filter-option>
 </wm-filter>
 <script>
   export default {
@@ -214,9 +214,9 @@
 
 | Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------
-| source | wm-filter-option, see the following table  | object | -- | --
+| model | wm-filter-option, see the following table  | object | -- | --
 
-### source Attributes
+### model Attributes
 
 | Attribute | Description | Type | Accepted Values | Default
 |---------|--------|-------| --------|--------

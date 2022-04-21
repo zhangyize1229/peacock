@@ -27,7 +27,7 @@ export default  {
   componentName: 'DatePicker',
   mixins: [Locale],
   props: {
-    source: Object,
+    model: Object,
     // props: Object,
   },
   data() {
@@ -71,7 +71,7 @@ export default  {
         startPlaceholder: this.t('wm.filter.start_time'),
         endPlaceholder: this.t('wm.filter.end_time'),
       }
-      return { ...p, ...this.source }
+      return { ...p, ...this.model }
     },
     // formProps() {
     //   const p = {

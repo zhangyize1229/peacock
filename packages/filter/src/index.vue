@@ -1,7 +1,7 @@
 <template>
   <div class="wm-filter">
     <template v-if="schema && schema.length>0">
-      <filter-option v-for="(i,index) in schema" :key="index" :source="i"></filter-option>
+      <filter-option v-for="(i,index) in schema" :key="index" :model="i"></filter-option>
     </template>
     <slot v-else ></slot>
   </div>

@@ -56,7 +56,7 @@ export default  {
   componentName: 'Select',
   mixins: [Locale],
   props: {
-    source: Object,
+    model: Object,
     // props: Object
   },
   data() {
@@ -75,7 +75,7 @@ export default  {
       const p = {
         label: this.t('wm.filter.status'),
       }
-      return { ...p, ...this.source }
+      return { ...p, ...this.model }
     },
     // formProps(){
     //   const p= {
@@ -114,9 +114,9 @@ export default  {
       let checkedList = [];
       let noCheckedList = [];
       if(!this.value) {
-        return this.noCheckedList = this.filterByInput(this.source.dic);
+        return this.noCheckedList = this.filterByInput(this.model.dic);
       }
-      this.source.dic.map(v=>{
+      this.model.dic.map(v=>{
         if(this.value.indexOf(v.value)!==-1) {
           checkedList = checkedList.concat([v])
         } else {

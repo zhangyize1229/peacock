@@ -54,7 +54,7 @@ export default  {
   componentName: 'TabSelect',
   mixins: [Locale],
   props: {
-    source: Object,
+    model: Object,
     // props: Object,
   },
   components: { Avatar },
@@ -93,7 +93,7 @@ export default  {
     // }
   },
   watch: {
-    source:{
+    model:{
       handler(v){
         const p = {
           label: this.t('wm.filter.cc_person'),
