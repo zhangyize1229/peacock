@@ -133,6 +133,10 @@ $placeholder-color: #8c95a8;
       font-size: 12px;
       margin-bottom: 10px;
     }
+    .popover-options{
+      max-height: 200px;
+      overflow-y: auto;
+    }
     // select
     .filter-radio{
       min-width: 180px;

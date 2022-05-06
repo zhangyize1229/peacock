@@ -61,7 +61,7 @@
             />
           </div>
         </div>
-        <div>
+        <div class="popover-options">
           <div v-for="(item, index) in form.dic" :key="index" class="filter-option-item" @click="handleOption(item)">{{item}}</div>
         </div>
       </el-popover>

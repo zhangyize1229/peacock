@@ -31,7 +31,7 @@
         </div>
         <template v-if="checkedList.length>0">
           <div class="check-label">已选项</div>
-          <el-checkbox-group v-model="value" @change="handleChange" >
+          <el-checkbox-group class="popover-options" v-model="value" @change="handleChange" >
             <div v-for="(item, index) in checkedList" :key="index" class="filter-option-item">
               <el-checkbox :label="item.value">{{item.label}}</el-checkbox>
             </div>

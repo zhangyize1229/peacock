@@ -30,7 +30,7 @@
         <div class="divider"></div>
         <div v-for="(item, index) in form.tabSelectSource" :key="index">
           <template v-if="item.value === radio">
-            <el-checkbox-group v-model="value[item.value]">
+            <el-checkbox-group class="popover-options" v-model="value[item.value]">
               <div v-for="(i, j) in item.dic" :key="j" class="filter-option-item user">
                 <el-checkbox :label="i.value">
                   <div style="display: flex;align-items: center;">
