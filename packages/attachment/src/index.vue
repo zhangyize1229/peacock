@@ -116,7 +116,8 @@ export default {
       }
     },
     download(data) {
-      const { link, fileName } = data;
+      const link = data[this.props.link];
+      const fileName = data[this.props.fileName];
       if (link.length > 0) {
         downloadFile(link, fileName, "link");
       }
