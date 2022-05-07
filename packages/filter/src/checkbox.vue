@@ -29,22 +29,24 @@
             </template>
           </el-input>
         </div>
-        <template v-if="checkedList.length>0">
-          <div class="check-label">已选项</div>
-          <el-checkbox-group class="popover-options" v-model="value" @change="handleChange" >
-            <div v-for="(item, index) in checkedList" :key="index" class="filter-option-item">
-              <el-checkbox :label="item.value">{{item.label}}</el-checkbox>
-            </div>
-          </el-checkbox-group>
-        </template>
-        <div v-if="checkedList.length>0 && noCheckedList.length>0" class="divider"></div>
-        <template v-if="noCheckedList.length>0">
-          <el-checkbox-group v-model="value" @change="handleChange" >
-            <div v-for="(item, index) in noCheckedList" :key="index" class="filter-option-item">
-              <el-checkbox :label="item.value">{{item.label}}</el-checkbox>
-            </div>
-          </el-checkbox-group>
-        </template>
+        <div class="popover-options">
+          <template v-if="checkedList.length>0">
+            <div class="check-label">已选项</div>
+            <el-checkbox-group v-model="value" @change="handleChange" >
+              <div v-for="(item, index) in checkedList" :key="index" class="filter-option-item">
+                <el-checkbox :label="item.value">{{item.label}}</el-checkbox>
+              </div>
+            </el-checkbox-group>
+          </template>
+          <div v-if="checkedList.length>0 && noCheckedList.length>0" class="divider"></div>
+          <template v-if="noCheckedList.length>0">
+            <el-checkbox-group v-model="value" @change="handleChange" >
+              <div v-for="(item, index) in noCheckedList" :key="index" class="filter-option-item">
+                <el-checkbox :label="item.value">{{item.label}}</el-checkbox>
+              </div>
+            </el-checkbox-group>
+          </template>
+        </div>
       </div>
     </el-popover>
   </div>
