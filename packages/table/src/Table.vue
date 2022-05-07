@@ -13,6 +13,7 @@
         :data="content"
         :stripe="stripe"
         :border="border"
+        :height="height"
         fit
         highlight-current-row
         v-loading="loading"
@@ -123,6 +124,10 @@ export default {
     border: {
       type: Boolean,
       default: true,
+    },
+    height: {
+      type: String,
+      default: "100%"
     },
     sort: String,
     asc: Boolean,
