@@ -1,5 +1,5 @@
 <template>
-  <div class="wm-table">
+  <div class="wm-table" ref="content">
     <!--工具栏-->
     <slot name="toolbar" v-bind:selItems="selItems"></slot>
     <el-form
@@ -13,7 +13,7 @@
         :data="content"
         :stripe="stripe"
         :border="border"
-        :height="height"
+        :height="compHeight"
         fit
         highlight-current-row
         v-loading="loading"
@@ -56,24 +56,26 @@
       </el-table>
     </el-form>
 
-    <template v-if="this.$scopedSlots.pagination">
-      <slot
-        name="pagination"
-        v-bind:page="pageRequest"
-        @pagination="doPagiation"
-      ></slot>
-    </template>
-    <template v-else>
-      <Pagination
-        :layout="layout"
-        :total="pageRequest.total"
-        :page.sync="pageRequest.page"
-        :limit.sync="pageRequest.limit"
-        @pagination="doPagiation"
-        :pageSizes="pageSizes"
-        :auto-scroll="autoScroll"
-      ></Pagination>
-    </template>
+    <div ref="footer">
+      <template v-if="this.$scopedSlots.pagination">
+        <slot
+          name="pagination"
+          v-bind:page="pageRequest"
+          @pagination="doPagiation"
+        ></slot>
+      </template>
+      <template v-else>
+        <Pagination
+          :layout="layout"
+          :total="pageRequest.total"
+          :page.sync="pageRequest.page"
+          :limit.sync="pageRequest.limit"
+          @pagination="doPagiation"
+          :pageSizes="pageSizes"
+          :auto-scroll="autoScroll"
+        ></Pagination>
+      </template>            
+    </div>
 
     <slot name="empty" v-if="content.length==0"></slot>
 
@@ -125,10 +127,6 @@ export default {
       type: Boolean,
       default: true,
     },
-    height: {
-      type: String,
-      default: "100%"
-    },
     sort: String,
     asc: Boolean,
     custRequest: Function,
@@ -154,6 +152,9 @@ export default {
         .map((item) => item.prop)
         .filter((item) => item && this.$scopedSlots[item]);
     },
+    compHeight(){
+      return this.height ?  this.height : this.calcHeight
+    }
   },
   created() {
     this.auto && this.findPage();
@@ -161,7 +162,7 @@ export default {
   watch: {
     data() {
       this.findPage();
-    },
+    }
   },
   provide() {
     return {
@@ -251,7 +252,15 @@ export default {
       this.pageRequest.total = _allContent.length;
     },
     doPagiation() {
-      if (this.paginationType === "server") this.findPageServer();
+
+      if (this.paginationType === "server") {
+        //校验页码分页数有效性
+        //选择的limit * (page - 1) <= total , 合法。 否则不规范， 设置页码为1
+        const {limit, page, total} = this.pageRequest
+        limit*(page-1) <= total || (this.pageRequest.page = 1)
+
+        this.findPageServer();  
+      }
       else if (this.allContent) {
         (this.showAll && (this.content = this.allContent)) ||
           this.doFilter(this.allContent);
@@ -306,6 +315,10 @@ export default {
   mounted() {
     //请求数据
     this.filterColumns = this.columns;
+    this.$nextTick(()=> {
+      this.calcHeight = this.$refs.content.offsetHeight - (this.showAll ? 0 : 40)
+    })
+    
   },
   data() {
     return {
@@ -321,6 +334,7 @@ export default {
       loading: false, // 加载标识
       highItem: null, ///当前高亮显示的行
       selItems: [], // 列表选中列
+      calcHeight: null
     };
   },
 };

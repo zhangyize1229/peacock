@@ -5,7 +5,7 @@
 
 ```html
 <template>
-    <div>
+    <div style="height: 300px;">
         <el-button  @click="handleAdd" :disabled="editRow">新增</el-button>
         <wm-table ref="table" :data="data" :columns="columns" pagination-type="client" :edit-row="editRow" :rules="dataRule">
 
@@ -49,12 +49,53 @@
                 </div>
             </template>
 
+
         </wm-table>
     </div>
 
 </template>
 <script>
     const data = [{
+        id: 1,
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄',
+    }, {
+        id: 2,
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+    }, {
+        id: 3,
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1519 弄'
+    }, {
+        id: 4,
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+    },{
+        id: 1,
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄',
+    }, {
+        id: 2,
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+    }, {
+        id: 3,
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1519 弄'
+    }, {
+        id: 4,
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+    },{
         id: 1,
         date: '2016-05-02',
         name: '王小虎',
