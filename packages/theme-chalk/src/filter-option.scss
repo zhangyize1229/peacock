@@ -176,12 +176,17 @@ $placeholder-color: #8c95a8;
 
   // picker
   .filter-picker {
-    &.el-date-editor--daterange.el-input__inner {
-      width: 170px;
+    &.el-range-editor.el-input__inner,  {
       border-color: $--color-primary;
       border-radius: 0;
       border-left: 0;
       border-right: 0;
+    }
+    &.el-date-editor--daterange.el-input__inner,  {
+      width: 170px;
+    }
+    &.el-date-editor--datetimerange.el-input__inner,  {
+      width: 264px;
     }
     .el-input__icon{
       display: none;

@@ -11,6 +11,7 @@
 <wm-filter-option :model="radio" @change="handleChange"></wm-filter-option>
 <wm-filter-option :model="select" @change="handleChange"></wm-filter-option>
 <wm-filter-option :model="datePicker" @change="handleChange"></wm-filter-option>
+<wm-filter-option :model="dateTimePicker" @change="handleChange"></wm-filter-option>
 <wm-filter-option :model="tabSelect" @change="handleChange"></wm-filter-option>
 <script>
   export default {
@@ -37,6 +38,11 @@
           component: 'DatePicker',
           componentName: 'datePicker',
           defaultValue : ['2022-04-07','2022-04-08']
+        }, 
+        dateTimePicker: {
+          component: 'DateTimePicker',
+          componentName: 'dateTimePicker',
+          defaultValue : ['2022-04-07 12:21:39','2022-04-08 12:22:40']
         },
         tabSelect: {
           component: 'TabSelect',
@@ -77,6 +83,7 @@
   <wm-filter-option :model="radio"></wm-filter-option>
   <wm-filter-option :model="select"></wm-filter-option>
   <wm-filter-option :model="datePicker"></wm-filter-option>
+  <wm-filter-option :model="dateTimePicker" @change="handleChange"></wm-filter-option>
   <wm-filter-option :model="tabSelect"></wm-filter-option>
 </wm-filter>
 <script>
@@ -108,6 +115,11 @@
           component: 'DatePicker',
           componentName: 'datePicker',
           defaultValue : ['2022-04-07','2022-04-08']
+        },
+        dateTimePicker: {
+          component: 'DateTimePicker',
+          componentName: 'dateTimePicker',
+          defaultValue : ['2022-04-07 12:21:39','2022-04-08 12:22:40']
         },
         tabSelect: {
           component: 'TabSelect',
@@ -176,6 +188,11 @@
             defaultValue:['2022-04-07','2022-04-08']
           },
           {
+            component: 'DateTimePicker',
+            componentName: 'dateTimePicker',
+            defaultValue : ['2022-04-07 12:21:39','2022-04-08 12:22:40']
+          },
+          {
             component: 'TabSelect',
             componentName: 'tabSelect',
             tabSelectSource: [{ 
@@ -220,7 +237,7 @@
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值
 |---------|--------|-------| --------|--------
-| component | 组件  | string | Input/Radio/Select/DatePicker/TabSelect | --
+| component | 组件  | string | Input/Radio/Select<br>DatePicker/DateTimePicker<br>TabSelect | --
 | componentName | 组件名称  | string | -- | --
 | label | 标题  | string | -- | --
 | defaultValue | 默认值  | string/array | input/radio为string  | --

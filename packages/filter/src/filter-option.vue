@@ -9,7 +9,8 @@ import Emitter from '../../../src/mixins/emitter';
 import Input from "./input"
 import Radio from "./autocomplete";
 import Select from "./checkbox";
-import DatePicker from "./picker"
+import DatePicker from "./date-picker"
+import DateTimePicker from "./date-time-picker"
 import TabSelect from "./select"
 export default {
   name: "WmFilterOption",
@@ -20,6 +21,7 @@ export default {
     Radio,
     Select,
     DatePicker,
+    DateTimePicker,
     TabSelect
   },
   props: {
