@@ -91,7 +91,7 @@ export default {
       not_null: '不为空',
       person: '人员',
       post: '岗位',
-      enter_search_size: '回车搜索规模',
+      enter_search_size: '回车搜索',
       last_week: '最近一周',
       last_month: '最近一个月',
       last_three_month: '最近三个月',
