@@ -19,6 +19,8 @@
     color: $--color-white;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    border-top-right-radius: $--border-radius;
+    border-bottom-right-radius: $--border-radius;
     display: flex;
     justify-content: center;
     align-items: center;
